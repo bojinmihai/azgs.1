@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "lang": "en",
+    "ogLocale": "en_US",
+    "ogLocaleAlt": "nl_NL"
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "menuOpen": "Open menu",
+    "primaryNav": "Primary navigation",
+    "home": "Home",
+    "services": "Services",
+    "emergency": "Emergency",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "callCta": "Call {phone}",
+    "languageSwitchLabel": "Change language / Taal wijzigen",
+    "finishing": "Finishing",
+    "installations": "Installations",
+    "drywall": "Drywall",
+    "painting": "Painting",
+    "parquet": "Parquet",
+    "tiling": "Tiling",
+    "plumbing": "Plumbing",
+    "heating": "Heating",
+    "underfloorHeating": "Underfloor heating",
+    "electrical": "Electrical"
+  },
+  "footer": {
+    "tagline": "Calm, warmth and comfort in your home. Finishing and installations for homes in the Netherlands.",
+    "servicesHeading": "Services",
+    "companyHeading": "Company",
+    "contactHeading": "Contact",
+    "finishingSub": "Finishing",
+    "installationsSub": "Installations",
+    "emergencyService": "Emergency service",
+    "languageVersion": "Nederlandse versie",
+    "forQuotes": "For quotes",
+    "copyright": "© 2026 AZ Grand Solutions · Calm, warmth and comfort in your home",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie policy",
+    "terms": "Terms and conditions"
+  },
+  "consent": {
+    "title": "Cookies & privacy",
+    "text": "We use anonymous statistics cookies (Google Analytics) to understand how our website is used. These cookies are not essential — you can decline them. Read more in our <a>cookie policy</a>.",
+    "reject": "Decline",
+    "accept": "Accept"
+  },
+  "common": {
+    "whatsapp": "WhatsApp",
+    "callNow": "Call {phone}",
+    "requestQuote": "Request a quote",
+    "freeQuote": "Request a no-obligation quote"
+  }
+}

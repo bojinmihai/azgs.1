@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "lang": "nl",
+    "ogLocale": "nl_NL",
+    "ogLocaleAlt": "en_US"
+  },
+  "nav": {
+    "skipToContent": "Ga naar inhoud",
+    "menuOpen": "Menu openen",
+    "primaryNav": "Hoofdnavigatie",
+    "home": "Home",
+    "services": "Diensten",
+    "emergency": "Spoed",
+    "about": "Over ons",
+    "blog": "Blog",
+    "contact": "Contact",
+    "callCta": "Bel {phone}",
+    "languageSwitchLabel": "Taal wijzigen / Change language",
+    "finishing": "Afwerking",
+    "installations": "Installaties",
+    "drywall": "Gipsplaten",
+    "painting": "Schilderwerk",
+    "parquet": "Parket",
+    "tiling": "Tegelwerk",
+    "plumbing": "Sanitair",
+    "heating": "Verwarming",
+    "underfloorHeating": "Vloerverwarming",
+    "electrical": "Elektra"
+  },
+  "footer": {
+    "tagline": "Rust, warmte en comfort in uw woning. Afwerking en installaties voor woningen in Nederland.",
+    "servicesHeading": "Diensten",
+    "companyHeading": "Bedrijf",
+    "contactHeading": "Contact",
+    "finishingSub": "Afwerking",
+    "installationsSub": "Installaties",
+    "emergencyService": "Spoedservice",
+    "languageVersion": "English version",
+    "forQuotes": "Voor offertes",
+    "copyright": "© 2026 AZ Grand Solutions · Rust, warmte en comfort in uw woning",
+    "privacy": "Privacybeleid",
+    "cookies": "Cookiebeleid",
+    "terms": "Algemene voorwaarden"
+  },
+  "consent": {
+    "title": "Cookies & privacy",
+    "text": "Wij gebruiken anonieme statistiekcookies (Google Analytics) om te begrijpen hoe onze website wordt gebruikt. Deze cookies zijn niet noodzakelijk, u kunt ze weigeren. Lees meer in ons <a>cookiebeleid</a>.",
+    "reject": "Weigeren",
+    "accept": "Accepteren"
+  },
+  "common": {
+    "whatsapp": "WhatsApp",
+    "callNow": "Bel {phone}",
+    "requestQuote": "Offerte aanvragen",
+    "freeQuote": "Vraag een vrijblijvende offerte"
+  }
+}

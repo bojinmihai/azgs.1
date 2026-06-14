@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  AZ Grand Solutions — sitemap.xml
+
+  Structure:
+    - Every page that exists in BOTH NL and EN is listed TWICE:
+      once under its NL URL and once under its EN URL, each entry
+      pointing to all alternates (nl, en, x-default → NL).
+    - Blog articles exist in both NL and EN; each article is
+      listed once per language with bidirectional alternates.
+    - /bedankt.html and /404.html are intentionally excluded
+      (they are noindex/server-error pages).
+
+  When adding a new language (e.g. DE):
+    - Add a <xhtml:link rel="alternate" hreflang="de" .../> to
+      every <url> block that exists in DE.
+    - Add new <url> entries for each translated DE URL.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ==================================================== -->
+  <!-- HOME                                                  -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- DIENSTEN (services umbrella)                          -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/diensten.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/diensten.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/diensten.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/services.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/diensten.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/diensten.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- SPOED (emergency)                                     -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/spoed.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/spoed.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/emergency.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/spoed.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/emergency.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/spoed.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/emergency.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/spoed.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- AFWERKING SERVICES                                    -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/gipsplaten.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/gipsplaten.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/drywall.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/gipsplaten.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/drywall.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/gipsplaten.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/drywall.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/gipsplaten.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/schilderwerk.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/schilderwerk.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/painting.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/schilderwerk.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/painting.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/schilderwerk.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/painting.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/schilderwerk.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/parket.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/parket.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/parquet.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/parket.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/parquet.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/parket.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/parquet.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/parket.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/tegelwerk.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/tegelwerk.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/tiling.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/tegelwerk.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/tiling.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/tegelwerk.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/tiling.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/tegelwerk.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- INSTALLATIES SERVICES                                 -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/sanitair.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/sanitair.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/plumbing.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/sanitair.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/plumbing.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/sanitair.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/plumbing.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/sanitair.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/verwarming.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/verwarming.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/heating.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/verwarming.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/heating.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/verwarming.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/heating.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/verwarming.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/vloerverwarming.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/vloerverwarming.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/underfloor-heating.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/vloerverwarming.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/underfloor-heating.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/vloerverwarming.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/underfloor-heating.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/vloerverwarming.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/elektra.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/elektra.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/electrical.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/elektra.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/electrical.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/elektra.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/electrical.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/elektra.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- OVER ONS (about)                                      -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/over-ons.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/over-ons.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/over-ons.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/about.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/over-ons.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/over-ons.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- BLOG INDEX                                            -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/blog.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/blog.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- BLOG ARTICLES (NL + EN)                               -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/blog-tegels-kiezen-badkamer.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog-tegels-kiezen-badkamer.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog-choosing-bathroom-tiles.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog-tegels-kiezen-badkamer.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/blog-choosing-bathroom-tiles.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog-tegels-kiezen-badkamer.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog-choosing-bathroom-tiles.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog-tegels-kiezen-badkamer.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/blog-vloerverwarming-bestaande-woning.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog-vloerverwarming-bestaande-woning.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog-underfloor-heating-existing-home.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog-vloerverwarming-bestaande-woning.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/blog-underfloor-heating-existing-home.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog-vloerverwarming-bestaande-woning.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog-underfloor-heating-existing-home.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog-vloerverwarming-bestaande-woning.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/blog-vloerverwarming-warmtepomp.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog-vloerverwarming-warmtepomp.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog-vloerverwarming-warmtepomp.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/blog-lekkage-eerste-10-minuten.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog-lekkage-eerste-10-minuten.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog-leak-first-10-minutes.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog-lekkage-eerste-10-minuten.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/blog-leak-first-10-minutes.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/blog-lekkage-eerste-10-minuten.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/blog-leak-first-10-minutes.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/blog-lekkage-eerste-10-minuten.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- CONTACT                                               -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/contact.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/contact.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/contact.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/contact.html"/>
+  </url>
+
+  <!-- ==================================================== -->
+  <!-- LEGAL PAGES                                           -->
+  <!-- ==================================================== -->
+  <url>
+    <loc>https://azgs.nl/privacybeleid.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/privacybeleid.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/privacybeleid.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/privacy-policy.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/privacybeleid.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/privacybeleid.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/cookiebeleid.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/cookiebeleid.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/cookie-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/cookiebeleid.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/cookie-policy.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/cookiebeleid.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/cookie-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/cookiebeleid.html"/>
+  </url>
+
+  <url>
+    <loc>https://azgs.nl/algemene-voorwaarden.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/algemene-voorwaarden.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/terms-and-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/algemene-voorwaarden.html"/>
+  </url>
+  <url>
+    <loc>https://azgs.nl/en/terms-and-conditions.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://azgs.nl/algemene-voorwaarden.html"/>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://azgs.nl/en/terms-and-conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://azgs.nl/algemene-voorwaarden.html"/>
+  </url>
+
+</urlset>
