@@ -7,6 +7,11 @@ https://www.azgs.nl/*  https://azgs.nl/:splat  301!
 http://www.azgs.nl/*   https://azgs.nl/:splat  301!
 http://azgs.nl/*       https://azgs.nl/:splat  301!
 
+# Canonical Dutch paths: Dutch is served from root, not /nl
+/nl                                             /                                     301!
+/nl/                                            /                                     301!
+/nl/*                                           /:splat                               301!
+
 # ============================================================
 # Legacy *.html URLs from the static site → clean Next.js paths
 # ============================================================
