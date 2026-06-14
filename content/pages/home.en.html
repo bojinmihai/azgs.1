@@ -20,7 +20,11 @@
 
         <div class="hero-visual">
           <picture>
-            <source media="(max-width: 768px)" type="image/webp" srcset="/assets/img/hero/home-hero-azgs-mobile.webp">
+            <source media="(max-width: 768px)" type="image/webp"
+                    srcset="/assets/img/hero/home-hero-azgs-mobile-720.webp 720w,
+                            /assets/img/hero/home-hero-azgs-mobile-900.webp 900w,
+                            /assets/img/hero/home-hero-azgs-mobile.webp 1080w"
+                    sizes="100vw">
             <source type="image/webp" srcset="/assets/img/hero/home-hero-azgs.webp">
             <img src="/assets/img/hero/home-hero-azgs.webp"
                  alt="AZ Grand Solutions — interior finishing and installations in the Netherlands"
@@ -131,15 +135,17 @@
             <div class="service-card-image">
               <picture>
                 <source type="image/webp" srcset="
+                  /assets/img/services/service-parket-700.webp 700w,
                   /assets/img/services/service-parket-800.webp 800w,
                   /assets/img/services/service-parket-1200.webp 1200w,
                   /assets/img/services/service-parket-1600.webp 1365w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw">
                 <img src="/assets/img/services/service-parket-1200.jpg"
                      srcset="
-                       /assets/img/services/service-parket-800.jpg 600w,
-                       /assets/img/services/service-parket-1200.jpg 900w,
-                       /assets/img/services/service-parket-1600.jpg 1023w"
+                       /assets/img/services/service-parket-700.jpg 700w,
+                       /assets/img/services/service-parket-800.jpg 800w,
+                       /assets/img/services/service-parket-1200.jpg 1200w,
+                       /assets/img/services/service-parket-1600.jpg 1365w"
                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                      alt="Craftsman laying an oak parquet floor in a herringbone pattern"
                      width="1200" height="900" loading="lazy" decoding="async">
