@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Spoedinterventie – AZ Grand Solutions</title>
+  <meta name="description" content="24/7 spoeddienst voor lekkages, stroomstoringen en dringende installatiereparaties in de provincie Utrecht.">
+  <meta property="og:title" content="Spoedinterventie – AZ Grand Solutions" />
+  <meta property="og:description" content="Direct hulp bij urgente installatieproblemen. Wij staan klaar in Utrecht en omgeving.">
+  <meta property="og:image" content="https://azgs.nl/img/slider1.webp" />
+  <meta property="og:url" content="https://azgs.nl/urgente.html" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preload" href="img/liniste_caldura_si_confort.svg" as="image" type="image/svg+xml" />
+  <link rel="icon" href="img/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">Openingstijden: Maandag–Vrijdag 08:00–17:00 | Spoedinterventies 24/7</div>
+
+  <div class="slider" aria-label="Snel hulp nodig bij technische problemen">
+    <div class="slides">
+      <div class="slide active">
+        <picture>
+          <source srcset="img/slider1.webp" media="(max-width: 768px)" />
+          <img src="img/slider1.webp" alt="Sanitair noodreparatie" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider2.webp" media="(max-width: 768px)" />
+          <img src="img/slider2.webp" alt="Storing verwarming direct opgelost" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider3.webp" media="(max-width: 768px)" />
+          <img src="img/slider3.webp" alt="Elektriciteit spoedservice Utrecht" />
+        </picture>
+      </div>
+    </div>
+    <div class="text-overlay">
+      <object type="image/svg+xml" data="img/liniste_caldura_si_confort.svg"></object>
+    </div>
+  </div>
+
+  <nav aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="over-ons.html">Over ons</a>
+    <a href="diensten.html">Diensten</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy / GDPR</a>
+    <a href="urgente.html" class="urgent">Spoed</a>
+  </nav>
+</header>
+<main>
+  <section class="container">
+    <h1>Direct hulp nodig?</h1>
+
+    <div class="card">
+      <h2>Wij staan 24/7 voor u klaar</h2>
+      <p>Heeft u een lekkage, stroomstoring, verstopping of ander dringend installatieprobleem? AZ Grand Solutions biedt directe hulp bij spoedgevallen in Utrecht en omgeving.</p>
+      <p>Onze servicewagens zijn uitgerust met het nodige materiaal om snel en efficiënt te handelen – zonder wachttijd.</p>
+      <p><strong>Bellen of WhatsAppen?</strong> Klik hieronder om direct contact met ons op te nemen:</p>
+      <a class="offer-button" href="https://wa.me/31613636925" target="_blank">Direct contact via WhatsApp</a>
+    </div>
+
+    <div class="card">
+      <h2>Wat voor spoedklussen behandelen wij?</h2>
+      <ul>
+        <li>✅ Lekke waterleidingen of sanitaire toestellen</li>
+        <li>✅ Gasgeur of vermoeden van lekkage</li>
+        <li>✅ Elektrische storingen en zekeringproblemen</li>
+        <li>✅ Verstopte afvoer of riool</li>
+        <li>✅ Kapotte verwarming of warmtepomp</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Onze belofte bij spoed</h2>
+      <p>✅ Binnen 1 uur reactie (regio Utrecht)<br>
+         ✅ Geen verrassingen – duidelijke prijzen<br>
+         ✅ Betrouwbare en ervaren techniekers<br>
+         ✅ Oplossingsgericht en klantvriendelijk
+      </p>
+    </div>
+  </section>
+</main>
+
+<a class="whatsapp" href="https://wa.me/31613636925" target="_blank" aria-label="Neem contact op via WhatsApp">💬</a>
+
+<footer>
+  <p style="text-align: center; color: #777; padding: 15px;">&copy; 2024 AZ Grand Solutions. Alle rechten voorbehouden.</p>
+</footer>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) slide.classList.add('active');
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 4000);
+</script>
+
+</body>
+</html>

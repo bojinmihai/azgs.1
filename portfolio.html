@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Portfolio – AZ Grand Solutions</title>
+  <meta name="description" content="Bekijk recente projecten van AZ Grand Solutions. Professionele sanitaire, elektrische en verwarmingsinstallaties in Utrecht.">
+  <meta property="og:title" content="Portfolio – AZ Grand Solutions" />
+  <meta property="og:description" content="Realisaties van installaties door AZ Grand Solutions. Vakmanschap en kwaliteit in elke opdracht." />
+  <meta property="og:image" content="https://azgs.nl/img/slider1.webp" />
+  <meta property="og:url" content="https://azgs.nl/portfolio.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Preload SVG + favicon -->
+  <link rel="preload" href="img/liniste_caldura_si_confort.svg" as="image" type="image/svg+xml" />
+  <link rel="icon" href="img/favicon.png" type="image/png" />
+
+  <!-- CSS asincron -->
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">Openingstijden: Maandag–Vrijdag 08:00–17:00 | Spoedinterventies 24/7</div>
+
+  <div class="slider" aria-label="Voorbeelden van recent uitgevoerde projecten">
+    <div class="slides">
+      <div class="slide active">
+        <picture>
+          <source srcset="img/slider1.webp" media="(max-width: 768px)" />
+          <img src="img/slider1.webp" alt="Sanitair project" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider2.webp" media="(max-width: 768px)" />
+          <img src="img/slider2.webp" alt="Vloerverwarming installatie" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider3.webp" media="(max-width: 768px)" />
+          <img src="img/slider3.webp" alt="Elektrische installatie project" />
+        </picture>
+      </div>
+    </div>
+    <div class="text-overlay">
+      <object type="image/svg+xml" data="img/liniste_caldura_si_confort.svg"></object>
+    </div>
+  </div>
+
+  <nav aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="over-ons.html">Over ons</a>
+    <a href="diensten.html">Diensten</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy / GDPR</a>
+    <a href="urgente.html" class="urgent">Spoed</a>
+  </nav>
+</header>
+<main>
+  <section class="container">
+    <h1>Onze uitgevoerde projecten</h1>
+
+    <div class="card">
+      <img src="img/porto1.jpg" alt="Volledige badkamerrenovatie Utrecht" loading="lazy" />
+      <h2>Badkamerrenovatie – Utrecht</h2>
+      <p>Complete installatie van leidingen, tegels, sanitair en afwerking.</p>
+      <a class="offer-button" href="https://wa.me/31613636925" target="_blank">Vraag een offerte aan</a>
+    </div>
+
+    <div class="card">
+      <img src="img/porto2.jpg" alt="Vloerverwarming installatie" loading="lazy" />
+      <h2>Vloerverwarming – Houten</h2>
+      <p>Installatie van energie-efficiënte verwarmingssystemen met thermostaatregeling.</p>
+      <a class="offer-button" href="https://wa.me/31613636925" target="_blank">Vraag een offerte aan</a>
+    </div>
+
+    <div class="card">
+      <img src="img/porto3.jpg" alt="Elektrische installatie volledig vernieuwd" loading="lazy" />
+      <h2>Elektrische installatie – Woerden</h2>
+      <p>Vervanging van het volledige elektrische netwerk inclusief zekeringkast en verlichting.</p>
+      <a class="offer-button" href="https://wa.me/31613636925" target="_blank">Vraag een offerte aan</a>
+    </div>
+
+    <div class="card">
+      <img src="img/porto4.jpg" alt="Mechanische ventilatie badkamer" loading="lazy" />
+      <h2>Ventilatie – Nieuwegein</h2>
+      <p>Installatie van ventilatiesysteem in badkamer en keuken, inclusief luchtroosters.</p>
+      <a class="offer-button" href="https://wa.me/31613636925" target="_blank">Vraag een offerte aan</a>
+    </div>
+
+    <div class="card">
+      <img src="img/porto5.jpg" alt="Spoedinterventie gasleiding" loading="lazy" />
+      <h2>Spoedreparatie – Gasleiding</h2>
+      <p>Detectie en herstelling van een lekkende gasleiding. Veiligheidscontrole uitgevoerd.</p>
+      <a class="offer-button" href="https://wa.me/31613636925" target="_blank">Direct hulp nodig</a>
+    </div>
+  </section>
+</main>
+
+<a class="whatsapp" href="https://wa.me/31613636925" target="_blank" aria-label="Stuur een WhatsApp bericht">💬</a>
+
+<footer>
+  <p style="text-align: center; color: #777; padding: 15px;">&copy; 2025 AZ Grand Solutions. Alle rechten voorbehouden.</p>
+</footer>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) slide.classList.add('active');
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 4000);
+</script>
+
+</body>
+</html>

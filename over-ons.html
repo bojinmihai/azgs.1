@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Over Ons – AZ Grand Solutions</title>
+  <meta name="description" content="Ontdek AZ Grand Solutions: uw betrouwbare partner voor sanitaire, elektrische en verwarmingsinstallaties in Utrecht.">
+  <meta property="og:title" content="Over Ons – AZ Grand Solutions" />
+  <meta property="og:description" content="Professioneel, transparant en betrouwbaar. Lees meer over ons team en onze aanpak.">
+  <meta property="og:image" content="https://azgs.nl/img/slider1.webp" />
+  <meta property="og:url" content="https://azgs.nl/over-ons.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Preload SVG + favicon -->
+  <link rel="preload" href="img/liniste_caldura_si_confort.svg" as="image" type="image/svg+xml" />
+  <link rel="icon" href="img/favicon.png" type="image/png" />
+
+  <!-- CSS asincron -->
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">Openingstijden: Maandag–Vrijdag 08:00–17:00 | Spoedinterventies 24/7</div>
+
+  <div class="slider" aria-label="Beelden van AZ Grand Solutions in actie">
+    <div class="slides">
+      <div class="slide active">
+        <picture>
+          <source srcset="img/slider1.webp" media="(max-width: 768px)" />
+          <img src="img/slider1.webp" alt="Sanitaire installatie Utrecht" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider2.webp" media="(max-width: 768px)" />
+          <img src="img/slider2.webp" alt="Hybride verwarmingssysteem installatie" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider3.webp" media="(max-width: 768px)" />
+          <img src="img/slider3.webp" alt="Elektriciteit installatie veilig" />
+        </picture>
+      </div>
+    </div>
+    <div class="text-overlay">
+      <object type="image/svg+xml" data="img/liniste_caldura_si_confort.svg"></object>
+    </div>
+  </div>
+
+  <nav aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="over-ons.html">Over ons</a>
+    <a href="diensten.html">Diensten</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy / GDPR</a>
+    <a href="urgente.html" class="urgent">Spoed</a>
+  </nav>
+</header>
+<main>
+  <section class="container">
+    <h1>Over AZ Grand Solutions</h1>
+
+    <div class="card">
+      <h2>Wie zijn wij?</h2>
+      <p>AZ Grand Solutions is uw betrouwbare partner voor professionele installaties in Nederland. Ons team bestaat uit ervaren vakmensen die zich inzetten voor maatwerkoplossingen, met als doel een woning te creëren waar rust, warmte en comfort centraal staan.</p>
+    </div>
+
+    <div class="card">
+      <h2>Onze aanpak</h2>
+      <p>Wij bieden een volledige reeks diensten aan:</p>
+      <ul>
+        <li><strong>Sanitair:</strong> moderne, efficiënte installaties voor dagelijks comfort</li>
+        <li><strong>Verwarming:</strong> centrale systemen en warmtepompen voor constante warmte</li>
+        <li><strong>Ventilatie:</strong> frisse lucht en een gezond binnenklimaat</li>
+        <li><strong>Elektriciteit:</strong> veilige en betrouwbare netwerken voor moderne woningen</li>
+        <li><strong>Spoedinterventies:</strong> directe hulp bij storingen en lekken</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Onze ervaring</h2>
+      <p>Ons team heeft ruime ervaring met residentiële, commerciële en industriële projecten. We leveren praktische, duurzame oplossingen met een hoge afwerkingsgraad. Bij ons staat kwaliteit en klanttevredenheid voorop.</p>
+    </div>
+
+    <div class="card">
+      <h2>Onze belofte</h2>
+      <p>We bouwen duurzame relaties met klanten op, met transparante communicatie, stipte oplevering en aandacht voor elk detail. Wij zorgen voor een veilige, efficiënte en comfortabele leefomgeving.</p>
+    </div>
+
+    <div class="card">
+      <h2>Waarom kiezen voor ons?</h2>
+      <ul>
+        <li>✅ <strong>Gekwalificeerde experts</strong></li>
+        <li>✅ <strong>Maatwerkoplossingen</strong></li>
+        <li>✅ <strong>Gegarandeerde kwaliteit</strong></li>
+        <li>✅ <strong>Snelle service</strong></li>
+        <li>✅ <strong>Vertrouwen en vakmanschap</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Contacteer ons</h2>
+      <p>Neem vandaag nog contact met ons op voor uw project. Wij helpen u graag aan een woning waarin rust, warmte en comfort vanzelfsprekend zijn.</p>
+      <p><a href="contact.html" class="offer-button">Neem contact op</a></p>
+    </div>
+  </section>
+</main>
+
+<a class="whatsapp" href="https://wa.me/31613636925" target="_blank" aria-label="Stuur een WhatsApp bericht">💬</a>
+
+<footer>
+  <p style="text-align: center; color: #777; padding: 15px;">&copy; 2025 AZ Grand Solutions. Alle rechten voorbehouden.</p>
+</footer>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) slide.classList.add('active');
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 4000);
+</script>
+
+</body>
+</html>
