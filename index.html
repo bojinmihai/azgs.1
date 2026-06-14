@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>AZ Grand Solutions – Professionele Installaties in Utrecht</title>
+  <meta name="description" content="Sanitaire, verwarmings- en elektrische installaties in Utrecht. AZ Grand Solutions biedt duurzame oplossingen voor elk project.">
+  <meta name="keywords" content="installaties, sanitair, elektriciteit, warmtepomp, Utrecht, spoedreparaties">
+  
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="AZ Grand Solutions – Installaties in Nederland" />
+  <meta property="og:description" content="Sanitaire, verwarmings- en elektrische installaties in Utrecht. Snelle interventies. Duurzaam vakmanschap." />
+  <meta property="og:image" content="https://azgs.nl/img/slider1.webp" />
+  <meta property="og:url" content="https://azgs.nl/index.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Preload SVG -->
+  <link rel="preload" href="img/liniste_caldura_si_confort.svg" as="image" type="image/svg+xml" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.png" type="image/png" />
+
+  <!-- CSS optimizat -->
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="css/style.css" /></noscript>
+
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">Openingstijden: Maandag–Vrijdag 08:00–17:00 | Spoedinterventies 24/7</div>
+
+  <div class="slider" aria-label="Beelden van installaties uitgevoerd door AZ Grand Solutions">
+    <div class="slides">
+      <div class="slide active">
+        <picture>
+          <source srcset="img/slider1.webp" media="(max-width: 768px)" />
+          <img src="img/slider1.webp" alt="Sanitaire installatie Utrecht" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider2.webp" media="(max-width: 768px)" />
+          <img src="img/slider2.webp" alt="Hybride verwarmingssysteem installatie" />
+        </picture>
+      </div>
+      <div class="slide">
+        <picture>
+          <source srcset="img/slider3.webp" media="(max-width: 768px)" />
+          <img src="img/slider3.webp" alt="Elektrische installatie veilig" />
+        </picture>
+      </div>
+    </div>
+    <div class="text-overlay">
+      <object type="image/svg+xml" data="img/liniste_caldura_si_confort.svg"></object>
+    </div>
+  </div>
+
+  <nav aria-label="Hoofdnavigatie">
+    <a href="index.html" aria-label="Startpagina">Home</a>
+    <a href="over-ons.html" aria-label="Over ons">Over ons</a>
+    <a href="diensten.html" aria-label="Diensten">Diensten</a>
+    <a href="portfolio.html" aria-label="Projecten">Portfolio</a>
+    <a href="contact.html" aria-label="Contactpagina">Contact</a>
+    <a href="privacy.html" aria-label="Privacyverklaring">Privacy / GDPR</a>
+    <a href="urgente.html" class="urgent" aria-label="Spoedinterventie">Spoed</a>
+  </nav>
+</header>
+<main>
+  <section class="container">
+    <h1>Professionele Installaties in de Provincie Utrecht – AZ Grand Solutions</h1>
+
+    <div class="card">
+      <h2>Complete Installaties voor Jouw Comfort</h2>
+      <p>AZ Grand Solutions levert <strong>sanitaire</strong>, <strong>verwarmings-</strong> en <strong>elektrische</strong> installaties in Utrecht en omgeving. We werken nauwkeurig, snel en klantgericht.</p>
+      <p>Van <strong>badkamerrenovaties</strong> tot <strong>vloerverwarming</strong>, <strong>hybride warmtepompen</strong> en <strong>volledige elektrische netwerken</strong> – wij zijn jouw betrouwbare partner.</p>
+    </div>
+
+    <div class="card">
+      <h2>Onze Diensten</h2>
+      <ul>
+        <li><strong>Sanitair</strong>: waterleidingen, afvoer, toiletten, douches</li>
+        <li><strong>Verwarming</strong>: warmtepompen, radiatoren, thermostaten</li>
+        <li><strong>Leidingen</strong>: gas, water, afvoer</li>
+        <li><strong>Elektriciteit</strong>: verlichting, schakelaars, zekeringkasten</li>
+        <li><strong>Spoedinterventies</strong>: lekkages, stroomstoringen, breuken</li>
+      </ul>
+      <p>Wij gebruiken enkel kwaliteitsmateriaal en respecteren elke deadline.</p>
+    </div>
+
+    <div class="card">
+      <h2>Waarom AZ Grand Solutions?</h2>
+      <ul>
+        <li><strong>Ervaring</strong> – jarenlange expertise in installatietechniek</li>
+        <li><strong>Team</strong> – vakmensen met passie en precisie</li>
+        <li><strong>Kwaliteit</strong> – garantie op materiaal en afwerking</li>
+        <li><strong>Betrouwbaarheid</strong> – heldere communicatie, correcte uitvoering</li>
+        <li><strong>Snelle service</strong> – ook voor urgente interventies</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<a class="whatsapp" href="https://wa.me/31613636925" target="_blank" aria-label="Stuur ons een WhatsApp-bericht">💬</a>
+
+<footer>
+  <p style="text-align: center; color: #777; padding: 15px;">&copy; 2025 AZ Grand Solutions. Alle rechten voorbehouden.</p>
+</footer>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) slide.classList.add('active');
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 4000);
+</script>
+
+</body>
+</html>
