@@ -4,6 +4,7 @@ node_modules/
 # Next.js build output
 .next/
 out/
+functions/_middleware.js
 
 # Local npm cache used by audits/build checks
 .npm-cache/
