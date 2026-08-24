@@ -25,6 +25,16 @@ export function buildMetadata({
   return {
     title,
     description,
+    keywords: [
+      'AZ Grand Solutions',
+      'klusbedrijf Woerden',
+      'afwerkingsbedrijf Woerden',
+      'installatiebedrijf Woerden',
+      'vloerverwarming Woerden',
+      'schilderwerk Woerden',
+      'tegelwerk Woerden',
+      'regio Utrecht',
+    ],
     metadataBase: new URL(SITE_URL),
     alternates: {
       canonical,
@@ -75,8 +85,9 @@ export function buildMetadata({
 export function localBusinessJsonLd() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['HomeAndConstructionBusiness', 'Electrician', 'Plumber'],
     name: COMPANY.name,
+    legalName: COMPANY.name,
     url: SITE_URL,
     telephone: COMPANY.phone,
     email: COMPANY.email,
@@ -90,7 +101,37 @@ export function localBusinessJsonLd() {
       addressLocality: COMPANY.address.city,
       addressCountry: COMPANY.address.country,
     },
-    areaServed: { '@type': 'Country', name: 'Netherlands' },
+    areaServed: [
+      { '@type': 'City', name: 'Woerden' },
+      { '@type': 'City', name: 'Utrecht' },
+      { '@type': 'City', name: 'De Meern' },
+      { '@type': 'City', name: 'Maarssen' },
+      { '@type': 'City', name: 'Nieuwegein' },
+      { '@type': 'City', name: 'Houten' },
+      { '@type': 'City', name: 'Zeist' },
+      { '@type': 'City', name: 'Gouda' },
+      { '@type': 'AdministrativeArea', name: 'Regio Utrecht' },
+      { '@type': 'Country', name: 'Netherlands' },
+    ],
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '18:00',
+      },
+    ],
+    availableService: [
+      { '@type': 'Service', name: 'Gipsplaten plaatsen' },
+      { '@type': 'Service', name: 'Schilderwerk binnen' },
+      { '@type': 'Service', name: 'Parket leggen' },
+      { '@type': 'Service', name: 'Tegelwerk' },
+      { '@type': 'Service', name: 'Sanitair installeren' },
+      { '@type': 'Service', name: 'Verwarming aanleggen' },
+      { '@type': 'Service', name: 'Vloerverwarming aanleggen' },
+      { '@type': 'Service', name: 'Elektrawerkzaamheden' },
+      { '@type': 'Service', name: '24/7 spoedservice' },
+    ],
     slogan: 'Rust, warmte en comfort in uw woning',
     description:
       'Afwerking en installatiewerk voor woningen in Nederland: schilderwerk, gipsplaten, parket, tegelwerk, sanitair, verwarming, vloerverwarming en elektra. 24/7 spoedservice.',
