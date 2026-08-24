@@ -1,0 +1,5 @@
+Contact: mailto:info@azgs.nl
+Expires: 2027-08-24T00:00:00Z
+Preferred-Languages: nl, en
+Canonical: https://azgs.nl/.well-known/security.txt
+Policy: https://azgs.nl/privacybeleid
