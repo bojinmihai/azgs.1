@@ -2,70 +2,67 @@
 # AZ Grand Solutions — _redirects (Cloudflare Pages / Netlify)
 # ============================================================
 
-# Canonical host
-https://www.azgs.nl/*  https://azgs.nl/:splat  301!
-http://www.azgs.nl/*   https://azgs.nl/:splat  301!
-http://azgs.nl/*       https://azgs.nl/:splat  301!
+# Canonical host is handled by Cloudflare domain redirect rules.
 
 # Canonical Dutch paths: Dutch is served from root, not /nl
-/nl                                             /                                     301!
-/nl/                                            /                                     301!
-/nl/*                                           /:splat                               301!
+/nl                                             /                                     301
+/nl/                                            /                                     301
+/nl/*                                           /:splat                               301
 
 # ============================================================
 # Legacy *.html URLs from the static site → clean Next.js paths
 # ============================================================
 
 # NL home & index
-/index.html                                     /                                     301!
+/index.html                                     /                                     301
 
 # NL pages
-/diensten.html                                  /diensten                             301!
-/over-ons.html                                  /over-ons                             301!
-/spoed.html                                     /spoed                                301!
-/contact.html                                   /contact                              301!
-/blog.html                                      /blog                                 301!
-/bedankt.html                                   /bedankt                              301!
-/gipsplaten.html                                /gipsplaten                           301!
-/schilderwerk.html                              /schilderwerk                         301!
-/parket.html                                    /parket                               301!
-/tegelwerk.html                                 /tegelwerk                            301!
-/sanitair.html                                  /sanitair                             301!
-/verwarming.html                                /verwarming                           301!
-/vloerverwarming.html                           /vloerverwarming                      301!
-/elektra.html                                   /elektra                              301!
-/privacybeleid.html                             /privacybeleid                        301!
-/cookiebeleid.html                              /cookiebeleid                         301!
-/algemene-voorwaarden.html                      /algemene-voorwaarden                 301!
+/diensten.html                                  /diensten                             301
+/over-ons.html                                  /over-ons                             301
+/spoed.html                                     /spoed                                301
+/contact.html                                   /contact                              301
+/blog.html                                      /blog                                 301
+/bedankt.html                                   /bedankt                              301
+/gipsplaten.html                                /gipsplaten                           301
+/schilderwerk.html                              /schilderwerk                         301
+/parket.html                                    /parket                               301
+/tegelwerk.html                                 /tegelwerk                            301
+/sanitair.html                                  /sanitair                             301
+/verwarming.html                                /verwarming                           301
+/vloerverwarming.html                           /vloerverwarming                      301
+/elektra.html                                   /elektra                              301
+/privacybeleid.html                             /privacybeleid                        301
+/cookiebeleid.html                              /cookiebeleid                         301
+/algemene-voorwaarden.html                      /algemene-voorwaarden                 301
 
 # NL blog posts
-/blog-tegels-kiezen-badkamer.html               /blog/tegels-kiezen-badkamer          301!
-/blog-vloerverwarming-warmtepomp.html           /blog/vloerverwarming-warmtepomp      301!
-/blog-vloerverwarming-bestaande-woning.html     /blog/vloerverwarming-bestaande-woning 301!
-/blog-lekkage-eerste-10-minuten.html            /blog/lekkage-eerste-10-minuten       301!
+/blog-tegels-kiezen-badkamer.html               /blog/tegels-kiezen-badkamer          301
+/blog-vloerverwarming-warmtepomp.html           /blog/vloerverwarming-warmtepomp      301
+/blog-vloerverwarming-bestaande-woning.html     /blog/vloerverwarming-bestaande-woning 301
+/blog-lekkage-eerste-10-minuten.html            /blog/lekkage-eerste-10-minuten       301
 
 # EN home & pages
-/en/index.html                                  /en                                   301!
-/en/                                            /en                                   301!
-/en/services.html                               /en/services                          301!
-/en/about.html                                  /en/about                             301!
-/en/emergency.html                              /en/emergency                         301!
-/en/contact.html                                /en/contact                           301!
-/en/blog.html                                   /en/blog                              301!
-/en/thank-you.html                              /en/thank-you                         301!
-/en/drywall.html                                /en/drywall                           301!
-/en/painting.html                               /en/painting                          301!
-/en/parquet.html                                /en/parquet                           301!
-/en/tiling.html                                 /en/tiling                            301!
-/en/plumbing.html                               /en/plumbing                          301!
-/en/heating.html                                /en/heating                           301!
-/en/underfloor-heating.html                     /en/underfloor-heating                301!
-/en/electrical.html                             /en/electrical                        301!
-/en/privacy-policy.html                         /en/privacy-policy                    301!
-/en/cookie-policy.html                          /en/cookie-policy                     301!
-/en/terms-and-conditions.html                   /en/terms-and-conditions              301!
+/en/index.html                                  /en                                   301
+/en/                                            /en                                   301
+/en/services.html                               /en/services                          301
+/en/about.html                                  /en/about                             301
+/en/emergency.html                              /en/emergency                         301
+/en/contact.html                                /en/contact                           301
+/en/blog.html                                   /en/blog                              301
+/en/thank-you.html                              /en/thank-you                         301
+/en/drywall.html                                /en/drywall                           301
+/en/painting.html                               /en/painting                          301
+/en/parquet.html                                /en/parquet                           301
+/en/tiling.html                                 /en/tiling                            301
+/en/plumbing.html                               /en/plumbing                          301
+/en/heating.html                                /en/heating                           301
+/en/underfloor-heating.html                     /en/underfloor-heating                301
+/en/electrical.html                             /en/electrical                        301
+/en/privacy-policy.html                         /en/privacy-policy                    301
+/en/cookie-policy.html                          /en/cookie-policy                     301
+/en/terms-and-conditions.html                   /en/terms-and-conditions              301
 
 # EN blog posts
-/en/blog-choosing-bathroom-tiles.html           /en/blog/choosing-bathroom-tiles      301!
-/en/blog-underfloor-heating-existing-home.html  /en/blog/underfloor-heating-existing-home  301!
-/en/blog-leak-first-10-minutes.html             /en/blog/leak-first-10-minutes        301!
+/en/blog-choosing-bathroom-tiles.html           /en/blog/choosing-bathroom-tiles      301
+/en/blog-underfloor-heating-existing-home.html  /en/blog/underfloor-heating-existing-home  301
+/en/blog-leak-first-10-minutes.html             /en/blog/leak-first-10-minutes        301
