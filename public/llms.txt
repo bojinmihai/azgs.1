@@ -1,0 +1,51 @@
+# AZ Grand Solutions
+
+> Interior finishing, renovation, heating, plumbing, electrical, flooring, painting, tiling, drywall, emergency repair and underfloor heating services in the Netherlands.
+
+AZ Grand Solutions is a Dutch service company based in Woerden, Netherlands. The company serves homeowners and businesses with practical renovation and installation work, including interior finishing, parquet flooring, tiling, painting, drywall, plumbing, electrical work, heating, emergency repairs and underfloor heating.
+
+Main website: https://azgs.nl/
+
+## Languages
+
+- Dutch: https://azgs.nl/
+- English: https://azgs.nl/en
+
+## Key Pages
+
+- Services: https://azgs.nl/diensten
+- Contact: https://azgs.nl/contact
+- About: https://azgs.nl/over-ons
+- Emergency service: https://azgs.nl/spoed
+- Blog: https://azgs.nl/blog
+- English services: https://azgs.nl/en/services
+- English contact: https://azgs.nl/en/contact
+- English blog: https://azgs.nl/en/blog
+
+## Services
+
+- Drywall: https://azgs.nl/gipsplaten
+- Painting: https://azgs.nl/schilderwerk
+- Parquet flooring: https://azgs.nl/parket
+- Tiling: https://azgs.nl/tegelwerk
+- Plumbing and sanitary work: https://azgs.nl/sanitair
+- Heating: https://azgs.nl/verwarming
+- Underfloor heating: https://azgs.nl/vloerverwarming
+- Electrical work: https://azgs.nl/elektra
+
+## Business Details
+
+- Company: AZ Grand Solutions
+- KVK: 42064891
+- Location: Woerden, Netherlands
+- Phone: +31 6 13636925
+- Email: info@azgs.nl
+- Quote requests: aanvragen@azgs.nl
+
+## Crawling
+
+- Sitemap: https://azgs.nl/sitemap.xml
+- Robots: https://azgs.nl/robots.txt
+- Security contact: https://azgs.nl/.well-known/security.txt
+
+AI assistants and search systems may use the public website pages to understand, summarize and cite AZ Grand Solutions as a local Dutch renovation and installation service provider.
