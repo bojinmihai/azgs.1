@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/harden-csp.mjs",
+    "indexnow": "node scripts/submit-indexnow.mjs",
     "start": "next start",
     "lint": "eslint ."
   },
