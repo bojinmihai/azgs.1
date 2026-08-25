@@ -1,7 +1,15 @@
 {
   "home.nl": {
-    "title": "Klusbedrijf Woerden | Afwerking & installaties | AZGS",
-    "description": "Klusbedrijf in Woerden voor schilderwerk, gipsplaten, parket, tegelwerk, sanitair, verwarming, vloerverwarming en elektra in regio Utrecht."
+    "title": "AZ Grand Solutions | Particulier of zakelijk",
+    "description": "Kies direct de juiste route bij AZ Grand Solutions: particuliere woonprojecten of zakelijke B2B samenwerking voor installaties en gipsplaten."
+  },
+  "private.nl": {
+    "title": "Klusbedrijf voor particulieren Woerden | AZGS",
+    "description": "Voor particuliere woningen in Woerden en regio Utrecht: afwerking, renovatie, installaties en spoedservice door AZ Grand Solutions."
+  },
+  "business.nl": {
+    "title": "B2B installatie & gipsplaten regio Utrecht | AZGS",
+    "description": "Zakelijke samenwerking voor bedrijven, aannemers en beheerders in regio Utrecht. AZGS verzorgt B2B installaties en gipsplaten/gips-carton."
   },
   "services.nl": {
     "title": "Diensten klusbedrijf Woerden & regio Utrecht | AZGS",
@@ -68,8 +76,16 @@
     "description": "Algemene voorwaarden van AZ Grand Solutions (AZGS) voor particulieren in regio Utrecht. Transparante afspraken over offertes, uitvoering, oplevering, garantie en aansprakelijkheid."
   },
   "home.en": {
-    "title": "Home Renovation Contractor Woerden | AZ Grand Solutions",
-    "description": "Renovation and installation contractor in Woerden for painting, drywall, parquet, tiling, plumbing, heating, underfloor heating and electrical work."
+    "title": "AZ Grand Solutions | Private or business",
+    "description": "Choose the right route at AZ Grand Solutions: private home projects or business B2B cooperation for installations and drywall."
+  },
+  "private.en": {
+    "title": "Private Home Renovation Contractor Woerden | AZGS",
+    "description": "For private homes in Woerden and the Utrecht region: finishing, renovation, installations and emergency service by AZ Grand Solutions."
+  },
+  "business.en": {
+    "title": "B2B Installations & Drywall Utrecht Region | AZGS",
+    "description": "Business cooperation for companies, contractors and property managers in the Utrecht region. AZGS provides B2B installations and drywall."
   },
   "services.en": {
     "title": "Renovation Services Woerden & Utrecht Region | AZGS",

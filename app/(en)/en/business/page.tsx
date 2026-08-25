@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import { AudienceLanding } from '@/components/AudienceLanding';
-import { LanguageDetect } from '@/components/LanguageDetect';
+import { LegacyPage } from '@/components/LegacyPage';
 import { buildMetadata } from '@/lib/seo';
 import { getPageMeta } from '@/lib/pages';
 
-const LOCALE = 'nl';
-const KEY = 'home';
-const PATH = '/';
-const ALT_PATH = '/en';
+const LOCALE = 'en';
+const KEY = 'business';
+const PATH = '/en/business';
+const ALT_PATH = '/zakelijk';
 
 export function generateMetadata(): Metadata {
   const m = getPageMeta(KEY, LOCALE);
@@ -21,10 +20,5 @@ export function generateMetadata(): Metadata {
 }
 
 export default function Page() {
-  return (
-    <>
-      <LanguageDetect />
-      <AudienceLanding locale={LOCALE} altPath={ALT_PATH} />
-    </>
-  );
+  return <LegacyPage pageKey={KEY} locale={LOCALE} altPath={ALT_PATH} />;
 }

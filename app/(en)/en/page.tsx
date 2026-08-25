@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { LegacyPage } from '@/components/LegacyPage';
+import { AudienceLanding } from '@/components/AudienceLanding';
 import { buildMetadata } from '@/lib/seo';
 import { getPageMeta } from '@/lib/pages';
 
@@ -20,5 +20,5 @@ export function generateMetadata(): Metadata {
 }
 
 export default function Page() {
-  return <LegacyPage pageKey={KEY} locale={LOCALE} altPath={ALT_PATH} />;
+  return <AudienceLanding locale={LOCALE} altPath={ALT_PATH} />;
 }
