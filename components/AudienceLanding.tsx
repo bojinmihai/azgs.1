@@ -169,9 +169,9 @@ export function AudienceLanding({ locale, altPath }: Props) {
             <article className="service-card service-card--audience">
               <div className="service-card-image">
                 <picture>
-                  <source type="image/webp" srcSet="/assets/img/services/service-parket-800.webp" />
+                  <source type="image/webp" srcSet="/assets/img/services/service-sanitair-800.webp" />
                   <img
-                    src="/assets/img/services/service-parket-800.jpg"
+                    src="/assets/img/services/service-sanitair-800.jpg"
                     alt={t.privateTitle}
                     width="800"
                     height="600"
