@@ -662,6 +662,151 @@
       animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
     }
 
+    .audience-selector {
+      display: grid;
+      gap: var(--sp-4);
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
+    }
+
+    .audience-option {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      min-height: 164px;
+      padding: clamp(1.15rem, 2.4vw, 1.55rem);
+      color: var(--color-text);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--color-border);
+      border-left: 5px solid var(--color-navy);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+      transition:
+        transform var(--duration) var(--ease-out),
+        box-shadow var(--duration) var(--ease-out),
+        border-color var(--duration) var(--ease-out),
+        background var(--duration) var(--ease-out);
+    }
+
+    .audience-option::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(30, 58, 95, 0.08), transparent 48%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity var(--duration) var(--ease-out);
+    }
+
+    .audience-option:hover,
+    .audience-option:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-orange);
+      color: var(--color-text);
+    }
+
+    .audience-option:hover::before,
+    .audience-option:focus-visible::before {
+      opacity: 1;
+    }
+
+    .audience-option--warm { border-left-color: var(--color-orange); }
+    .audience-option--navy { border-left-color: var(--color-navy); }
+    .audience-option--green { border-left-color: #0E7C5A; }
+
+    .audience-option__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-3);
+    }
+
+    .audience-option__label {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2vw, var(--fs-2xl));
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--color-navy);
+    }
+
+    .audience-option__arrow {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: white;
+      background: var(--color-navy);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      line-height: 1;
+      transition: transform var(--duration) var(--ease-out), background var(--duration) var(--ease-out);
+    }
+
+    .audience-option:hover .audience-option__arrow,
+    .audience-option:focus-visible .audience-option__arrow {
+      transform: translateX(3px);
+      background: var(--color-orange-dark);
+    }
+
+    .audience-option__summary,
+    .audience-option__details {
+      font-size: var(--fs-sm);
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+
+    .audience-option__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+    }
+
+    .audience-option__items span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: var(--color-bg-alt);
+      color: var(--color-navy);
+      font-family: var(--font-display);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .audience-option__details {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        max-height 260ms var(--ease-out),
+        opacity var(--duration) var(--ease-out);
+    }
+
+    .audience-option:hover .audience-option__details,
+    .audience-option:focus-visible .audience-option__details {
+      max-height: 140px;
+      opacity: 1;
+    }
+
+    .audience-option__cta {
+      margin-top: auto;
+      padding-top: var(--sp-2);
+      font-family: var(--font-display);
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--color-orange-dark);
+    }
+
     /* =================================================================
        6. INTRO STRIP
        ================================================================= */
@@ -729,6 +874,10 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: var(--sp-5);
+    }
+
+    .audience-services-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .service-card {
@@ -1172,6 +1321,15 @@
         height: 64px;
         bottom: -8px;
         right: -8px;
+      }
+
+      .audience-option {
+        min-height: 0;
+      }
+
+      .audience-option__details {
+        max-height: none;
+        opacity: 1;
       }
 
       .services {
