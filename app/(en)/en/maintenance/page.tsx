@@ -4,13 +4,12 @@ import { buildMetadata } from '@/lib/seo';
 import { getPageMeta } from '@/lib/pages';
 
 const LOCALE = 'en';
-const KEY = 'private';
-const META_KEY = 'private';
-const PATH = '/en/private';
-const ALT_PATH = '/particulier';
+const KEY = 'maintenance';
+const PATH = '/en/maintenance';
+const ALT_PATH = '/onderhoud';
 
 export function generateMetadata(): Metadata {
-  const m = getPageMeta(META_KEY, LOCALE);
+  const m = getPageMeta(KEY, LOCALE);
   return buildMetadata({
     locale: LOCALE,
     title: m.title,

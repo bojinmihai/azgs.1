@@ -27,6 +27,7 @@ export const SLUGS = {
   home: { nl: '/', en: '/en' },
   private: { nl: '/particulier', en: '/en/private' },
   business: { nl: '/zakelijk', en: '/en/business' },
+  maintenance: { nl: '/onderhoud', en: '/en/maintenance' },
   services: { nl: '/diensten', en: '/en/services' },
   about: { nl: '/over-ons', en: '/en/about' },
   emergency: { nl: '/spoed', en: '/en/emergency' },

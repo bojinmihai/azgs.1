@@ -3,14 +3,13 @@ import { LegacyPage } from '@/components/LegacyPage';
 import { buildMetadata } from '@/lib/seo';
 import { getPageMeta } from '@/lib/pages';
 
-const LOCALE = 'en';
-const KEY = 'private';
-const META_KEY = 'private';
-const PATH = '/en/private';
-const ALT_PATH = '/particulier';
+const LOCALE = 'nl';
+const KEY = 'maintenance';
+const PATH = '/onderhoud';
+const ALT_PATH = '/en/maintenance';
 
 export function generateMetadata(): Metadata {
-  const m = getPageMeta(META_KEY, LOCALE);
+  const m = getPageMeta(KEY, LOCALE);
   return buildMetadata({
     locale: LOCALE,
     title: m.title,

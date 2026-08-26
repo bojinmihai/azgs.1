@@ -11,6 +11,7 @@
     "home": "Home",
     "private": "Private",
     "business": "Business",
+    "maintenance": "Maintenance",
     "services": "Services",
     "emergency": "Emergency",
     "about": "About",
@@ -30,7 +31,7 @@
     "electrical": "Electrical"
   },
   "footer": {
-    "tagline": "Calm, warmth and comfort in your home. Finishing and installations for homes in the Netherlands.",
+    "tagline": "Technical installations, drywall and maintenance for homes and business buildings.",
     "servicesHeading": "Services",
     "companyHeading": "Company",
     "audiencesHeading": "For whom",
@@ -40,7 +41,7 @@
     "emergencyService": "Emergency service",
     "languageVersion": "Nederlandse versie",
     "forQuotes": "For quotes",
-    "copyright": "© 2026 AZ Grand Solutions · Calm, warmth and comfort in your home",
+    "copyright": "© 2026 AZ Grand Solutions · Installations, drywall and maintenance",
     "privacy": "Privacy policy",
     "cookies": "Cookie policy",
     "terms": "Terms and conditions"

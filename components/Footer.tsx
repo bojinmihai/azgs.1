@@ -72,6 +72,9 @@ export function Footer({ locale }: Props) {
                 <Link href={url('business', locale)}>{t.nav.business}</Link>
               </li>
               <li>
+                <Link href={url('maintenance', locale)}>{t.nav.maintenance}</Link>
+              </li>
+              <li>
                 <Link href={url('about', locale)}>{t.nav.about}</Link>
               </li>
               <li>

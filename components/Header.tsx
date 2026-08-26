@@ -37,6 +37,9 @@ export function Header({ locale, altPath }: Props) {
             <li>
               <Link href={url('business', locale)}>{t.nav.business}</Link>
             </li>
+            <li>
+              <Link href={url('maintenance', locale)}>{t.nav.maintenance}</Link>
+            </li>
             <li className="has-dropdown">
               <Link href={url('services', locale)} aria-haspopup="true" aria-expanded="false">
                 {t.nav.services}

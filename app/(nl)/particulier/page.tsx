@@ -4,7 +4,7 @@ import { buildMetadata } from '@/lib/seo';
 import { getPageMeta } from '@/lib/pages';
 
 const LOCALE = 'nl';
-const KEY = 'home';
+const KEY = 'private';
 const META_KEY = 'private';
 const PATH = '/particulier';
 const ALT_PATH = '/en/private';

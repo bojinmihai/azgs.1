@@ -9,6 +9,9 @@ functions/_middleware.js
 # Local npm cache used by audits/build checks
 .npm-cache/
 
+# Local manual backups
+backups/
+
 # TypeScript cache
 tsconfig.tsbuildinfo
 

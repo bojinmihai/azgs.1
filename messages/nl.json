@@ -11,6 +11,7 @@
     "home": "Home",
     "private": "Particulier",
     "business": "Zakelijk",
+    "maintenance": "Onderhoud",
     "services": "Diensten",
     "emergency": "Spoed",
     "about": "Over ons",
@@ -30,7 +31,7 @@
     "electrical": "Elektra"
   },
   "footer": {
-    "tagline": "Rust, warmte en comfort in uw woning. Afwerking en installaties voor woningen in Nederland.",
+    "tagline": "Technische installaties, gipsplaten en onderhoud voor woningen en zakelijke gebouwen.",
     "servicesHeading": "Diensten",
     "companyHeading": "Bedrijf",
     "audiencesHeading": "Voor wie",
@@ -40,7 +41,7 @@
     "emergencyService": "Spoedservice",
     "languageVersion": "English version",
     "forQuotes": "Voor offertes",
-    "copyright": "© 2026 AZ Grand Solutions · Rust, warmte en comfort in uw woning",
+    "copyright": "© 2026 AZ Grand Solutions · Installaties, gipsplaten en onderhoud",
     "privacy": "Privacybeleid",
     "cookies": "Cookiebeleid",
     "terms": "Algemene voorwaarden"

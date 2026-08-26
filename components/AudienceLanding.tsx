@@ -9,42 +9,50 @@ type Props = {
 
 const copy = {
   nl: {
-    eyebrow: 'AZ Grand Solutions · Kies uw route',
-    title: 'Voor wie zoekt u hulp?',
+    eyebrow: 'AZ Grand Solutions · Installaties, gipsplaten en onderhoud',
+    title: 'Kies de juiste route voor uw project',
     intro:
-      'Wij werken voor particuliere woningen en voor zakelijke opdrachtgevers. Kies de route die bij uw project past, zodat u direct de juiste diensten, uitleg en aanvraag krijgt.',
+      'Wij richten ons op sanitair, verwarming, ventilatie, warmtepompen en gipsplaten. Afwerking zoals tegelwerk, schilderwerk, gletwerk en vloeren blijft beschikbaar als aanvullend werk rond installaties en renovatie.',
     privateTitle: 'Particulier',
     privateText:
-      'Voor woningen: afwerking, renovatie, installaties en spoedservice. Denk aan gipsplaten, schilderwerk, parket, tegelwerk, sanitair, verwarming, vloerverwarming en elektra.',
+      'Voor woningen: sanitair, verwarming, vloerverwarming, ventilatie, warmtepompen, gipsplaten en complete herstelafwerking na installatiewerk.',
     privateCta: 'Ik zoek hulp voor mijn woning',
     businessTitle: 'Zakelijk / B2B',
     businessText:
-      'Voor bedrijven, aannemers, beheerders en projecten. Zakelijk werken wij gericht op installaties en gipsplaten/gips-carton: duidelijk, planbaar en geschikt voor samenwerking.',
+      'Voor aannemers, bedrijven en projectteams: sanitaire installaties, thermische installaties, ventilatie, warmtepompen en gipsplaten/gips-carton.',
     businessCta: 'Ik zoek een zakelijke partner',
+    maintenanceTitle: 'Onderhoud gebouwen',
+    maintenanceText:
+      'Voor beheerders van kantoren, horeca, hotels en bedrijfspanden: onderhoud, lekkages, technische storingen en herstel van wanden, tegels en schilderwerk na reparatie.',
+    maintenanceCta: 'Ik zoek onderhoud voor een gebouw',
     call: `Bel ${COMPANY.phoneDisplay}`,
-    trust: ['Particulier en zakelijk gescheiden', 'Duidelijke diensten per doelgroep', 'KvK 42064891'],
-    serviceHeading: 'Heldere keuze, minder verwarring',
+    trust: ['Technische installaties centraal', 'Particulier, B2B en onderhoud gescheiden', 'KvK 42064891'],
+    serviceHeading: 'Drie duidelijke ingangen',
     serviceText:
-      'Particulieren zien de volledige woonoplossing. Zakelijke bezoekers zien alleen de werkzaamheden die wij B2B aanbieden: installaties en gipsplaten.',
+      'Particuliere klanten krijgen woningrenovatie met technische focus. Zakelijke klanten krijgen projectmatige installaties en gipsplaten. Gebouwbeheerders krijgen onderhoud en herstel onder één aanspreekpunt.',
   },
   en: {
-    eyebrow: 'AZ Grand Solutions · Choose your route',
-    title: 'Who are you looking for help for?',
+    eyebrow: 'AZ Grand Solutions · Installations, drywall and maintenance',
+    title: 'Choose the right route for your project',
     intro:
-      'We work for private homes and for business clients. Choose the route that fits your project, so you see the right services, explanation, and quote flow immediately.',
+      'We focus on plumbing, heating, ventilation, heat pumps and drywall. Finishing work such as tiling, painting, plastering and floors remains available as supporting work around installations and renovation.',
     privateTitle: 'Private homeowner',
     privateText:
-      'For homes: finishing, renovation, installations, and emergency service. This includes drywall, painting, parquet, tiling, plumbing, heating, underfloor heating, and electrical work.',
+      'For homes: plumbing, heating, underfloor heating, ventilation, heat pumps, drywall and complete finishing repair after installation work.',
     privateCta: 'I need help for my home',
     businessTitle: 'Business / B2B',
     businessText:
-      'For companies, contractors, property managers, and projects. For B2B we focus on installations and drywall: clear, plannable, and suitable for cooperation.',
+      'For contractors, companies and project teams: plumbing installations, thermal installations, ventilation, heat pumps and drywall.',
     businessCta: 'I need a business partner',
+    maintenanceTitle: 'Building maintenance',
+    maintenanceText:
+      'For offices, hospitality, hotels and commercial buildings: maintenance, leaks, technical faults and repair of walls, tiles and painting after the technical repair.',
+    maintenanceCta: 'I need building maintenance',
     call: `Call ${COMPANY.phoneDisplay}`,
-    trust: ['Private and business separated', 'Clear services per audience', 'KvK 42064891'],
-    serviceHeading: 'Clear choice, less confusion',
+    trust: ['Technical installations first', 'Private, B2B and maintenance separated', 'KvK 42064891'],
+    serviceHeading: 'Three clear entry points',
     serviceText:
-      'Private visitors see the complete home solution. Business visitors see only the work we offer B2B: installations and drywall.',
+      'Private clients get home renovation with a technical focus. Business clients get project-based installations and drywall. Building managers get maintenance and repair under one point of contact.',
   },
 } as const;
 
@@ -65,6 +73,9 @@ export function AudienceLanding({ locale, altPath }: Props) {
               </Link>
               <Link href={url('business', locale)} className="btn btn-ghost btn-large">
                 {t.businessCta}
+              </Link>
+              <Link href={url('maintenance', locale)} className="btn btn-ghost btn-large">
+                {t.maintenanceCta}
               </Link>
             </div>
             <div className="hero-trust">
@@ -148,13 +159,38 @@ export function AudienceLanding({ locale, altPath }: Props) {
                 </picture>
               </div>
               <div className="service-card-body">
-                <span className="service-category cat-installatii">{t.businessTitle}</span>
+                <span className="service-category cat-installaties">{t.businessTitle}</span>
                 <h3>
                   <Link href={url('business', locale)} className="service-card-link">
                     {t.businessTitle}
                   </Link>
                 </h3>
                 <p>{t.businessText}</p>
+              </div>
+            </article>
+
+            <article className="service-card">
+              <div className="service-card-image">
+                <picture>
+                  <source type="image/webp" srcSet="/assets/img/services/service-verwarming-800.webp" />
+                  <img
+                    src="/assets/img/services/service-verwarming-800.jpg"
+                    alt={t.maintenanceTitle}
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div className="service-card-body">
+                <span className="service-category cat-installaties">{t.maintenanceTitle}</span>
+                <h3>
+                  <Link href={url('maintenance', locale)} className="service-card-link">
+                    {t.maintenanceTitle}
+                  </Link>
+                </h3>
+                <p>{t.maintenanceText}</p>
               </div>
             </article>
           </div>
