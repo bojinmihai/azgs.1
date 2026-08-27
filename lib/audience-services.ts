@@ -65,20 +65,6 @@ const serviceImages: Record<AudienceServiceKey, { image: string; alt: Record<Loc
   },
 };
 
-const nlServiceNames: Record<AudienceServiceKey, string> = {
-  plumbing: 'Sanitair en leidingwerk',
-  heating: 'Verwarming en thermische installaties',
-  climate: 'Ventilatie en warmtepompen',
-  drywall: 'Gipsplaten en metalstud',
-};
-
-const enServiceNames: Record<AudienceServiceKey, string> = {
-  plumbing: 'Plumbing and pipework',
-  heating: 'Heating and thermal systems',
-  climate: 'Ventilation and heat pumps',
-  drywall: 'Drywall and metal stud',
-};
-
 const nlAudienceNames: Record<ServiceAudience, string> = {
   private: 'Particulier',
   business: 'Zakelijk / B2B',
@@ -90,10 +76,6 @@ const enAudienceNames: Record<ServiceAudience, string> = {
   business: 'Business / B2B',
   maintenance: 'Service and maintenance',
 };
-
-function serviceName(service: AudienceServiceKey, locale: Locale): string {
-  return locale === 'nl' ? nlServiceNames[service] : enServiceNames[service];
-}
 
 function audienceServiceName(audience: ServiceAudience, service: AudienceServiceKey, locale: Locale): string {
   const nl: Record<ServiceAudience, Record<AudienceServiceKey, string>> = {
@@ -220,164 +202,384 @@ function audienceSections(
   service: AudienceServiceKey,
   locale: Locale
 ): AudienceServiceContent['sections'] {
-  const serviceLabel = serviceName(service, locale);
-
   if (locale === 'nl') {
     if (audience === 'business') {
-      return [
-        {
-          title: `Uitvoering voor commerciele projecten`,
+      const technicalOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+        plumbing: {
+          title: 'B2B installatiewerk voor bouw- en afbouwprojecten',
           body:
-            'AZ Grand Solutions werkt voor zakelijke opdrachtgevers die een betrouwbare uitvoerende partner nodig hebben. Wij sluiten aan op tekeningen, werkplanning en technische afspraken, en voeren het werk uit met aandacht voor maatvoering, veiligheid en opleverkwaliteit.',
+            'Wij voeren leidingwerk, sanitaire aansluitingen en technische voorbereidingen uit voor commerciele projecten. De samenwerking is gericht op aannemers, architecten, projectleiders, installatiebedrijven, ventilatiebedrijven en vastgoedpartijen die extra uitvoeringscapaciteit of een gespecialiseerde partner nodig hebben.',
           items: [
-            'Samenwerking met aannemers, architecten en projectleiders',
-            'B2B-uitvoering voor kantoren, horeca, retail en bedrijfsruimten',
-            'Afstemming met installatie-, ventilatie- en afbouwbedrijven',
-            'Duidelijke planning, werkafspraken en opleverpunten',
+            'Leidingtrajecten, aansluitpunten, pantry’s, toiletruimtes en technische ruimtes',
+            'Uitvoering volgens tekening, werkomschrijving of locatie-opname',
+            'Afstemming met projectplanning, bouwvolgorde en andere disciplines',
+            'Controleerbare oplevering met duidelijke terugkoppeling',
           ],
         },
-        {
-          title: 'Technische uitvoering zonder ruis',
+        heating: {
+          title: 'Thermische installaties voor commerciele gebouwen',
           body:
-            'Bij zakelijke projecten moet de uitvoering passen binnen de planning van het totale werk. Wij zorgen voor een nette werkzone, praktische communicatie en technische oplossingen die aansluiten op de disciplines voor en na ons.',
+            'Wij realiseren verwarmingsleidingen, verdelers, radiatoren, vloerverwarming en technische voorbereidingen voor warmtepompen binnen zakelijke projecten. De uitvoering wordt afgestemd op de planning van het totale project en de technische randvoorwaarden van het gebouw.',
           items: [
-            'Voorbereiding op basis van tekening, opname of werkomschrijving',
-            'Montage en uitvoering door een technisch team',
-            'Controle op aansluitingen, bereikbaarheid en afwerking',
-            'Terugkoppeling aan projectleiding of opdrachtgever',
+            'Verwarmingsleidingen, verdelers, radiatoren en aansluitpunten',
+            'Voorbereiding voor vloerverwarming en warmtepompcomponenten',
+            'Technische afstemming met installatie- en afbouwpartners',
+            'Praktische opleverpunten voor projectleiding of opdrachtgever',
+          ],
+        },
+        climate: {
+          title: 'Ventilatie en warmtepompvoorbereiding voor projectteams',
+          body:
+            'Wij voeren montage, aanpassingen en technische voorbereiding uit rond ventilatie, luchtdoorvoeren, warmtepompcomponenten en energiezuinige installaties. De uitvoering sluit aan op bouwkundige en installatietechnische planning.',
+          items: [
+            'Ventilatiekanalen, doorvoeren, aansluitpunten en technische zones',
+            'Voorbereidend werk voor warmtepompen en energiezuinige systemen',
+            'Samenwerking met ventilatiebedrijven, installateurs en bouwteams',
+            'Nette uitvoering rond plafonds, schachten en technische ruimtes',
+          ],
+        },
+        drywall: {
+          title: 'Gipsplaten en metalstud voor professionele projecten',
+          body:
+            'Wij leveren en monteren complete gipsplaat- en metalstudconstructies voor zakelijke omgevingen. Wanden, plafonds, schachten en technische sparingen worden afgestemd op installaties, ventilatie, brandwerende eisen waar relevant en de planning van het project.',
+          items: [
+            'Metalstudwanden, plafonds, voorzetwanden en technische schachten',
+            'Sparingen en voorbereiding rond leidingen, ventilatie en aansluitpunten',
+            'Strakke montage voor kantoren, horeca, retail en bedrijfsruimten',
+            'Projectmatige uitvoering met controle op maatvoering en oplevering',
+          ],
+        },
+      };
+
+      return [
+        technicalOffer[service],
+        {
+          title: 'Samenwerking op professioneel projectniveau',
+          body:
+            'Zakelijke opdrachtgevers hebben geen behoefte aan losse beloftes, maar aan uitvoerders die meedenken, afspraken nakomen en het project niet vertragen. Daarom werken wij met duidelijke werkafspraken, praktische communicatie en een professionele opleverstructuur.',
+          items: [
+            'Voor aannemers, architecten, projectontwikkelaars en installatiepartners',
+            'Geschikt voor kantoren, horeca, retail, zorglocaties en bedrijfsruimten',
+            'Heldere afbakening van werkzaamheden, planning en verantwoordelijkheden',
+            'Representatieve uitvoering op locaties waar professionele uitstraling telt',
           ],
         },
       ];
     }
 
     if (audience === 'maintenance') {
-      return [
-        {
-          title: `Onderhoudsscope voor ${serviceLabel.toLowerCase()}`,
+      const maintenanceOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+        plumbing: {
+          title: 'Sanitaire storingen, lekkages en leidingherstel',
           body:
-            'Deze dienst is bedoeld voor gebouwen die al in gebruik zijn: restaurants, hotels, kantoren, winkels, VvE-panden en beheerde locaties. Wij lossen de technische oorzaak op en herstellen waar nodig de directe schade rond de werkzone.',
+            'Voor gebouwen in gebruik draait sanitair onderhoud om snelle diagnose, schadebeperking en betrouwbare reparatie. Wij herstellen de technische oorzaak en zorgen waar nodig voor praktisch herstel van de omgeving na de ingreep.',
           items: [
-            'Snelle beoordeling van storing of schade',
-            'Reparatie van technische oorzaak waar mogelijk',
-            'Herstel van wand, plafond, tegelwerk of schilderwerk na de ingreep',
-            'Heldere terugkoppeling voor beheerder of eigenaar',
+            'Lekkages, verstoppingen, afvoeren, kranen, toiletten en aansluitingen',
+            'Beoordeling van oorzaak, bereikbaarheid en benodigde herstelstappen',
+            'Openbreken en dichtmaken van de werkzone waar dat nodig is',
+            'Terugkoppeling voor eigenaar, beheerder of facilitair verantwoordelijke',
           ],
         },
-        {
-          title: 'Een aanspreekpunt voor techniek en herstel',
+        heating: {
+          title: 'Verwarmingsstoringen en warmteherstel',
           body:
-            'Bij een storing wil een beheerder niet vijf partijen bellen. Wij combineren installatieherstel met praktisch bouwkundig herstel, zodat de ruimte sneller weer netjes, veilig en bruikbaar is.',
+            'Voor kantoren, horeca, hotels en beheerde gebouwen herstellen wij verwarmingsproblemen met focus op comfort, veiligheid en minimale verstoring van de locatie. Het doel is dat gebruikers zo snel mogelijk weer normaal verder kunnen.',
           items: [
-            'Gebouwen, horeca, hotels, kantoren en winkels',
-            'Lekkage, storing, schade en preventieve opvolging',
-            'Gips, tegelwerk, kitwerk, schilderwerk en kleine afwerking na herstel',
-            'Werkbaar plan voor vervolgonderhoud of grotere reparaties',
+            'Storingen, lekkages, radiatoren, leidingen en verdelers',
+            'Praktische diagnose en herstel van bereikbare technische onderdelen',
+            'Afstemming rond gebruikstijden, toegang en urgentie',
+            'Advies voor vervolgonderhoud wanneer structurele vervanging nodig is',
+          ],
+        },
+        climate: {
+          title: 'Ventilatie, warmtepompcomponenten en klimaatherstel',
+          body:
+            'Bij onderhoud aan ventilatie en klimaattechniek kijken wij naar werking, bereikbaarheid en praktische herstelmogelijkheden. Wij voeren technische opvolging, kleine aanpassingen en herstel rond installaties uit.',
+          items: [
+            'Controle en herstel rond ventilatie, luchtdoorvoeren en aansluitpunten',
+            'Ondersteuning bij warmtepompcomponenten en warmteverdeling',
+            'Afstemming met beheerder, installateur of specialist wanneer nodig',
+            'Net herstel van plafonds, schachten of technische zones na uitvoering',
+          ],
+        },
+        drywall: {
+          title: 'Herstel van wanden, plafonds en technische zones',
+          body:
+            'Na lekkage, installatieherstel of technische aanpassing blijft vaak bouwkundig herstel achter. Wij maken wanden, plafonds, schachten en zichtbare zones weer representatief en bruikbaar voor de locatie.',
+          items: [
+            'Gipsplaten, plafonds, voorzetwanden en technische schachten herstellen',
+            'Afwerking na leidingwerk, lekkageherstel of inspectie-openingen',
+            'Voorbereiding voor schilderwerk, tegelherstel of verdere afwerking',
+            'Nette oplevering voor kantoren, horeca, hotels en winkels',
+          ],
+        },
+      };
+
+      return [
+        maintenanceOffer[service],
+        {
+          title: 'Onderhoud voor locaties die moeten blijven functioneren',
+          body:
+            'Bij onderhoud gaat het om snelheid, betrouwbaarheid en beperking van overlast. Wij combineren technische reparatie met herstel van de directe werkzone, zodat de ruimte sneller weer veilig, netjes en bruikbaar is.',
+          items: [
+            'Voor gebouwbeheerders, horeca, hotels, kantoren, winkels en VvE’s',
+            'Technische reparatie plus gips-, tegel-, kit- of schilderherstel waar nodig',
+            'Interventies per melding of afspraken voor terugkerende samenwerking',
+            'Een duidelijk aanspreekpunt voor techniek, planning en opvolging',
           ],
         },
       ];
     }
 
-    return [
-      {
-        title: `Particuliere scope voor ${serviceLabel.toLowerCase()}`,
+    const privateOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+      plumbing: {
+        title: 'Sanitair werk voor woningen',
         body:
-          'Deze route is geschreven voor bewoners en particuliere opdrachtgevers. De nadruk ligt op comfort, duidelijke uitleg, nette uitvoering in huis en een oplevering die past bij dagelijks gebruik.',
+          'Voor particuliere woningen voeren wij sanitair werk uit met aandacht voor comfort, waterdichtheid en een nette afwerking. De techniek moet betrouwbaar zijn, maar het eindresultaat moet ook passen bij dagelijks gebruik in huis.',
         items: [
-          'Duidelijke uitleg voor de bewoner',
-          'Net werken in bestaande woningen',
-          'Aandacht voor comfort, stofbeperking en afwerking',
-          'Praktische planning rondom wonen en gezin',
+          'Badkamers, toiletten, keukenaansluitingen en bijkeukens',
+          'Leidingwerk verplaatsen, vervangen of opnieuw aansluiten',
+          'Controle op lekkages, afvoer, druk en bereikbaarheid',
+          'Herstel van wand, vloer of afwerking waar dit bij het werk hoort',
         ],
       },
-      {
-        title: 'Van opname tot oplevering',
+      heating: {
+        title: 'Verwarming en comfort in bestaande woningen',
         body:
-          'We bekijken de bestaande situatie, bespreken wat technisch verstandig is en stemmen af wat zichtbaar moet worden afgewerkt. Zo weet u vooraf wat wij doen en waar u rekening mee moet houden.',
+          'Wij voeren verwarmingswerk uit voor woningen waar comfort, nette routing van leidingen en betrouwbare werking belangrijk zijn. De oplossing wordt afgestemd op de bestaande situatie en de manier waarop de woning wordt gebruikt.',
         items: [
-          'Opname van bestaande situatie',
-          'Advies passend bij woning en budget',
-          'Controle op werking en lekkages',
-          'Nette oplevering van de werkruimte',
+          'Radiatoren, verwarmingsleidingen, verdelers en aansluitingen',
+          'Aanpassingen bij renovatie, verbouwing of herindeling',
+          'Vloerverwarming en voorbereiding op energiezuinige installaties',
+          'Nette uitvoering met beperkte overlast in bewoonde woningen',
+        ],
+      },
+      climate: {
+        title: 'Ventilatie, vloerverwarming en warmtepompvoorbereiding',
+        body:
+          'Voor woningen combineren wij comfort en energiezuinigheid met praktische uitvoering. Wij kijken naar warmteverdeling, ventilatie, opbouwhoogte, bereikbaarheid en de aansluiting op bestaande installaties.',
+        items: [
+          'Vloerverwarming, verdelers en voorbereidende werkzaamheden',
+          'Ventilatie-aanpassingen en technische doorvoeren',
+          'Voorbereiding voor warmtepompen en energiezuinige systemen',
+          'Afstemming met vloer, wand, plafond en afwerking',
+        ],
+      },
+      drywall: {
+        title: 'Gipsplaten, wanden en herstelafwerking',
+        body:
+          'Wij plaatsen en herstellen gipsplaten in woningen waar installatiewerk, lekkageherstel of renovatie bouwkundige afwerking vraagt. De uitvoering wordt netjes voorbereid voor verdere afwerking of directe oplevering.',
+        items: [
+          'Nieuwe wanden, plafonds, voorzetwanden en technische schachten',
+          'Herstel na leidingwerk, lekkage of inspectie-openingen',
+          'Voorbereiding voor schilderwerk, tegelwerk of verdere afbouw',
+          'Strakke oplevering met aandacht voor de bestaande woning',
+        ],
+      },
+    };
+
+    return [
+      privateOffer[service],
+      {
+        title: 'Heldere uitvoering in en rond de woning',
+        body:
+          'Een woning is geen bouwplaats die eindeloos open kan blijven. Daarom stemmen wij vooraf af wat technisch nodig is, wat zichtbaar wordt afgewerkt en hoe de uitvoering zo gecontroleerd mogelijk plaatsvindt.',
+        items: [
+          'Opname van bestaande situatie en duidelijke uitleg van de werkzaamheden',
+          'Planning die rekening houdt met bewoning, stof en bereikbaarheid',
+          'Controle op werking, lekkages, stevigheid en zichtbare afwerking',
+          'Nette oplevering van de werkruimte met praktische terugkoppeling',
         ],
       },
     ];
   }
 
   if (audience === 'business') {
-    return [
-      {
-        title: 'Execution for commercial projects',
+    const technicalOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+      plumbing: {
+        title: 'B2B installation work for construction and fit-out projects',
         body:
-          'AZ Grand Solutions works for business clients that need a reliable execution partner. We align with drawings, planning and technical agreements, and execute the work with attention to measurement, safety and handover quality.',
+          'We execute pipework, plumbing connections and technical preparations for commercial projects. The cooperation is built for contractors, architects, project managers, installation companies, ventilation companies and property teams that need execution capacity or a specialist partner.',
         items: [
-          'Collaboration with contractors, architects and project managers',
-          'B2B execution for offices, hospitality, retail and commercial spaces',
-          'Coordination with installation, ventilation and finishing companies',
-          'Clear planning, working agreements and handover points',
+          'Pipe routes, connection points, pantries, toilet areas and technical rooms',
+          'Execution based on drawings, work descriptions or site surveys',
+          'Coordination with project planning, site sequence and other trades',
+          'Checkable handover with clear feedback',
         ],
       },
-      {
-        title: 'Technical execution without noise',
+      heating: {
+        title: 'Thermal systems for commercial buildings',
         body:
-          'Commercial projects require execution that fits the overall site planning. We keep the work zone clean, communicate practically and deliver technical solutions that connect with the trades before and after us.',
+          'We deliver heating pipework, manifolds, radiators, underfloor heating and technical preparation for heat pumps within business projects. The execution is aligned with the overall project planning and technical conditions of the building.',
         items: [
-          'Preparation based on drawings, survey or work description',
-          'Installation and execution by a technical team',
-          'Checks on connections, access and finishing',
-          'Feedback to project management or client',
+          'Heating pipework, manifolds, radiators and connection points',
+          'Preparation for underfloor heating and heat pump components',
+          'Technical coordination with installation and finishing partners',
+          'Practical handover points for project management or client',
+        ],
+      },
+      climate: {
+        title: 'Ventilation and heat pump preparation for project teams',
+        body:
+          'We support commercial projects with installation, modifications and technical preparation around ventilation, air penetrations, heat pump components and energy-efficient systems. Execution is aligned with construction and MEP planning.',
+        items: [
+          'Ventilation ducts, penetrations, connection points and technical zones',
+          'Preparation for heat pumps and energy-efficient systems',
+          'Cooperation with ventilation companies, installers and construction teams',
+          'Clean execution around ceilings, shafts and technical rooms',
+        ],
+      },
+      drywall: {
+        title: 'Drywall and metal stud for professional projects',
+        body:
+          'We supply and install complete drywall and metal stud systems for business environments. Walls, ceilings, shafts and technical openings are coordinated with installations, ventilation, relevant fire requirements and project planning.',
+        items: [
+          'Metal stud walls, ceilings, partition walls and technical shafts',
+          'Openings and preparation around pipework, ventilation and connections',
+          'Clean installation for offices, hospitality, retail and commercial spaces',
+          'Project-based execution with checks on dimensions and handover',
+        ],
+      },
+    };
+
+    return [
+      technicalOffer[service],
+      {
+        title: 'Professional project cooperation',
+        body:
+          'Business clients need execution partners who think ahead, keep agreements and do not slow the project down. We work with clear agreements, practical communication and a professional handover structure.',
+        items: [
+          'For contractors, architects, developers and installation partners',
+          'Suitable for offices, hospitality, retail, care locations and commercial spaces',
+          'Clear boundaries for work, planning and responsibilities',
+          'Representative execution on sites where professional appearance matters',
         ],
       },
     ];
   }
 
   if (audience === 'maintenance') {
-    return [
-      {
-        title: `Maintenance scope for ${serviceLabel.toLowerCase()}`,
+    const maintenanceOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+      plumbing: {
+        title: 'Plumbing faults, leaks and pipework repair',
         body:
-          'This service is for buildings already in use: restaurants, hotels, offices, shops, owners associations and managed properties. We repair the technical cause and, where needed, restore the direct damage around the work zone.',
+          'For occupied buildings, plumbing maintenance is about fast diagnosis, damage control and reliable repair. We repair the technical cause and, where needed, handle practical restoration around the work zone.',
         items: [
-          'Fast assessment of fault or damage',
-          'Repair of the technical cause where possible',
-          'Repair of wall, ceiling, tiling or painting after the intervention',
-          'Clear feedback for manager or owner',
+          'Leaks, blockages, drains, taps, toilets and connections',
+          'Assessment of cause, access and required repair steps',
+          'Opening and closing the work zone where needed',
+          'Feedback for owner, manager or facility responsible',
         ],
       },
-      {
-        title: 'One contact for technical work and repair',
+      heating: {
+        title: 'Heating faults and restoring comfort',
         body:
-          'When something fails, a building manager should not have to call five different trades. We combine installation repair with practical building repair so the space becomes clean, safe and usable again faster.',
+          'For offices, hospitality, hotels and managed buildings, we repair heating problems with focus on comfort, safety and minimal disruption to the location. The goal is to get users back to normal quickly.',
         items: [
-          'Buildings, hospitality, hotels, offices and shops',
-          'Leaks, faults, damage and preventive follow-up',
-          'Drywall, tiling, sealant, painting and small finishing after repair',
-          'Workable plan for follow-up maintenance or larger repairs',
+          'Faults, leaks, radiators, pipework and manifolds',
+          'Practical diagnosis and repair of accessible technical components',
+          'Coordination around opening hours, access and urgency',
+          'Advice for follow-up maintenance where structural replacement is needed',
+        ],
+      },
+      climate: {
+        title: 'Ventilation, heat pump components and climate repair',
+        body:
+          'For ventilation and climate maintenance, we look at function, access and practical repair options. We support managers with technical follow-up, small modifications and repair around installations.',
+        items: [
+          'Checks and repair around ventilation, air penetrations and connections',
+          'Support for heat pump components and heat distribution',
+          'Coordination with manager, installer or specialist where needed',
+          'Clean repair of ceilings, shafts or technical zones after execution',
+        ],
+      },
+      drywall: {
+        title: 'Repair of walls, ceilings and technical zones',
+        body:
+          'After leaks, installation repair or technical modification, building repair is often still needed. We restore walls, ceilings, shafts and visible zones so the location becomes presentable and usable again.',
+        items: [
+          'Repair drywall, ceilings, partition walls and technical shafts',
+          'Finishing after pipework, leak repair or inspection openings',
+          'Preparation for painting, tile repair or further finishing',
+          'Clean handover for offices, hospitality, hotels and shops',
+        ],
+      },
+    };
+
+    return [
+      maintenanceOffer[service],
+      {
+        title: 'Maintenance for locations that need to keep operating',
+        body:
+          'Maintenance is about speed, reliability and limiting disruption. We combine technical repair with restoration of the direct work zone so the space becomes safe, clean and usable again faster.',
+        items: [
+          'For building managers, hospitality, hotels, offices, shops and owners associations',
+          'Technical repair plus drywall, tile, sealant or painting repair where needed',
+          'Interventions per request or agreements for recurring cooperation',
+          'One clear contact for technical work, planning and follow-up',
         ],
       },
     ];
   }
 
-  return [
-    {
-      title: `Private scope for ${serviceLabel.toLowerCase()}`,
+  const privateOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+    plumbing: {
+      title: 'Plumbing work for homes',
       body:
-        'This route is written for residents and private clients. The focus is comfort, clear explanation, clean work inside the home and a handover that works for daily use.',
+        'For private homes, we execute plumbing work with attention to comfort, waterproofing and clean finishing. The technical system must be reliable, and the result must fit daily use inside the home.',
       items: [
-        'Clear explanation for the homeowner',
-        'Clean work in existing homes',
-        'Attention to comfort, dust control and finishing',
-        'Practical planning around family life',
+        'Bathrooms, toilets, kitchen connections and utility spaces',
+        'Move, replace or reconnect pipework',
+        'Checks on leaks, drainage, pressure and access',
+        'Repair of wall, floor or finishing where it belongs to the work',
       ],
     },
-    {
-      title: 'From survey to handover',
+    heating: {
+      title: 'Heating and comfort in existing homes',
       body:
-        'We inspect the existing situation, explain what is technically sensible and agree what needs visible finishing. You know what we will do before the work starts.',
+        'We execute heating work for homes where comfort, clean pipe routing and reliable operation matter. The solution is aligned with the existing situation and how the home is used.',
       items: [
-        'Survey of the existing situation',
-        'Advice matched to home and budget',
-        'Functional and leak checks',
-        'Clean handover of the work zone',
+        'Radiators, heating pipework, manifolds and connections',
+        'Modifications during renovation, remodeling or layout changes',
+        'Underfloor heating and preparation for energy-efficient systems',
+        'Clean execution with limited disruption in occupied homes',
+      ],
+    },
+    climate: {
+      title: 'Ventilation, underfloor heating and heat pump preparation',
+      body:
+        'For homes, we combine comfort and energy efficiency with practical execution. We look at heat distribution, ventilation, build-up height, access and connection to existing systems.',
+      items: [
+        'Underfloor heating, manifolds and preparation work',
+        'Ventilation modifications and technical penetrations',
+        'Preparation for heat pumps and energy-efficient systems',
+        'Coordination with floors, walls, ceilings and finishing',
+      ],
+    },
+    drywall: {
+      title: 'Drywall, walls and finishing repair',
+      body:
+        'We install and repair drywall in homes where installation work, leak repair or renovation requires building finishing. The work is prepared neatly for further finishing or clean handover.',
+      items: [
+        'New walls, ceilings, partition walls and technical shafts',
+        'Repair after pipework, leaks or inspection openings',
+        'Preparation for painting, tiling or further finishing',
+        'Clean handover with attention to the existing home',
+      ],
+    },
+  };
+
+  return [
+    privateOffer[service],
+    {
+      title: 'Clear execution inside the home',
+      body:
+        'A home cannot stay open like a construction site. We therefore agree in advance what is technically required, what visible finishing is included and how the work can be carried out in a controlled way.',
+      items: [
+        'Survey of the existing situation and clear explanation of the work',
+        'Planning that considers occupancy, dust and access',
+        'Checks on function, leaks, strength and visible finishing',
+        'Clean handover of the work zone with practical feedback',
       ],
     },
   ];
@@ -438,8 +640,8 @@ export function getAudienceServiceContent(
     ctaTitle: locale === 'nl' ? 'Project bespreken?' : 'Discuss a project?',
     ctaText:
       locale === 'nl'
-        ? `Stuur ons de situatie, locatie, planning en foto's. Wij beoordelen de ${audienceLabel.toLowerCase()} scope en reageren gericht.`
-        : `Send us the situation, location, planning and photos. We assess the ${audienceLabel.toLowerCase()} scope and respond specifically.`,
+        ? `Stuur de locatie, planning, foto's, tekeningen of werkomschrijving. Wij beoordelen de technische uitvoering en koppelen duidelijk terug wat mogelijk is.`
+        : `Send the location, planning, photos, drawings or work description. We assess the technical execution and respond clearly with what is possible.`,
     ctaLabel: locale === 'nl' ? 'Aanvraag starten' : 'Start request',
   };
 }

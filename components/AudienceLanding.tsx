@@ -10,68 +10,68 @@ type Props = {
 
 const copy = {
   nl: {
-    eyebrow: 'AZ Grand Solutions · Installaties, gipsplaten en onderhoud',
-    title: 'Kies de juiste projectlijn',
+    eyebrow: 'AZ Grand Solutions · Technische uitvoering in regio Utrecht',
+    title: 'Kies de juiste ingang voor uw project',
     intro:
-      'AZ Grand Solutions is ingericht voor drie duidelijke opdrachtstromen: particuliere projecten, zakelijke uitvoering en professioneel gebouwonderhoud.',
+      'AZ Grand Solutions levert technische installaties, gipsplaten en onderhoud voor woningen, commerciele projecten en beheerde gebouwen. Elke ingang is ingericht op een andere manier van werken.',
     privateTitle: 'Particulier',
     privateText:
-      'Voor particuliere woningen: technische renovatie rond sanitair, verwarming, ventilatie, warmtepompen, gipsplaten en noodzakelijke herstelafwerking.',
+      'Voor woningen waar comfort, betrouwbaarheid en nette uitvoering belangrijk zijn: sanitair, verwarming, ventilatie, warmtepompen, gipsplaten en noodzakelijke herstelafwerking.',
     privateCta: 'Start particuliere aanvraag',
     privateHover:
-      'Badkamer, toilet, tegelwerk, sanitair, verwarming, vloerverwarming, ventilatie, gipsplaten, schilderwerk en herstel na installaties.',
-    privateItems: ['Sanitair & verwarming', 'Badkamer, tegels, afwerking', 'Gipsplaten & renovatie'],
-    businessTitle: 'Zakelijk / B2B',
-    businessText:
-      'Voor aannemers, bedrijven en projectteams: projectmatige uitvoering van sanitaire installaties, thermische installaties, ventilatie, warmtepompen en gipsplaten.',
-    businessCta: 'Start zakelijke aanvraag',
-    businessHover:
-      'Voor projectmatig werk: sanitaire installaties, thermische installaties, ventilatie, warmtepompen en gipsplaten. Gericht op duidelijke planning en nette oplevering.',
-    businessItems: ['Sanitaire installaties', 'Thermisch & ventilatie', 'Gipsplaten / gips-carton'],
-    maintenanceTitle: 'Onderhoud gebouwen',
-    maintenanceText:
-      'Voor beheerders van kantoren, horeca, hotels en bedrijfspanden: technische onderhoudsstructuur, storingsopvolging en herstel na installatiewerk.',
-    maintenanceCta: 'Start onderhoudsaanvraag',
-    maintenanceHover:
-      'Voor gebouwen, horeca, kantoren, hotels en winkels: onderhoud, lekkages, storingen, reparatie van installaties en herstel van wand, tegelwerk, gletwerk en schilderwerk.',
-    maintenanceItems: ['Gebouwen, horeca, hotels', 'Storingen & lekkages', 'Reparatie + herstelafwerking'],
-    call: `Bel ${COMPANY.phoneDisplay}`,
-    trust: ['Technische installaties centraal', 'Particulier, B2B en onderhoud gescheiden', 'KvK 42064891'],
-    serviceHeading: 'Drie professionele opdrachtlijnen',
-    serviceText:
-      'Elke route heeft een eigen scope, toon en aanvraagproces. Zo blijft de communicatie helder voor bewoners, projectteams en gebouwbeheerders.',
-  },
-  en: {
-    eyebrow: 'AZ Grand Solutions · Installations, drywall and maintenance',
-    title: 'Choose the right project line',
-    intro:
-      'AZ Grand Solutions is structured around three clear workstreams: private residential projects, business execution and professional building maintenance.',
-    privateTitle: 'Private clients',
-    privateText:
-      'For private homes: technical renovation around plumbing, heating, ventilation, heat pumps, drywall and required finishing repair.',
-    privateCta: 'Start private request',
-    privateHover:
-      'Bathroom, toilet, tiling, plumbing, heating, underfloor heating, ventilation, drywall, painting and finishing repair after installations.',
-    privateItems: ['Plumbing & heating', 'Bathroom, tiles, finishing', 'Drywall & renovation'],
+      'Badkamer, toilet, keuken, leidingen, verwarming, vloerverwarming, ventilatie, gipsplaten, tegelherstel en afwerking wanneer dit onderdeel is van het technische werk.',
+    privateItems: ['Installaties in woningen', 'Comfort en energie', 'Herstelafwerking'],
     businessTitle: 'Business / B2B',
     businessText:
-      'For contractors, companies and project teams: project-based execution of plumbing installations, thermal installations, ventilation, heat pumps and drywall.',
+      'Voor aannemers, architecten, projectleiders, installatiebedrijven, ventilatiebedrijven en vastgoedpartijen die een professionele uitvoeringspartner zoeken.',
+    businessCta: 'Start zakelijke aanvraag',
+    businessHover:
+      'B2B-uitvoering voor installatiewerk, thermische systemen, ventilatie, warmtepompvoorbereiding, gipsplaten en metalstud binnen commerciele projecten.',
+    businessItems: ['B2B installaties', 'Ventilatie & warmte', 'Gipsplaten & metalstud'],
+    maintenanceTitle: 'Gebouwonderhoud',
+    maintenanceText:
+      'Voor beheerders van kantoren, horeca, hotels, winkels en vastgoed: storingen oplossen, technische reparaties uitvoeren en de locatie weer bruikbaar opleveren.',
+    maintenanceCta: 'Start onderhoudsaanvraag',
+    maintenanceHover:
+      'Onderhoud per melding of samenwerking: lekkage, verwarming, ventilatie, sanitair, gipsherstel, tegelherstel, kitwerk, schilderwerk en afwerking na technische reparatie.',
+    maintenanceItems: ['Horeca, hotels, kantoren', 'Storingen & lekkages', 'Techniek + herstel'],
+    call: `Bel ${COMPANY.phoneDisplay}`,
+    trust: ['Installatietechniek centraal', 'B2B, particulier en onderhoud helder gescheiden', 'KvK 42064891'],
+    serviceHeading: 'Drie professionele werkstromen',
+    serviceText:
+      'De juiste ingang voorkomt ruis: een particulier project vraagt andere communicatie dan een B2B-project of onderhoudsmelding voor een gebouw in gebruik.',
+  },
+  en: {
+    eyebrow: 'AZ Grand Solutions · Technical execution in the Utrecht region',
+    title: 'Choose the right entry point for your project',
+    intro:
+      'AZ Grand Solutions delivers technical installations, drywall and maintenance for homes, commercial projects and managed buildings. Each entry point is structured around a different way of working.',
+    privateTitle: 'Private clients',
+    privateText:
+      'For homes where comfort, reliability and clean execution matter: plumbing, heating, ventilation, heat pumps, drywall and required finishing repair.',
+    privateCta: 'Start private request',
+    privateHover:
+      'Bathroom, toilet, kitchen, pipework, heating, underfloor heating, ventilation, drywall, tile repair and finishing when part of the technical work.',
+    privateItems: ['Home installations', 'Comfort and energy', 'Finishing repair'],
+    businessTitle: 'Business / B2B',
+    businessText:
+      'For contractors, architects, project managers, installation companies, ventilation companies and property teams looking for a professional execution partner.',
     businessCta: 'Start business request',
     businessHover:
-      'For project-based work: plumbing installations, thermal installations, ventilation, heat pumps and drywall. Built around planning, coordination and clean delivery.',
-    businessItems: ['Plumbing installations', 'Heating & ventilation', 'Drywall systems'],
+      'B2B execution for installation work, thermal systems, ventilation, heat pump preparation, drywall and metal stud within commercial projects.',
+    businessItems: ['B2B installations', 'Ventilation & heating', 'Drywall & metal stud'],
     maintenanceTitle: 'Building maintenance',
     maintenanceText:
-      'For offices, hospitality, hotels and commercial buildings: technical maintenance structure, fault follow-up and repair after installation work.',
+      'For offices, hospitality, hotels, shops and property management: resolve faults, execute technical repairs and return the location to usable condition.',
     maintenanceCta: 'Start maintenance request',
     maintenanceHover:
-      'For buildings, hospitality, offices, hotels and shops: maintenance, leaks, technical faults, installation repair and finishing repair for walls, tiles, plastering and painting.',
-    maintenanceItems: ['Buildings, hotels, offices', 'Faults & leaks', 'Repair + finishing'],
+      'Maintenance per request or cooperation: leaks, heating, ventilation, plumbing, drywall repair, tile repair, sealant, painting and finishing after technical repair.',
+    maintenanceItems: ['Hotels, offices, hospitality', 'Faults & leaks', 'Technical + repair'],
     call: `Call ${COMPANY.phoneDisplay}`,
-    trust: ['Technical installations first', 'Private, B2B and maintenance separated', 'KvK 42064891'],
-    serviceHeading: 'Three professional project lines',
+    trust: ['Installation technology first', 'B2B, private and maintenance clearly separated', 'KvK 42064891'],
+    serviceHeading: 'Three professional workstreams',
     serviceText:
-      'Each route has its own scope, tone and request flow. This keeps communication clear for residents, project teams and building managers.',
+      'The right entry point avoids noise: a private residential project needs different communication than a B2B project or a maintenance request for an active building.',
   },
 } as const;
 

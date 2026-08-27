@@ -8,12 +8,12 @@
     "description": "Technische woningprojecten voor particulieren: sanitair, verwarming, ventilatie, warmtepompen, gipsplaten en noodzakelijk herstel na installatiewerk."
   },
   "business.nl": {
-    "title": "B2B installaties, ventilatie & gipsplaten regio Utrecht | AZGS",
-    "description": "Zakelijke uitvoering voor aannemers, bedrijven en projectteams: sanitair, thermische installaties, ventilatie, warmtepompen en gipsplaten."
+    "title": "B2B installatiewerk, ventilatie & gipsplaten regio Utrecht | AZGS",
+    "description": "Technische projectuitvoering voor aannemers, architecten, installatiebedrijven en vastgoedpartijen: installaties, ventilatie, warmtepompvoorbereiding en gipsplaten."
   },
   "maintenance.nl": {
-    "title": "Professioneel gebouwonderhoud regio Utrecht | AZGS",
-    "description": "Technisch onderhoud voor kantoren, horeca, hotels en bedrijfspanden: sanitair, verwarming, ventilatie, gipsplaten en herstel na installatiewerk."
+    "title": "Gebouwonderhoud, storingen & technisch herstel regio Utrecht | AZGS",
+    "description": "Onderhoud voor hotels, horeca, kantoren, winkels en vastgoedbeheer: lekkages, verwarming, ventilatie, sanitair, gipsherstel en afwerking na reparatie."
   },
   "services.nl": {
     "title": "Technische diensten regio Utrecht | Installaties & gipsplaten | AZGS",
@@ -88,12 +88,12 @@
     "description": "Technical residential projects for private clients: plumbing, heating, ventilation, heat pumps, drywall and required repair after installation work."
   },
   "business.en": {
-    "title": "B2B Installations, Ventilation & Drywall Utrecht Region | AZGS",
-    "description": "Business execution for contractors, companies and project teams: plumbing, thermal installations, ventilation, heat pumps and drywall."
+    "title": "B2B Installation Work, Ventilation & Drywall Utrecht Region | AZGS",
+    "description": "Technical project execution for contractors, architects, installation companies and property teams: installations, ventilation, heat pump preparation and drywall."
   },
   "maintenance.en": {
-    "title": "Professional Building Maintenance Utrecht Region | AZGS",
-    "description": "Technical maintenance for offices, hospitality, hotels and commercial buildings: plumbing, heating, ventilation, drywall and repair after installation work."
+    "title": "Building Maintenance, Faults & Technical Repair Utrecht Region | AZGS",
+    "description": "Maintenance for hotels, hospitality, offices, shops and property management: leaks, heating, ventilation, plumbing, drywall repair and finishing after repair."
   },
   "services.en": {
     "title": "Technical Services Utrecht Region | Installations & Drywall | AZGS",
