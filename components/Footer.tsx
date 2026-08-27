@@ -10,6 +10,8 @@ export function Footer({ locale }: Props) {
   const t = getMessages(locale);
   const other: Locale = locale === 'nl' ? 'en' : 'nl';
   const otherHome = url('home', other);
+  const directionsLabel = locale === 'nl' ? 'Richtingen' : 'Directions';
+  const technicalLabel = locale === 'nl' ? 'Technische diensten' : 'Technical services';
 
   return (
     <footer className="site-footer">
@@ -28,22 +30,19 @@ export function Footer({ locale }: Props) {
 
           <div className="footer-col">
             <h3>{t.footer.servicesHeading}</h3>
-            <div className="footer-subhead">{t.footer.finishingSub}</div>
+            <div className="footer-subhead">{directionsLabel}</div>
             <ul>
               <li>
-                <Link href={url('drywall', locale)}>{t.nav.drywall}</Link>
+                <Link href={url('private', locale)}>{t.nav.private}</Link>
               </li>
               <li>
-                <Link href={url('painting', locale)}>{t.nav.painting}</Link>
+                <Link href={url('business', locale)}>{t.nav.business}</Link>
               </li>
               <li>
-                <Link href={url('parquet', locale)}>{t.nav.parquet}</Link>
-              </li>
-              <li>
-                <Link href={url('tiling', locale)}>{t.nav.tiling}</Link>
+                <Link href={url('maintenance', locale)}>{t.nav.maintenance}</Link>
               </li>
             </ul>
-            <div className="footer-subhead">{t.footer.installationsSub}</div>
+            <div className="footer-subhead">{technicalLabel}</div>
             <ul>
               <li>
                 <Link href={url('plumbing', locale)}>{t.nav.plumbing}</Link>
@@ -57,7 +56,7 @@ export function Footer({ locale }: Props) {
                 </Link>
               </li>
               <li>
-                <Link href={url('electrical', locale)}>{t.nav.electrical}</Link>
+                <Link href={url('drywall', locale)}>{t.nav.drywall}</Link>
               </li>
             </ul>
           </div>

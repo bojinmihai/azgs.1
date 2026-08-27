@@ -12,6 +12,8 @@ export function Header({ locale, altPath }: Props) {
   const homeHref = url('home', locale);
   const tel = `tel:${COMPANY.phone}`;
   const callLabel = t.nav.callCta.replace('{phone}', COMPANY.phoneDisplay);
+  const directionsLabel = locale === 'nl' ? 'Richtingen' : 'Directions';
+  const technicalLabel = locale === 'nl' ? 'Technische diensten' : 'Technical services';
 
   return (
     <header className="site-header" data-menu-open="false">
@@ -46,22 +48,19 @@ export function Header({ locale, altPath }: Props) {
               </Link>
               <div className="dropdown" role="menu">
                 <div className="dropdown-column">
-                  <div className="dropdown-heading">{t.nav.finishing}</div>
-                  <Link href={url('drywall', locale)} role="menuitem">
-                    {t.nav.drywall}
+                  <div className="dropdown-heading">{directionsLabel}</div>
+                  <Link href={url('private', locale)} role="menuitem">
+                    {t.nav.private}
                   </Link>
-                  <Link href={url('painting', locale)} role="menuitem">
-                    {t.nav.painting}
+                  <Link href={url('business', locale)} role="menuitem">
+                    {t.nav.business}
                   </Link>
-                  <Link href={url('parquet', locale)} role="menuitem">
-                    {t.nav.parquet}
-                  </Link>
-                  <Link href={url('tiling', locale)} role="menuitem">
-                    {t.nav.tiling}
+                  <Link href={url('maintenance', locale)} role="menuitem">
+                    {t.nav.maintenance}
                   </Link>
                 </div>
                 <div className="dropdown-column">
-                  <div className="dropdown-heading">{t.nav.installations}</div>
+                  <div className="dropdown-heading">{technicalLabel}</div>
                   <Link href={url('plumbing', locale)} role="menuitem">
                     {t.nav.plumbing}
                   </Link>
@@ -71,8 +70,8 @@ export function Header({ locale, altPath }: Props) {
                   <Link href={url('underfloorHeating', locale)} role="menuitem">
                     {t.nav.underfloorHeating}
                   </Link>
-                  <Link href={url('electrical', locale)} role="menuitem">
-                    {t.nav.electrical}
+                  <Link href={url('drywall', locale)} role="menuitem">
+                    {t.nav.drywall}
                   </Link>
                 </div>
               </div>
