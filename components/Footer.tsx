@@ -44,8 +44,9 @@ function footerServices(locale: Locale, audience: AudienceScope) {
         { href: audienceServiceUrl('private', 'heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
         { href: audienceServiceUrl('private', 'climate', locale), label: isNl ? 'Vloerverwarming en comfort' : 'Underfloor heating and comfort' },
         { href: audienceServiceUrl('private', 'drywall', locale), label: isNl ? 'Gipsplaten en renovatie' : 'Drywall and renovation' },
-        { href: url('tiling', locale), label: isNl ? 'Tegelwerk badkamer' : 'Bathroom tiling' },
-        { href: url('painting', locale), label: isNl ? 'Herstel en schilderwerk' : 'Repair and painting' },
+        { href: url('privateTiling', locale), label: isNl ? 'Tegelwerk badkamer' : 'Bathroom tiling' },
+        { href: url('privatePainting', locale), label: isNl ? 'Herstel en schilderwerk' : 'Repair and painting' },
+        { href: url('privateParquet', locale), label: isNl ? 'Parket en vloerafwerking' : 'Parquet and floor finishing' },
       ],
     };
   }
