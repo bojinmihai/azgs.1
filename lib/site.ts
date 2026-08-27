@@ -21,6 +21,7 @@ export const COMPANY = {
 
 export type Locale = 'nl' | 'en';
 export type AudienceScope = 'general' | 'private' | 'business' | 'maintenance';
+export type AudienceServiceKey = 'plumbing' | 'heating' | 'climate' | 'drywall';
 
 export const LOCALES: Locale[] = ['nl', 'en'];
 
@@ -59,4 +60,32 @@ export function audienceForPageKey(pageKey: string): AudienceScope {
   if (pageKey === 'business') return 'business';
   if (pageKey === 'maintenance') return 'maintenance';
   return 'general';
+}
+
+export function audienceSlug(audience: Exclude<AudienceScope, 'general'>, locale: Locale): string {
+  const slugs = {
+    private: { nl: 'particulier', en: 'private' },
+    business: { nl: 'zakelijk', en: 'business' },
+    maintenance: { nl: 'onderhoud', en: 'maintenance' },
+  } as const;
+  return slugs[audience][locale];
+}
+
+export function audienceServiceSlug(service: AudienceServiceKey, locale: Locale): string {
+  const slugs = {
+    plumbing: { nl: 'sanitair', en: 'plumbing' },
+    heating: { nl: 'verwarming', en: 'heating' },
+    climate: { nl: 'ventilatie-warmtepompen', en: 'ventilation-heat-pumps' },
+    drywall: { nl: 'gipsplaten', en: 'drywall' },
+  } as const;
+  return slugs[service][locale];
+}
+
+export function audienceServiceUrl(
+  audience: Exclude<AudienceScope, 'general'>,
+  service: AudienceServiceKey,
+  locale: Locale
+): string {
+  const prefix = locale === 'nl' ? '' : '/en';
+  return `${prefix}/${audienceSlug(audience, locale)}/${audienceServiceSlug(service, locale)}`;
 }

@@ -1,6 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL, SLUGS } from '@/lib/site';
 import { getAllPosts } from '@/lib/blog';
+import {
+  getAudienceServiceContent,
+  getAudienceServiceParams,
+  resolveAudienceServiceParams,
+} from '@/lib/audience-services';
 
 export const dynamic = 'force-static';
 
@@ -35,6 +40,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     });
+  }
+
+  for (const locale of ['nl', 'en'] as const) {
+    for (const params of getAudienceServiceParams(locale)) {
+      const resolved = resolveAudienceServiceParams(locale, params.audience, params.service);
+      if (!resolved) continue;
+      const content = getAudienceServiceContent(resolved.audience, resolved.service, locale);
+      entries.push({
+        url: `${SITE_URL}${content.path}`,
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: resolved.audience === 'business' ? 0.82 : 0.76,
+        alternates: {
+          languages: {
+            [locale]: `${SITE_URL}${content.path}`,
+            [locale === 'nl' ? 'en' : 'nl']: `${SITE_URL}${content.altPath}`,
+            'x-default': locale === 'nl' ? `${SITE_URL}${content.path}` : `${SITE_URL}${content.altPath}`,
+          },
+        },
+      });
+    }
   }
 
   for (const locale of ['nl', 'en'] as const) {

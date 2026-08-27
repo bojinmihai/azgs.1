@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { COMPANY, type AudienceScope, type Locale, url } from '@/lib/site';
+import { COMPANY, audienceServiceUrl, type AudienceScope, type Locale, url } from '@/lib/site';
 import { getMessages } from '@/lib/i18n';
 import { PhoneIcon } from './icons';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -19,10 +19,10 @@ function serviceMenu(locale: Locale, audience: AudienceScope): { heading: string
     return {
       heading: isNl ? 'B2B diensten' : 'B2B services',
       items: [
-        { href: url('plumbing', locale), label: isNl ? 'Sanitair en leidingwerk' : 'Plumbing and pipework' },
-        { href: url('heating', locale), label: isNl ? 'Verwarming en thermische installaties' : 'Heating and thermal systems' },
-        { href: url('underfloorHeating', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
-        { href: url('drywall', locale), label: isNl ? 'Gipsplaten en metalstud' : 'Drywall and metal stud' },
+        { href: audienceServiceUrl('business', 'plumbing', locale), label: isNl ? 'Sanitair en leidingwerk' : 'Plumbing and pipework' },
+        { href: audienceServiceUrl('business', 'heating', locale), label: isNl ? 'Verwarming en thermische installaties' : 'Heating and thermal systems' },
+        { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
+        { href: audienceServiceUrl('business', 'drywall', locale), label: isNl ? 'Gipsplaten en metalstud' : 'Drywall and metal stud' },
       ],
     };
   }
@@ -32,10 +32,10 @@ function serviceMenu(locale: Locale, audience: AudienceScope): { heading: string
       heading: isNl ? 'Service en onderhoud' : 'Service and maintenance',
       items: [
         { href: url('maintenance', locale), label: isNl ? 'Gebouwonderhoud' : 'Building maintenance' },
-        { href: url('plumbing', locale), label: isNl ? 'Lekkage en sanitair herstel' : 'Leaks and plumbing repair' },
-        { href: url('heating', locale), label: isNl ? 'Verwarming en storingen' : 'Heating and faults' },
-        { href: url('underfloorHeating', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
-        { href: url('drywall', locale), label: isNl ? 'Gipsplaten en herstel' : 'Drywall and repair' },
+        { href: audienceServiceUrl('maintenance', 'plumbing', locale), label: isNl ? 'Lekkage en sanitair herstel' : 'Leaks and plumbing repair' },
+        { href: audienceServiceUrl('maintenance', 'heating', locale), label: isNl ? 'Verwarming en storingen' : 'Heating and faults' },
+        { href: audienceServiceUrl('maintenance', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
+        { href: audienceServiceUrl('maintenance', 'drywall', locale), label: isNl ? 'Gipsplaten en herstel' : 'Drywall and repair' },
       ],
     };
   }
@@ -44,10 +44,10 @@ function serviceMenu(locale: Locale, audience: AudienceScope): { heading: string
     return {
       heading: isNl ? 'Particuliere diensten' : 'Private services',
       items: [
-        { href: url('plumbing', locale), label: isNl ? 'Sanitair en badkamer' : 'Plumbing and bathroom' },
-        { href: url('heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
-        { href: url('underfloorHeating', locale), label: isNl ? 'Vloerverwarming' : 'Underfloor heating' },
-        { href: url('drywall', locale), label: isNl ? 'Gipsplaten en renovatie' : 'Drywall and renovation' },
+        { href: audienceServiceUrl('private', 'plumbing', locale), label: isNl ? 'Sanitair en badkamer' : 'Plumbing and bathroom' },
+        { href: audienceServiceUrl('private', 'heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
+        { href: audienceServiceUrl('private', 'climate', locale), label: isNl ? 'Vloerverwarming en comfort' : 'Underfloor heating and comfort' },
+        { href: audienceServiceUrl('private', 'drywall', locale), label: isNl ? 'Gipsplaten en renovatie' : 'Drywall and renovation' },
         { href: url('tiling', locale), label: isNl ? 'Tegelwerk badkamer' : 'Bathroom tiling' },
         { href: url('painting', locale), label: isNl ? 'Herstel en schilderwerk' : 'Repair and painting' },
       ],
