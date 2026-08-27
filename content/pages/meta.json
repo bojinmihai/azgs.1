@@ -1,35 +1,35 @@
 {
   "home.nl": {
-    "title": "AZ Grand Solutions | Installaties, gipsplaten & onderhoud",
-    "description": "Kies de juiste route: particulier, zakelijk/B2B of gebouwonderhoud. AZGS richt zich op sanitair, verwarming, ventilatie, warmtepompen en gipsplaten."
+    "title": "AZ Grand Solutions | Technische installaties, gipsplaten & gebouwonderhoud",
+    "description": "Professionele projectlijnen voor particuliere projecten, zakelijke uitvoering en gebouwonderhoud. Sanitair, verwarming, ventilatie, warmtepompen en gipsplaten."
   },
   "private.nl": {
-    "title": "Installaties en renovatie voor woningen regio Utrecht | AZGS",
-    "description": "Voor particuliere woningen: sanitair, verwarming, ventilatie, warmtepompen, gipsplaten en herstelafwerking na installatiewerk."
+    "title": "Hoogwaardige installaties voor woningen regio Utrecht | AZGS",
+    "description": "Technische woningprojecten voor particulieren: sanitair, verwarming, ventilatie, warmtepompen, gipsplaten en noodzakelijk herstel na installatiewerk."
   },
   "business.nl": {
     "title": "B2B installaties, ventilatie & gipsplaten regio Utrecht | AZGS",
     "description": "Zakelijke uitvoering voor aannemers, bedrijven en projectteams: sanitair, thermische installaties, ventilatie, warmtepompen en gipsplaten."
   },
   "maintenance.nl": {
-    "title": "Onderhoud gebouwen regio Utrecht | Installaties & herstel | AZGS",
-    "description": "Onderhoud voor kantoren, horeca, hotels en bedrijfspanden: sanitair, verwarming, ventilatie, gipsplaten en herstel na reparatie."
+    "title": "Professioneel gebouwonderhoud regio Utrecht | AZGS",
+    "description": "Technisch onderhoud voor kantoren, horeca, hotels en bedrijfspanden: sanitair, verwarming, ventilatie, gipsplaten en herstel na installatiewerk."
   },
   "services.nl": {
-    "title": "Diensten klusbedrijf Woerden & regio Utrecht | AZGS",
-    "description": "Alle diensten van AZ Grand Solutions in Woerden en regio Utrecht: gipsplaten, schilderwerk, parket, tegelwerk, sanitair, verwarming, vloerverwarming en elektra."
+    "title": "Technische diensten regio Utrecht | Installaties & gipsplaten | AZGS",
+    "description": "Diensten van AZ Grand Solutions in Woerden en regio Utrecht: sanitair, verwarming, ventilatie, warmtepompen, vloerverwarming, gipsplaten en projectondersteuning."
   },
   "about.nl": {
-    "title": "Afwerking &amp; installatie regio Utrecht | AZGS",
-    "description": "Afwerkings- en installatiebedrijf regio Utrecht met ruim 35 jaar internationale vakervaring. Eerlijke afwerking en installaties voor uw woning."
+    "title": "Technische uitvoering &amp; installaties regio Utrecht | AZGS",
+    "description": "AZ Grand Solutions combineert technische uitvoering, installaties, gipsplaten en gebouwonderhoud met ruim 35 jaar internationale vakervaring."
   },
   "emergency.nl": {
     "title": "Spoed loodgieter regio Utrecht | 24/7 lekkage &amp; ontstopping",
     "description": "Spoed loodgieter regio Utrecht: lekkage, verwarming, elektra of verstopte afvoer. 24/7 bereikbaar, binnen 1 uur ter plaatse (60 km rond Woerden)."
   },
   "contact.nl": {
-    "title": "Contact klusbedrijf Woerden | AZ Grand Solutions",
-    "description": "Vraag een vrijblijvende offerte aan bij AZ Grand Solutions in Woerden. Bel +31 6 13636925 of mail aanvragen@azgs.nl. 24/7 bereikbaar voor spoed."
+    "title": "Contact AZ Grand Solutions | Technische projectaanvraag",
+    "description": "Neem contact op met AZ Grand Solutions voor particuliere projecten, B2B uitvoering of gebouwonderhoud. Bel +31 6 13636925 of mail aanvragen@azgs.nl."
   },
   "thankYou.nl": {
     "title": "Bedankt voor uw bericht | AZ Grand Solutions",
@@ -80,36 +80,36 @@
     "description": "Algemene voorwaarden van AZ Grand Solutions (AZGS) voor particulieren in regio Utrecht. Transparante afspraken over offertes, uitvoering, oplevering, garantie en aansprakelijkheid."
   },
   "home.en": {
-    "title": "AZ Grand Solutions | Installations, drywall & maintenance",
-    "description": "Choose the right route: private, business/B2B or building maintenance. AZGS focuses on plumbing, heating, ventilation, heat pumps and drywall."
+    "title": "AZ Grand Solutions | Technical Installations, Drywall & Building Maintenance",
+    "description": "Professional project lines for private projects, business execution and building maintenance. Plumbing, heating, ventilation, heat pumps and drywall."
   },
   "private.en": {
-    "title": "Home Installations and Renovation Utrecht Region | AZGS",
-    "description": "For private homes: plumbing, heating, ventilation, heat pumps, drywall and finishing repair after installation work."
+    "title": "High-Quality Home Installations Utrecht Region | AZGS",
+    "description": "Technical residential projects for private clients: plumbing, heating, ventilation, heat pumps, drywall and required repair after installation work."
   },
   "business.en": {
     "title": "B2B Installations, Ventilation & Drywall Utrecht Region | AZGS",
     "description": "Business execution for contractors, companies and project teams: plumbing, thermal installations, ventilation, heat pumps and drywall."
   },
   "maintenance.en": {
-    "title": "Building Maintenance Utrecht Region | Installations & Repair | AZGS",
-    "description": "Maintenance for offices, hospitality, hotels and commercial buildings: plumbing, heating, ventilation, drywall and repair after technical work."
+    "title": "Professional Building Maintenance Utrecht Region | AZGS",
+    "description": "Technical maintenance for offices, hospitality, hotels and commercial buildings: plumbing, heating, ventilation, drywall and repair after installation work."
   },
   "services.en": {
-    "title": "Renovation Services Woerden & Utrecht Region | AZGS",
-    "description": "All services from AZ Grand Solutions in Woerden and the Utrecht region: drywall, painting, parquet, tiling, plumbing, heating, underfloor heating and electrical."
+    "title": "Technical Services Utrecht Region | Installations & Drywall | AZGS",
+    "description": "Services from AZ Grand Solutions in Woerden and the Utrecht region: plumbing, heating, ventilation, heat pumps, underfloor heating, drywall and project support."
   },
   "about.en": {
-    "title": "About Us — Finishing &amp; Installation, Utrecht Region | AZGS",
-    "description": "Finishing and installation company in the Utrecht region with over 35 years of international experience. Honest finishing and installations for your home."
+    "title": "Technical Execution &amp; Installations, Utrecht Region | AZGS",
+    "description": "AZ Grand Solutions combines technical execution, installations, drywall and building maintenance with over 35 years of international experience."
   },
   "emergency.en": {
     "title": "Emergency Plumber, Utrecht Region | 24/7 Leaks &amp; Drain Unblocking",
     "description": "Emergency plumber in the Utrecht region: water leaks, heating, electrical, or blocked drains. Available 24/7, on-site within 1 hour (60 km around Woerden)."
   },
   "contact.en": {
-    "title": "Contact Renovation Contractor Woerden | AZGS",
-    "description": "Request a no-obligation quote from AZ Grand Solutions in Woerden. Call +31 6 13636925 or email aanvragen@azgs.nl. 24/7 emergency available."
+    "title": "Contact AZ Grand Solutions | Technical Project Request",
+    "description": "Contact AZ Grand Solutions for private projects, B2B execution or building maintenance. Call +31 6 13636925 or email aanvragen@azgs.nl."
   },
   "thankYou.en": {
     "title": "Thank You for Your Message | AZ Grand Solutions",

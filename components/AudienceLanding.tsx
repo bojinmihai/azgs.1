@@ -11,67 +11,67 @@ type Props = {
 const copy = {
   nl: {
     eyebrow: 'AZ Grand Solutions · Installaties, gipsplaten en onderhoud',
-    title: 'Welkom. Waarmee kunnen wij u helpen?',
+    title: 'Kies de juiste projectlijn',
     intro:
-      'Kies de ingang die past bij uw situatie. Zo komt u direct bij de juiste diensten, en kunnen wij later beter zien waar klanten vooral naar zoeken.',
+      'AZ Grand Solutions is ingericht voor drie duidelijke opdrachtstromen: particuliere projecten, zakelijke uitvoering en professioneel gebouwonderhoud.',
     privateTitle: 'Particulier',
     privateText:
-      'Voor woningen: sanitair, verwarming, vloerverwarming, ventilatie, warmtepompen, gipsplaten en complete herstelafwerking na installatiewerk.',
-    privateCta: 'Ik zoek hulp voor mijn woning',
+      'Voor particuliere woningen: technische renovatie rond sanitair, verwarming, ventilatie, warmtepompen, gipsplaten en noodzakelijke herstelafwerking.',
+    privateCta: 'Start particuliere aanvraag',
     privateHover:
       'Badkamer, toilet, tegelwerk, sanitair, verwarming, vloerverwarming, ventilatie, gipsplaten, schilderwerk en herstel na installaties.',
     privateItems: ['Sanitair & verwarming', 'Badkamer, tegels, afwerking', 'Gipsplaten & renovatie'],
     businessTitle: 'Zakelijk / B2B',
     businessText:
-      'Voor aannemers, bedrijven en projectteams: sanitaire installaties, thermische installaties, ventilatie, warmtepompen en gipsplaten/gips-carton.',
-    businessCta: 'Ik zoek een zakelijke partner',
+      'Voor aannemers, bedrijven en projectteams: projectmatige uitvoering van sanitaire installaties, thermische installaties, ventilatie, warmtepompen en gipsplaten.',
+    businessCta: 'Start zakelijke aanvraag',
     businessHover:
       'Voor projectmatig werk: sanitaire installaties, thermische installaties, ventilatie, warmtepompen en gipsplaten. Gericht op duidelijke planning en nette oplevering.',
     businessItems: ['Sanitaire installaties', 'Thermisch & ventilatie', 'Gipsplaten / gips-carton'],
     maintenanceTitle: 'Onderhoud gebouwen',
     maintenanceText:
-      'Voor beheerders van kantoren, horeca, hotels en bedrijfspanden: onderhoud, lekkages, technische storingen en herstel van wanden, tegels en schilderwerk na reparatie.',
-    maintenanceCta: 'Ik zoek onderhoud voor een gebouw',
+      'Voor beheerders van kantoren, horeca, hotels en bedrijfspanden: technische onderhoudsstructuur, storingsopvolging en herstel na installatiewerk.',
+    maintenanceCta: 'Start onderhoudsaanvraag',
     maintenanceHover:
       'Voor gebouwen, horeca, kantoren, hotels en winkels: onderhoud, lekkages, storingen, reparatie van installaties en herstel van wand, tegelwerk, gletwerk en schilderwerk.',
     maintenanceItems: ['Gebouwen, horeca, hotels', 'Storingen & lekkages', 'Reparatie + herstelafwerking'],
     call: `Bel ${COMPANY.phoneDisplay}`,
     trust: ['Technische installaties centraal', 'Particulier, B2B en onderhoud gescheiden', 'KvK 42064891'],
-    serviceHeading: 'Drie duidelijke ingangen',
+    serviceHeading: 'Drie professionele opdrachtlijnen',
     serviceText:
-      'Particuliere klanten krijgen woningrenovatie met technische focus. Zakelijke klanten krijgen projectmatige installaties en gipsplaten. Gebouwbeheerders krijgen onderhoud en herstel onder één aanspreekpunt.',
+      'Elke route heeft een eigen scope, toon en aanvraagproces. Zo blijft de communicatie helder voor bewoners, projectteams en gebouwbeheerders.',
   },
   en: {
     eyebrow: 'AZ Grand Solutions · Installations, drywall and maintenance',
-    title: 'Welcome. How can we help you?',
+    title: 'Choose the right project line',
     intro:
-      'Choose the entry point that matches your situation. This takes you directly to the right services and helps us understand which type of client is looking for us.',
-    privateTitle: 'Private homeowner',
+      'AZ Grand Solutions is structured around three clear workstreams: private residential projects, business execution and professional building maintenance.',
+    privateTitle: 'Private clients',
     privateText:
-      'For homes: plumbing, heating, underfloor heating, ventilation, heat pumps, drywall and complete finishing repair after installation work.',
-    privateCta: 'I need help for my home',
+      'For private homes: technical renovation around plumbing, heating, ventilation, heat pumps, drywall and required finishing repair.',
+    privateCta: 'Start private request',
     privateHover:
       'Bathroom, toilet, tiling, plumbing, heating, underfloor heating, ventilation, drywall, painting and finishing repair after installations.',
     privateItems: ['Plumbing & heating', 'Bathroom, tiles, finishing', 'Drywall & renovation'],
     businessTitle: 'Business / B2B',
     businessText:
-      'For contractors, companies and project teams: plumbing installations, thermal installations, ventilation, heat pumps and drywall.',
-    businessCta: 'I need a business partner',
+      'For contractors, companies and project teams: project-based execution of plumbing installations, thermal installations, ventilation, heat pumps and drywall.',
+    businessCta: 'Start business request',
     businessHover:
       'For project-based work: plumbing installations, thermal installations, ventilation, heat pumps and drywall. Built around planning, coordination and clean delivery.',
     businessItems: ['Plumbing installations', 'Heating & ventilation', 'Drywall systems'],
     maintenanceTitle: 'Building maintenance',
     maintenanceText:
-      'For offices, hospitality, hotels and commercial buildings: maintenance, leaks, technical faults and repair of walls, tiles and painting after the technical repair.',
-    maintenanceCta: 'I need building maintenance',
+      'For offices, hospitality, hotels and commercial buildings: technical maintenance structure, fault follow-up and repair after installation work.',
+    maintenanceCta: 'Start maintenance request',
     maintenanceHover:
       'For buildings, hospitality, offices, hotels and shops: maintenance, leaks, technical faults, installation repair and finishing repair for walls, tiles, plastering and painting.',
     maintenanceItems: ['Buildings, hotels, offices', 'Faults & leaks', 'Repair + finishing'],
     call: `Call ${COMPANY.phoneDisplay}`,
     trust: ['Technical installations first', 'Private, B2B and maintenance separated', 'KvK 42064891'],
-    serviceHeading: 'Three clear entry points',
+    serviceHeading: 'Three professional project lines',
     serviceText:
-      'Private clients get home renovation with a technical focus. Business clients get project-based installations and drywall. Building managers get maintenance and repair under one point of contact.',
+      'Each route has its own scope, tone and request flow. This keeps communication clear for residents, project teams and building managers.',
   },
 } as const;
 
