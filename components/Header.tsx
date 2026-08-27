@@ -36,8 +36,8 @@ function serviceMenu(locale: Locale, audience: AudienceScope): { heading: string
         { href: audienceServiceUrl('maintenance', 'heating', locale), label: isNl ? 'Verwarming en storingen' : 'Heating and faults' },
         { href: audienceServiceUrl('maintenance', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
         { href: audienceServiceUrl('maintenance', 'drywall', locale), label: isNl ? 'Gipsplaten en herstel' : 'Drywall and repair' },
-        { href: url('tiling', locale), label: isNl ? 'Tegel- en wandherstel' : 'Tile and wall repair' },
-        { href: url('painting', locale), label: isNl ? 'Schilder- en afwerkherstel' : 'Painting and finishing repair' },
+        { href: url('maintenanceTiling', locale), label: isNl ? 'Tegel- en wandherstel' : 'Tile and wall repair' },
+        { href: url('maintenancePainting', locale), label: isNl ? 'Schilder- en afwerkherstel' : 'Painting and finishing repair' },
       ],
     };
   }
