@@ -95,6 +95,52 @@ function serviceName(service: AudienceServiceKey, locale: Locale): string {
   return locale === 'nl' ? nlServiceNames[service] : enServiceNames[service];
 }
 
+function audienceServiceName(audience: ServiceAudience, service: AudienceServiceKey, locale: Locale): string {
+  const nl: Record<ServiceAudience, Record<AudienceServiceKey, string>> = {
+    private: {
+      plumbing: 'Sanitair en badkamerinstallaties',
+      heating: 'Verwarming voor woningen',
+      climate: 'Ventilatie, comfort en warmtepompen',
+      drywall: 'Gipsplaten en herstelafwerking',
+    },
+    business: {
+      plumbing: 'Installatiewerk voor B2B projecten',
+      heating: 'Thermische installaties voor commerciele projecten',
+      climate: 'Ventilatie en warmtepompvoorbereiding',
+      drywall: 'Gipsplaten en metalstud voor commerciele projecten',
+    },
+    maintenance: {
+      plumbing: 'Lekkage, sanitair herstel en leidingreparatie',
+      heating: 'Verwarmingsstoringen en technisch herstel',
+      climate: 'Ventilatie- en klimaatherstel',
+      drywall: 'Wand-, plafond- en afwerkherstel',
+    },
+  };
+
+  const en: Record<ServiceAudience, Record<AudienceServiceKey, string>> = {
+    private: {
+      plumbing: 'Plumbing and bathroom installations',
+      heating: 'Heating for homes',
+      climate: 'Ventilation, comfort and heat pumps',
+      drywall: 'Drywall and finishing repair',
+    },
+    business: {
+      plumbing: 'Installation work for B2B projects',
+      heating: 'Thermal systems for commercial projects',
+      climate: 'Ventilation and heat pump preparation',
+      drywall: 'Drywall and metal stud for commercial projects',
+    },
+    maintenance: {
+      plumbing: 'Leaks, plumbing repair and pipework repair',
+      heating: 'Heating faults and technical repair',
+      climate: 'Ventilation and climate system repair',
+      drywall: 'Wall, ceiling and finishing repair',
+    },
+  };
+
+  return locale === 'nl' ? nl[audience][service] : en[audience][service];
+}
+
 function audienceName(audience: ServiceAudience, locale: Locale): string {
   return locale === 'nl' ? nlAudienceNames[audience] : enAudienceNames[audience];
 }
@@ -113,21 +159,21 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
     },
     business: {
       plumbing:
-        'Voor zakelijke projecten gaat sanitair over planning, maatvoering, herhaalbaarheid en overdraagbare kwaliteit voor aannemers, projectteams en bedrijfsruimten.',
+        'Voor zakelijke projecten voeren wij sanitaire installaties, leidingwerk en aansluitingen uit in samenwerking met aannemers, architecten, projectleiders, installatiebedrijven en vastgoedpartijen.',
       heating:
-        'Voor B2B-projecten voeren we thermische installaties uit met focus op planning, technische afstemming en opleverpunten die passen bij professionele projectcontrole.',
+        'Voor B2B-projecten realiseren wij verwarmingsinstallaties, verdelers, leidingtrajecten en technische voorbereidingen met duidelijke planning en afstemming met de andere disciplines op locatie.',
       climate:
-        'Voor bedrijven en projectteams ondersteunen we ventilatie, warmtepompen en energiezuinige installaties als technisch onderdeel van renovatie, fit-out of nieuwbouw.',
+        'Voor bedrijven en projectteams voeren wij ventilatie, warmtepompvoorbereiding en energiezuinige installatieoplossingen uit als onderdeel van commerciele bouw, fit-out en technische projecten.',
       drywall:
-        'Voor zakelijke projecten leveren we gipsplaten en metalstud als bouwkundig-technische discipline: strak, schaalbaar en afgestemd op installaties en planning.',
+        'Voor zakelijke projecten leveren en monteren wij complete gipsplaat- en metalstudconstructies, inclusief technische afstemming rond leidingen, schachten, plafonds en planning.',
     },
     maintenance: {
       plumbing:
-        'Voor gebouwonderhoud gaat sanitair over snelle diagnose, beperken van schade, bedrijfscontinuiteit en duidelijk herstel na lekkage of storing.',
+        'Voor gebouwonderhoud lossen wij lekkages, verstoppingen en sanitaire storingen op en herstellen wij waar nodig de werkzone, zodat het pand snel weer veilig en bruikbaar is.',
       heating:
-        'Voor beheerde gebouwen draait verwarming om storingsopvolging, comfort voor gebruikers en herstel zonder onnodige verstoring van de bedrijfsvoering.',
+        'Voor beheerde gebouwen herstellen wij verwarmingsstoringen, lekkages en defecte onderdelen met aandacht voor comfort, veiligheid en minimale onderbreking van het dagelijks gebruik.',
       climate:
-        'Voor onderhoud aan gebouwen ondersteunen we ventilatie, warmtepompen en warmteverdeling met inspectie, storinganalyse en praktische opvolging.',
+        'Voor onderhoud aan gebouwen controleren en herstellen wij ventilatie, warmtepompcomponenten en warmteverdeling met duidelijke diagnose, praktische uitvoering en opvolging.',
       drywall:
         'Voor onderhoud herstellen we wanden, plafonds en technische zones na lekkage, reparatie of aanpassing, zodat de ruimte weer representatief bruikbaar is.',
     },
@@ -146,21 +192,21 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
     },
     business: {
       plumbing:
-        'For business projects, plumbing is about planning, measurement, repeatable quality and a handover that works for contractors, project teams and commercial spaces.',
+        'For business projects, we execute plumbing systems, pipework and connections in coordination with contractors, architects, project managers, installation companies and property teams.',
       heating:
-        'For B2B projects, thermal installations are executed with focus on planning, technical coordination and handover points that match professional project control.',
+        'For B2B projects, we deliver heating systems, manifolds, pipe routes and technical preparations with clear planning and coordination with other trades on site.',
       climate:
-        'For companies and project teams, we support ventilation, heat pumps and energy-efficient installations as a technical part of renovation, fit-out or new construction.',
+        'For companies and project teams, we execute ventilation, heat pump preparation and energy-efficient installation work as part of commercial construction, fit-out and technical projects.',
       drywall:
-        'For business projects, drywall and metal stud are delivered as a technical construction discipline: clean, scalable and aligned with installations and planning.',
+        'For business projects, we supply and install complete drywall and metal stud systems, coordinated around pipework, shafts, ceilings and project planning.',
     },
     maintenance: {
       plumbing:
-        'For building maintenance, plumbing is about fast diagnosis, limiting damage, operational continuity and clear repair after leaks or faults.',
+        'For building maintenance, we resolve leaks, blockages and plumbing faults and repair the work zone where needed so the property can be used safely again.',
       heating:
-        'For managed buildings, heating is about fault follow-up, user comfort and repair without unnecessary disruption to operations.',
+        'For managed buildings, we repair heating faults, leaks and defective components with attention to comfort, safety and minimal disruption to daily use.',
       climate:
-        'For building maintenance, we support ventilation, heat pumps and heat distribution with inspection, fault analysis and practical follow-up.',
+        'For building maintenance, we inspect and repair ventilation, heat pump components and heat distribution with clear diagnosis, practical execution and follow-up.',
       drywall:
         'For maintenance, we repair walls, ceilings and technical zones after leaks, repairs or adjustments so the space becomes presentable and usable again.',
     },
@@ -180,25 +226,25 @@ function audienceSections(
     if (audience === 'business') {
       return [
         {
-          title: `Zakelijke scope voor ${serviceLabel.toLowerCase()}`,
+          title: `Uitvoering voor commerciele projecten`,
           body:
-            'Wij benaderen dit als projectwerk: duidelijke scope, planning, technische afstemming en controlepunten. De uitvoering is geschikt voor aannemers, vastgoedpartijen, kantoren, retail, horeca en projectteams die een betrouwbare technische partner nodig hebben.',
+            'AZ Grand Solutions werkt voor zakelijke opdrachtgevers die een betrouwbare uitvoerende partner nodig hebben. Wij sluiten aan op tekeningen, werkplanning en technische afspraken, en voeren het werk uit met aandacht voor maatvoering, veiligheid en opleverkwaliteit.',
           items: [
-            'Projectmatige uitvoering met duidelijke werkafspraken',
-            'Afstemming met andere disciplines op locatie',
-            'Oplevering met controlepunten en praktische terugkoppeling',
-            'Geen particuliere renovatieverhalen in deze route',
+            'Samenwerking met aannemers, architecten en projectleiders',
+            'B2B-uitvoering voor kantoren, horeca, retail en bedrijfsruimten',
+            'Afstemming met installatie-, ventilatie- en afbouwbedrijven',
+            'Duidelijke planning, werkafspraken en opleverpunten',
           ],
         },
         {
-          title: 'Waar wij op sturen',
+          title: 'Technische uitvoering zonder ruis',
           body:
-            'B2B vraagt voorspelbaarheid. Daarom draait de communicatie om planning, technische haalbaarheid, toegang tot de werkzone, materiaalkeuze en overdracht. Zo blijft het project beheersbaar voor de opdrachtgever.',
+            'Bij zakelijke projecten moet de uitvoering passen binnen de planning van het totale werk. Wij zorgen voor een nette werkzone, praktische communicatie en technische oplossingen die aansluiten op de disciplines voor en na ons.',
           items: [
-            'Planning per fase of werkzone',
-            'Technische voorbereiding voor uitvoering',
-            'Net werk op locatie met minimale verstoring',
-            'Eenduidige communicatie met projectleiding',
+            'Voorbereiding op basis van tekening, opname of werkomschrijving',
+            'Montage en uitvoering door een technisch team',
+            'Controle op aansluitingen, bereikbaarheid en afwerking',
+            'Terugkoppeling aan projectleiding of opdrachtgever',
           ],
         },
       ];
@@ -209,23 +255,23 @@ function audienceSections(
         {
           title: `Onderhoudsscope voor ${serviceLabel.toLowerCase()}`,
           body:
-            'Deze route is bedoeld voor gebouwen die in gebruik zijn: restaurants, hotels, kantoren, winkels en beheerde panden. De nadruk ligt op storingen oplossen, schade beperken en de ruimte snel weer bruikbaar maken.',
+            'Deze dienst is bedoeld voor gebouwen die al in gebruik zijn: restaurants, hotels, kantoren, winkels, VvE-panden en beheerde locaties. Wij lossen de technische oorzaak op en herstellen waar nodig de directe schade rond de werkzone.',
           items: [
             'Snelle beoordeling van storing of schade',
             'Reparatie van technische oorzaak waar mogelijk',
-            'Herstel van de werkzone na de technische ingreep',
+            'Herstel van wand, plafond, tegelwerk of schilderwerk na de ingreep',
             'Heldere terugkoppeling voor beheerder of eigenaar',
           ],
         },
         {
-          title: 'Geschikt voor terugkerende service',
+          title: 'Een aanspreekpunt voor techniek en herstel',
           body:
-            'Bij onderhoud gaat het niet om een eenmalige mooie tekst, maar om betrouwbaarheid. Wij leggen vast wat is gecontroleerd, wat is hersteld en wat eventueel later gepland moet worden.',
+            'Bij een storing wil een beheerder niet vijf partijen bellen. Wij combineren installatieherstel met praktisch bouwkundig herstel, zodat de ruimte sneller weer netjes, veilig en bruikbaar is.',
           items: [
             'Gebouwen, horeca, hotels, kantoren en winkels',
-            'Storing, lekkage, schade en preventieve opvolging',
-            'Werkbaar plan voor vervolgonderhoud',
-            'Een aanspreekpunt voor techniek en herstel',
+            'Lekkage, storing, schade en preventieve opvolging',
+            'Gips, tegelwerk, kitwerk, schilderwerk en kleine afwerking na herstel',
+            'Werkbaar plan voor vervolgonderhoud of grotere reparaties',
           ],
         },
       ];
@@ -260,25 +306,25 @@ function audienceSections(
   if (audience === 'business') {
     return [
       {
-        title: `Business scope for ${serviceLabel.toLowerCase()}`,
+        title: 'Execution for commercial projects',
         body:
-          'We treat this as project work: clear scope, planning, technical coordination and inspection points. The execution fits contractors, property teams, offices, retail, hospitality and project teams that need a reliable technical partner.',
+          'AZ Grand Solutions works for business clients that need a reliable execution partner. We align with drawings, planning and technical agreements, and execute the work with attention to measurement, safety and handover quality.',
         items: [
-          'Project-based execution with clear working agreements',
-          'Coordination with other trades on site',
-          'Handover with checkpoints and practical feedback',
-          'No private renovation storyline in this route',
+          'Collaboration with contractors, architects and project managers',
+          'B2B execution for offices, hospitality, retail and commercial spaces',
+          'Coordination with installation, ventilation and finishing companies',
+          'Clear planning, working agreements and handover points',
         ],
       },
       {
-        title: 'What we control',
+        title: 'Technical execution without noise',
         body:
-          'B2B requires predictability. The communication is focused on planning, technical feasibility, access to the work zone, material choices and handover.',
+          'Commercial projects require execution that fits the overall site planning. We keep the work zone clean, communicate practically and deliver technical solutions that connect with the trades before and after us.',
         items: [
-          'Planning per phase or work zone',
-          'Technical preparation before execution',
-          'Clean work on site with limited disruption',
-          'Clear communication with project management',
+          'Preparation based on drawings, survey or work description',
+          'Installation and execution by a technical team',
+          'Checks on connections, access and finishing',
+          'Feedback to project management or client',
         ],
       },
     ];
@@ -289,23 +335,23 @@ function audienceSections(
       {
         title: `Maintenance scope for ${serviceLabel.toLowerCase()}`,
         body:
-          'This route is for buildings already in use: restaurants, hotels, offices, shops and managed properties. The focus is solving faults, limiting damage and getting the space usable again.',
+          'This service is for buildings already in use: restaurants, hotels, offices, shops, owners associations and managed properties. We repair the technical cause and, where needed, restore the direct damage around the work zone.',
         items: [
           'Fast assessment of fault or damage',
           'Repair of the technical cause where possible',
-          'Restoration of the work zone after technical repair',
+          'Repair of wall, ceiling, tiling or painting after the intervention',
           'Clear feedback for manager or owner',
         ],
       },
       {
-        title: 'Built for recurring service',
+        title: 'One contact for technical work and repair',
         body:
-          'Maintenance is not a one-off sales text. It is about reliability. We document what was checked, what was repaired and what should be planned later.',
+          'When something fails, a building manager should not have to call five different trades. We combine installation repair with practical building repair so the space becomes clean, safe and usable again faster.',
         items: [
           'Buildings, hospitality, hotels, offices and shops',
-          'Faults, leaks, damage and preventive follow-up',
-          'Workable plan for further maintenance',
-          'One contact for technical work and repair',
+          'Leaks, faults, damage and preventive follow-up',
+          'Drywall, tiling, sealant, painting and small finishing after repair',
+          'Workable plan for follow-up maintenance or larger repairs',
         ],
       },
     ];
@@ -342,7 +388,7 @@ export function getAudienceServiceContent(
   service: AudienceServiceKey,
   locale: Locale
 ): AudienceServiceContent {
-  const name = serviceName(service, locale);
+  const name = audienceServiceName(audience, service, locale);
   const audienceLabel = audienceName(audience, locale);
   const image = serviceImages[service];
   const path = audienceServiceUrl(audience, service, locale);
@@ -359,8 +405,8 @@ export function getAudienceServiceContent(
       : `${heading} in the Utrecht region | AZGS`;
   const description =
     locale === 'nl'
-      ? `${name} voor ${audienceLabel.toLowerCase()} door AZ Grand Solutions. Duidelijke scope, professionele uitvoering en communicatie per doelgroep.`
-      : `${name} for ${audienceLabel.toLowerCase()} by AZ Grand Solutions. Clear scope, professional execution and communication per audience.`;
+      ? `${name} voor ${audienceLabel.toLowerCase()} door AZ Grand Solutions. Technische uitvoering, duidelijke planning en nette oplevering in regio Utrecht.`
+      : `${name} for ${audienceLabel.toLowerCase()} by AZ Grand Solutions. Technical execution, clear planning and clean handover in the Utrecht region.`;
 
   return {
     audience,
@@ -376,18 +422,18 @@ export function getAudienceServiceContent(
     image: image.image,
     imageAlt: image.alt[locale],
     sections: audienceSections(audience, service, locale),
-    proofTitle: locale === 'nl' ? 'Waarom deze route apart is' : 'Why this route is separate',
+    proofTitle: locale === 'nl' ? 'Onze werkwijze' : 'Our working method',
     proofItems:
       locale === 'nl'
         ? [
-            `Tekst en aanbod zijn geschreven voor ${audienceLabel.toLowerCase()}.`,
-            'De aanvraag, planning en communicatie sluiten aan op deze doelgroep.',
-            'Zo komt een bezoeker niet in een algemene alles-in-een pagina terecht.',
+            'Wij starten met de technische situatie, de planning en de bereikbaarheid van de werkzone.',
+            'Daarna stemmen wij uitvoering, materialen en opleverpunten duidelijk af.',
+            'Na uitvoering controleren wij het werk en koppelen wij praktisch terug wat is gedaan.',
           ]
         : [
-            `Copy and offer are written for ${audienceLabel.toLowerCase()}.`,
-            'The request flow, planning and communication match this audience.',
-            'This prevents visitors from landing on a generic all-in-one page.',
+            'We start with the technical situation, planning and access to the work zone.',
+            'We then align execution, materials and handover points clearly.',
+            'After execution, we check the work and report back practically on what was done.',
           ],
     ctaTitle: locale === 'nl' ? 'Project bespreken?' : 'Discuss a project?',
     ctaText:

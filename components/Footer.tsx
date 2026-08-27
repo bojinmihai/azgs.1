@@ -13,10 +13,10 @@ function footerServices(locale: Locale, audience: AudienceScope) {
     return {
       heading: isNl ? 'B2B diensten' : 'B2B services',
       items: [
-        { href: audienceServiceUrl('business', 'plumbing', locale), label: isNl ? 'Sanitair en leidingwerk' : 'Plumbing and pipework' },
-        { href: audienceServiceUrl('business', 'heating', locale), label: isNl ? 'Verwarming en thermisch' : 'Heating and thermal' },
-        { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
-        { href: audienceServiceUrl('business', 'drywall', locale), label: isNl ? 'Gipsplaten en metalstud' : 'Drywall and metal stud' },
+        { href: audienceServiceUrl('business', 'plumbing', locale), label: isNl ? 'Installatiewerk B2B' : 'B2B installation work' },
+        { href: audienceServiceUrl('business', 'heating', locale), label: isNl ? 'Thermische installaties' : 'Thermal systems' },
+        { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompvoorbereiding' : 'Ventilation and heat pump preparation' },
+        { href: audienceServiceUrl('business', 'drywall', locale), label: isNl ? 'Gipsplaten en metalstud projecten' : 'Drywall and metal stud projects' },
       ],
     };
   }
@@ -30,6 +30,8 @@ function footerServices(locale: Locale, audience: AudienceScope) {
         { href: audienceServiceUrl('maintenance', 'heating', locale), label: isNl ? 'Verwarming en storingen' : 'Heating and faults' },
         { href: audienceServiceUrl('maintenance', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
         { href: audienceServiceUrl('maintenance', 'drywall', locale), label: isNl ? 'Gipsplaten en herstel' : 'Drywall and repair' },
+        { href: url('tiling', locale), label: isNl ? 'Tegel- en wandherstel' : 'Tile and wall repair' },
+        { href: url('painting', locale), label: isNl ? 'Schilder- en afwerkherstel' : 'Painting and finishing repair' },
       ],
     };
   }

@@ -79,8 +79,8 @@ export function AudienceServicePage({ content }: Props) {
         <div className="container">
           <div className="audience-nav__head">
             <div>
-              <p className="audience-nav__eyebrow">{isNl ? 'Deze dienst bekijken als' : 'View this service as'}</p>
-              <h2 className="audience-nav__title">{isNl ? 'Elke route heeft eigen tekst en aanbod' : 'Each route has its own copy and offer'}</h2>
+              <p className="audience-nav__eyebrow">{isNl ? 'Kies de juiste aanvraag' : 'Choose the right request'}</p>
+              <h2 className="audience-nav__title">{isNl ? 'Werk voor woningen, bedrijven en beheerde gebouwen' : 'Work for homes, businesses and managed buildings'}</h2>
             </div>
           </div>
           <nav className="audience-nav__grid" aria-label={isNl ? 'Projectrichtingen' : 'Project directions'}>
