@@ -9400,3 +9400,9 @@
     object-fit: cover;
   }
 }
+
+/* Contextual service menu */
+.dropdown.dropdown--single {
+  min-width: 340px;
+  grid-template-columns: 1fr;
+}

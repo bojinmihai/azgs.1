@@ -1,17 +1,68 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { COMPANY, type Locale, url } from '@/lib/site';
+import { COMPANY, type AudienceScope, type Locale, url } from '@/lib/site';
 import { getMessages } from '@/lib/i18n';
 import { MailIcon, PhoneIcon, WhatsAppIcon } from './icons';
 
-type Props = { locale: Locale };
+type Props = { locale: Locale; audience?: AudienceScope };
 
-export function Footer({ locale }: Props) {
+function footerServices(locale: Locale, audience: AudienceScope) {
+  const isNl = locale === 'nl';
+
+  if (audience === 'business') {
+    return {
+      heading: isNl ? 'B2B diensten' : 'B2B services',
+      items: [
+        { href: url('plumbing', locale), label: isNl ? 'Sanitair en leidingwerk' : 'Plumbing and pipework' },
+        { href: url('heating', locale), label: isNl ? 'Verwarming en thermisch' : 'Heating and thermal' },
+        { href: url('underfloorHeating', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
+        { href: url('drywall', locale), label: isNl ? 'Gipsplaten en metalstud' : 'Drywall and metal stud' },
+      ],
+    };
+  }
+
+  if (audience === 'maintenance') {
+    return {
+      heading: isNl ? 'Service en onderhoud' : 'Service and maintenance',
+      items: [
+        { href: url('maintenance', locale), label: isNl ? 'Gebouwonderhoud' : 'Building maintenance' },
+        { href: url('plumbing', locale), label: isNl ? 'Lekkage en sanitair herstel' : 'Leaks and plumbing repair' },
+        { href: url('heating', locale), label: isNl ? 'Verwarming en storingen' : 'Heating and faults' },
+        { href: url('drywall', locale), label: isNl ? 'Gipsplaten en herstel' : 'Drywall and repair' },
+      ],
+    };
+  }
+
+  if (audience === 'private') {
+    return {
+      heading: isNl ? 'Particuliere diensten' : 'Private services',
+      items: [
+        { href: url('plumbing', locale), label: isNl ? 'Sanitair en badkamer' : 'Plumbing and bathroom' },
+        { href: url('heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
+        { href: url('underfloorHeating', locale), label: isNl ? 'Vloerverwarming' : 'Underfloor heating' },
+        { href: url('drywall', locale), label: isNl ? 'Gipsplaten en renovatie' : 'Drywall and renovation' },
+        { href: url('tiling', locale), label: isNl ? 'Tegelwerk badkamer' : 'Bathroom tiling' },
+        { href: url('painting', locale), label: isNl ? 'Herstel en schilderwerk' : 'Repair and painting' },
+      ],
+    };
+  }
+
+  return {
+    heading: isNl ? 'Technische diensten' : 'Technical services',
+    items: [
+      { href: url('plumbing', locale), label: isNl ? 'Sanitair en leidingwerk' : 'Plumbing and pipework' },
+      { href: url('heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
+      { href: url('underfloorHeating', locale), label: isNl ? 'Vloerverwarming en warmtepompen' : 'Underfloor heating and heat pumps' },
+      { href: url('drywall', locale), label: isNl ? 'Gipsplaten' : 'Drywall' },
+    ],
+  };
+}
+
+export function Footer({ locale, audience = 'general' }: Props) {
   const t = getMessages(locale);
   const other: Locale = locale === 'nl' ? 'en' : 'nl';
   const otherHome = url('home', other);
-  const directionsLabel = locale === 'nl' ? 'Richtingen' : 'Directions';
-  const technicalLabel = locale === 'nl' ? 'Technische diensten' : 'Technical services';
+  const services = footerServices(locale, audience);
 
   return (
     <footer className="site-footer">
@@ -30,34 +81,13 @@ export function Footer({ locale }: Props) {
 
           <div className="footer-col">
             <h3>{t.footer.servicesHeading}</h3>
-            <div className="footer-subhead">{directionsLabel}</div>
+            <div className="footer-subhead">{services.heading}</div>
             <ul>
-              <li>
-                <Link href={url('private', locale)}>{t.nav.private}</Link>
-              </li>
-              <li>
-                <Link href={url('business', locale)}>{t.nav.business}</Link>
-              </li>
-              <li>
-                <Link href={url('maintenance', locale)}>{t.nav.maintenance}</Link>
-              </li>
-            </ul>
-            <div className="footer-subhead">{technicalLabel}</div>
-            <ul>
-              <li>
-                <Link href={url('plumbing', locale)}>{t.nav.plumbing}</Link>
-              </li>
-              <li>
-                <Link href={url('heating', locale)}>{t.nav.heating}</Link>
-              </li>
-              <li>
-                <Link href={url('underfloorHeating', locale)}>
-                  {t.nav.underfloorHeating}
-                </Link>
-              </li>
-              <li>
-                <Link href={url('drywall', locale)}>{t.nav.drywall}</Link>
-              </li>
+              {services.items.map((item) => (
+                <li key={`${item.href}-${item.label}`}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -1,6 +1,6 @@
 import { SiteShell } from './SiteShell';
 import { getPageContent } from '@/lib/pages';
-import type { Locale } from '@/lib/site';
+import { audienceForPageKey, type Locale } from '@/lib/site';
 
 type Props = {
   pageKey: string;
@@ -11,7 +11,7 @@ type Props = {
 export function LegacyPage({ pageKey, locale, altPath }: Props) {
   const html = getPageContent(pageKey, locale);
   return (
-    <SiteShell locale={locale} altPath={altPath}>
+    <SiteShell locale={locale} altPath={altPath} audience={audienceForPageKey(pageKey)}>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </SiteShell>
   );

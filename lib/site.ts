@@ -20,6 +20,7 @@ export const COMPANY = {
 };
 
 export type Locale = 'nl' | 'en';
+export type AudienceScope = 'general' | 'private' | 'business' | 'maintenance';
 
 export const LOCALES: Locale[] = ['nl', 'en'];
 
@@ -51,4 +52,11 @@ export type RouteKey = keyof typeof SLUGS;
 
 export function url(key: RouteKey, locale: Locale): string {
   return SLUGS[key][locale];
+}
+
+export function audienceForPageKey(pageKey: string): AudienceScope {
+  if (pageKey === 'private') return 'private';
+  if (pageKey === 'business') return 'business';
+  if (pageKey === 'maintenance') return 'maintenance';
+  return 'general';
 }

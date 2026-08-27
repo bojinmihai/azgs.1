@@ -1,4 +1,4 @@
-import type { Locale } from '@/lib/site';
+import type { AudienceScope, Locale } from '@/lib/site';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { WhatsAppFloat } from './WhatsAppFloat';
@@ -10,19 +10,20 @@ import { getMessages } from '@/lib/i18n';
 type Props = {
   locale: Locale;
   altPath?: string;
+  audience?: AudienceScope;
   children: React.ReactNode;
 };
 
-export function SiteShell({ locale, altPath, children }: Props) {
+export function SiteShell({ locale, altPath, audience = 'general', children }: Props) {
   const t = getMessages(locale);
   return (
     <>
       <a className="skip-link" href="#main">
         {t.nav.skipToContent}
       </a>
-      <Header locale={locale} altPath={altPath} />
+      <Header locale={locale} altPath={altPath} audience={audience} />
       <main id="main">{children}</main>
-      <Footer locale={locale} />
+      <Footer locale={locale} audience={audience} />
       <WhatsAppFloat label={`${t.common.whatsapp} ${t.nav.contact}`} />
       <CookieConsent locale={locale} />
       <MobileNavScript />
