@@ -21,7 +21,7 @@ export const COMPANY = {
 
 export type Locale = 'nl' | 'en';
 export type AudienceScope = 'general' | 'private' | 'business' | 'maintenance';
-export type AudienceServiceKey = 'plumbing' | 'heating' | 'climate' | 'drywall';
+export type AudienceServiceKey = 'plumbing' | 'heating' | 'underfloor' | 'climate' | 'drywall';
 
 export const LOCALES: Locale[] = ['nl', 'en'];
 
@@ -80,6 +80,7 @@ export function audienceServiceSlug(service: AudienceServiceKey, locale: Locale)
   const slugs = {
     plumbing: { nl: 'sanitair', en: 'plumbing' },
     heating: { nl: 'verwarming', en: 'heating' },
+    underfloor: { nl: 'vloerverwarming', en: 'underfloor-heating' },
     climate: { nl: 'ventilatie-warmtepompen', en: 'ventilation-heat-pumps' },
     drywall: { nl: 'gipsplaten', en: 'drywall' },
   } as const;

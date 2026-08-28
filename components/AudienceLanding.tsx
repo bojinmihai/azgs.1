@@ -26,8 +26,8 @@ const copy = {
       'Voor aannemers, architecten, projectleiders, installatiebedrijven, ventilatiebedrijven en vastgoedpartijen die een professionele uitvoeringspartner zoeken.',
     businessCta: 'Start zakelijke aanvraag',
     businessHover:
-      'B2B-uitvoering voor installatiewerk, thermische systemen, ventilatie, warmtepompvoorbereiding, gipsplaten en metalstud binnen commerciele projecten.',
-    businessItems: ['B2B installaties', 'Ventilatie & warmte', 'Gipsplaten & metalstud'],
+      'B2B-uitvoering voor installatiewerk, thermische systemen, vloerverwarming, ventilatie, warmtepompvoorbereiding, gipsplaten en metalstud binnen commerciele projecten.',
+    businessItems: ['B2B installaties', 'Vloerverwarming & ventilatie', 'Gipsplaten & metalstud'],
     maintenanceTitle: 'Gebouwonderhoud',
     maintenanceText:
       'Voor beheerders van kantoren, horeca, hotels, winkels en vastgoed: storingen oplossen, technische reparaties uitvoeren en de locatie weer bruikbaar opleveren.',
@@ -36,10 +36,10 @@ const copy = {
       'Onderhoud per melding of samenwerking: lekkage, verwarming, ventilatie, sanitair, gipsherstel, tegelherstel, kitwerk, schilderwerk en afwerking na technische reparatie.',
     maintenanceItems: ['Horeca, hotels, kantoren', 'Storingen & lekkages', 'Techniek + herstel'],
     call: `Bel ${COMPANY.phoneDisplay}`,
-    trust: ['Installatietechniek centraal', 'B2B, particulier en onderhoud helder gescheiden', 'KvK 42064891'],
+    trust: ['Installatietechniek centraal', 'Gericht advies per type opdrachtgever', 'KvK 42064891'],
     serviceHeading: 'Drie professionele werkstromen',
     serviceText:
-      'De juiste ingang voorkomt ruis: een particulier project vraagt andere communicatie dan een B2B-project of onderhoudsmelding voor een gebouw in gebruik.',
+      'Kies de ingang die past bij uw situatie. Een woningproject, B2B-project en onderhoudsmelding vragen elk om een andere aanpak, planning en communicatie.',
   },
   en: {
     eyebrow: 'AZ Grand Solutions · Technical execution in the Utrecht region',
@@ -58,8 +58,8 @@ const copy = {
       'For contractors, architects, project managers, installation companies, ventilation companies and property teams looking for a professional execution partner.',
     businessCta: 'Start business request',
     businessHover:
-      'B2B execution for installation work, thermal systems, ventilation, heat pump preparation, drywall and metal stud within commercial projects.',
-    businessItems: ['B2B installations', 'Ventilation & heating', 'Drywall & metal stud'],
+      'B2B execution for installation work, thermal systems, underfloor heating, ventilation, heat pump preparation, drywall and metal stud within commercial projects.',
+    businessItems: ['B2B installations', 'Underfloor heating & ventilation', 'Drywall & metal stud'],
     maintenanceTitle: 'Building maintenance',
     maintenanceText:
       'For offices, hospitality, hotels, shops and property management: resolve faults, execute technical repairs and return the location to usable condition.',
@@ -68,10 +68,10 @@ const copy = {
       'Maintenance per request or cooperation: leaks, heating, ventilation, plumbing, drywall repair, tile repair, sealant, painting and finishing after technical repair.',
     maintenanceItems: ['Hotels, offices, hospitality', 'Faults & leaks', 'Technical + repair'],
     call: `Call ${COMPANY.phoneDisplay}`,
-    trust: ['Installation technology first', 'B2B, private and maintenance clearly separated', 'KvK 42064891'],
+    trust: ['Installation technology first', 'Clear guidance for each type of client', 'KvK 42064891'],
     serviceHeading: 'Three professional workstreams',
     serviceText:
-      'The right entry point avoids noise: a private residential project needs different communication than a B2B project or a maintenance request for an active building.',
+      'Choose the entry point that matches your situation. A home project, B2B project and maintenance request each need a different approach, planning and communication.',
   },
 } as const;
 

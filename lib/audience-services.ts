@@ -49,6 +49,13 @@ const serviceImages: Record<AudienceServiceKey, { image: string; alt: Record<Loc
       en: 'Heating installation with neat pipework and radiator connection',
     },
   },
+  underfloor: {
+    image: '/assets/img/services/service-vloerverwarming-1200.jpg',
+    alt: {
+      nl: 'Vloerverwarming professioneel voorbereid voor een technisch project',
+      en: 'Underfloor heating professionally prepared for a technical project',
+    },
+  },
   climate: {
     image: '/assets/img/blog/warmtepomp-installatie-1200.jpg',
     alt: {
@@ -77,23 +84,38 @@ const enAudienceNames: Record<ServiceAudience, string> = {
   maintenance: 'Service and maintenance',
 };
 
+const nlAudienceDescriptionLabels: Record<ServiceAudience, string> = {
+  private: 'particuliere woningen',
+  business: 'zakelijke opdrachtgevers en projectteams',
+  maintenance: 'beheerde gebouwen',
+};
+
+const enAudienceDescriptionLabels: Record<ServiceAudience, string> = {
+  private: 'private homes',
+  business: 'business clients and project teams',
+  maintenance: 'managed buildings',
+};
+
 function audienceServiceName(audience: ServiceAudience, service: AudienceServiceKey, locale: Locale): string {
   const nl: Record<ServiceAudience, Record<AudienceServiceKey, string>> = {
     private: {
       plumbing: 'Sanitair en badkamerinstallaties',
       heating: 'Verwarming voor woningen',
+      underfloor: 'Vloerverwarming voor woningen',
       climate: 'Ventilatie, comfort en warmtepompen',
       drywall: 'Gipsplaten en herstelafwerking',
     },
     business: {
       plumbing: 'Installatiewerk voor B2B projecten',
       heating: 'Thermische installaties voor commerciele projecten',
+      underfloor: 'Vloerverwarming voor B2B projecten',
       climate: 'Ventilatie en warmtepompvoorbereiding',
       drywall: 'Gipsplaten en metalstud voor commerciele projecten',
     },
     maintenance: {
       plumbing: 'Lekkage, sanitair herstel en leidingreparatie',
       heating: 'Verwarmingsstoringen en technisch herstel',
+      underfloor: 'Vloerverwarming storingen en herstel',
       climate: 'Ventilatie- en klimaatherstel',
       drywall: 'Wand-, plafond- en afwerkherstel',
     },
@@ -103,18 +125,21 @@ function audienceServiceName(audience: ServiceAudience, service: AudienceService
     private: {
       plumbing: 'Plumbing and bathroom installations',
       heating: 'Heating for homes',
+      underfloor: 'Underfloor heating for homes',
       climate: 'Ventilation, comfort and heat pumps',
       drywall: 'Drywall and finishing repair',
     },
     business: {
       plumbing: 'Installation work for B2B projects',
       heating: 'Thermal systems for commercial projects',
+      underfloor: 'Underfloor heating for B2B projects',
       climate: 'Ventilation and heat pump preparation',
       drywall: 'Drywall and metal stud for commercial projects',
     },
     maintenance: {
       plumbing: 'Leaks, plumbing repair and pipework repair',
       heating: 'Heating faults and technical repair',
+      underfloor: 'Underfloor heating faults and repair',
       climate: 'Ventilation and climate system repair',
       drywall: 'Wall, ceiling and finishing repair',
     },
@@ -134,8 +159,10 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
         'Voor woningen gaat sanitair niet alleen over leidingen, maar ook over comfort, dagelijks gebruik en nette oplevering in badkamer, toilet of bijkeuken.',
       heating:
         'Voor particuliere woningen draait verwarming om comfort, stille werking, nette leidingen en een oplossing die past bij de bestaande woning.',
+      underfloor:
+        'Voor woningen realiseren wij vloerverwarming met aandacht voor warmteverdeling, opbouwhoogte, vloerafwerking en aansluiting op de bestaande installatie.',
       climate:
-        'Voor woningen combineren we vloerverwarming, ventilatie en warmtepompondersteuning met comfort, energiezuinigheid en zo min mogelijk overlast tijdens de uitvoering.',
+        'Voor woningen stemmen wij ventilatie en warmtepompondersteuning af op comfort, energiezuinigheid en zo min mogelijk overlast tijdens de uitvoering.',
       drywall:
         'Voor woningen plaatsen we gipsplaten rond renovatie, badkamer, zolder, technische schachten en herstel na installatiewerk, met aandacht voor nette afwerking.',
     },
@@ -144,6 +171,8 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
         'Voor zakelijke projecten voeren wij sanitaire installaties, leidingwerk en aansluitingen uit in samenwerking met aannemers, architecten, projectleiders, installatiebedrijven en vastgoedpartijen.',
       heating:
         'Voor B2B-projecten realiseren wij verwarmingsinstallaties, verdelers, leidingtrajecten en technische voorbereidingen met duidelijke planning en afstemming met de andere disciplines op locatie.',
+      underfloor:
+        'Voor zakelijke projecten voeren wij vloerverwarming uit als technisch projectonderdeel, afgestemd op bouwplanning, vloeropbouw, verdelers en aansluitpunten.',
       climate:
         'Voor bedrijven en projectteams voeren wij ventilatie, warmtepompvoorbereiding en energiezuinige installatieoplossingen uit als onderdeel van commerciele bouw, fit-out en technische projecten.',
       drywall:
@@ -154,6 +183,8 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
         'Voor gebouwonderhoud lossen wij lekkages, verstoppingen en sanitaire storingen op en herstellen wij waar nodig de werkzone, zodat het pand snel weer veilig en bruikbaar is.',
       heating:
         'Voor beheerde gebouwen herstellen wij verwarmingsstoringen, lekkages en defecte onderdelen met aandacht voor comfort, veiligheid en minimale onderbreking van het dagelijks gebruik.',
+      underfloor:
+        'Voor gebouwen in gebruik beoordelen en herstellen wij problemen rond vloerverwarming, verdelers, groepen en warmteverdeling met praktische opvolging.',
       climate:
         'Voor onderhoud aan gebouwen controleren en herstellen wij ventilatie, warmtepompcomponenten en warmteverdeling met duidelijke diagnose, praktische uitvoering en opvolging.',
       drywall:
@@ -167,8 +198,10 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
         'For homes, plumbing is not only about pipes. It is about comfort, daily use and a clean handover in the bathroom, toilet or utility space.',
       heating:
         'For private homes, heating is about comfort, quiet operation, tidy pipework and a solution that fits the existing house.',
+      underfloor:
+        'For homes, we install underfloor heating with attention to heat distribution, floor build-up, finishing and connection to the existing system.',
       climate:
-        'For homes, we combine underfloor heating, ventilation and heat pump support with comfort, energy efficiency and limited disruption during the work.',
+        'For homes, we align ventilation and heat pump support with comfort, energy efficiency and limited disruption during the work.',
       drywall:
         'For homes, we install drywall around renovation, bathrooms, attics, service shafts and repair after installation work, with attention to clean finishing.',
     },
@@ -177,6 +210,8 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
         'For business projects, we execute plumbing systems, pipework and connections in coordination with contractors, architects, project managers, installation companies and property teams.',
       heating:
         'For B2B projects, we deliver heating systems, manifolds, pipe routes and technical preparations with clear planning and coordination with other trades on site.',
+      underfloor:
+        'For business projects, we execute underfloor heating as a technical project component, aligned with site planning, floor build-up, manifolds and connection points.',
       climate:
         'For companies and project teams, we execute ventilation, heat pump preparation and energy-efficient installation work as part of commercial construction, fit-out and technical projects.',
       drywall:
@@ -187,6 +222,8 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
         'For building maintenance, we resolve leaks, blockages and plumbing faults and repair the work zone where needed so the property can be used safely again.',
       heating:
         'For managed buildings, we repair heating faults, leaks and defective components with attention to comfort, safety and minimal disruption to daily use.',
+      underfloor:
+        'For buildings in use, we assess and repair issues around underfloor heating, manifolds, circuits and heat distribution with practical follow-up.',
       climate:
         'For building maintenance, we inspect and repair ventilation, heat pump components and heat distribution with clear diagnosis, practical execution and follow-up.',
       drywall:
@@ -225,6 +262,17 @@ function audienceSections(
             'Voorbereiding voor vloerverwarming en warmtepompcomponenten',
             'Technische afstemming met installatie- en afbouwpartners',
             'Praktische opleverpunten voor projectleiding of opdrachtgever',
+          ],
+        },
+        underfloor: {
+          title: 'Vloerverwarming als onderdeel van B2B projectuitvoering',
+          body:
+            'Wij voeren vloerverwarming uit voor zakelijke projecten waar vloeropbouw, planning en technische afstemming bepalend zijn. De uitvoering wordt afgestemd met aannemers, installatiepartners, vloerbedrijven en projectleiding, zodat het systeem past binnen de totale bouwvolgorde.',
+          items: [
+            'Vloerverwarmingsgroepen, verdelers, leidingpatronen en aansluitpunten',
+            'Afstemming met vloeropbouw, isolatie, dekvloer en afwerking',
+            'Uitvoering voor kantoren, horeca, retail, zorglocaties en bedrijfsruimten',
+            'Controle op zones, bereikbaarheid en overdracht aan projectleiding',
           ],
         },
         climate: {
@@ -291,6 +339,17 @@ function audienceSections(
             'Advies voor vervolgonderhoud wanneer structurele vervanging nodig is',
           ],
         },
+        underfloor: {
+          title: 'Vloerverwarming storingen, verdelers en warmteverdeling',
+          body:
+            'Bij onderhoud aan vloerverwarming controleren wij bereikbare onderdelen, verdelers, groepen en warmteverdeling. We beoordelen de oorzaak van comfortklachten of storingen en stemmen praktisch af wat direct kan worden hersteld.',
+          items: [
+            'Controle van verdelers, groepen, aansluitingen en bereikbare leidingen',
+            'Beoordeling van ongelijke warmteverdeling of comfortklachten',
+            'Herstel of advies bij lekkage, verstopping of defecte onderdelen',
+            'Afstemming met beheerder of installatiespecialist wanneer nodig',
+          ],
+        },
         climate: {
           title: 'Ventilatie, warmtepompcomponenten en klimaatherstel',
           body:
@@ -354,8 +413,19 @@ function audienceSections(
           'Nette uitvoering met beperkte overlast in bewoonde woningen',
         ],
       },
+      underfloor: {
+        title: 'Vloerverwarming voor particuliere woningen',
+        body:
+          'Wij realiseren vloerverwarming in woningen met aandacht voor comfort, vloeropbouw en aansluiting op het bestaande verwarmingssysteem. De uitvoering wordt afgestemd op de ruimte, de vloerafwerking en het dagelijks gebruik van de woning.',
+        items: [
+          'Vloerverwarming, verdelers, groepen en aansluitpunten',
+          'Afstemming met tegelwerk, parket, egalisatie of dekvloer',
+          'Voorbereiding voor warmtepomp of energiezuinige verwarmingsoplossing',
+          'Nette uitvoering in bewoonde woningen en renovatieprojecten',
+        ],
+      },
       climate: {
-        title: 'Ventilatie, vloerverwarming en warmtepompvoorbereiding',
+        title: 'Ventilatie en warmtepompvoorbereiding',
         body:
           'Voor woningen combineren wij comfort en energiezuinigheid met praktische uitvoering. Wij kijken naar warmteverdeling, ventilatie, opbouwhoogte, bereikbaarheid en de aansluiting op bestaande installaties.',
         items: [
@@ -416,6 +486,17 @@ function audienceSections(
           'Preparation for underfloor heating and heat pump components',
           'Technical coordination with installation and finishing partners',
           'Practical handover points for project management or client',
+        ],
+      },
+      underfloor: {
+        title: 'Underfloor heating as part of B2B project execution',
+        body:
+          'We execute underfloor heating for business projects where floor build-up, planning and technical coordination are critical. The work is aligned with contractors, installation partners, flooring companies and project management so the system fits the full site sequence.',
+        items: [
+          'Underfloor heating circuits, manifolds, pipe layouts and connection points',
+          'Coordination with floor build-up, insulation, screed and finishing',
+          'Execution for offices, hospitality, retail, care locations and commercial spaces',
+          'Checks on zones, access and handover to project management',
         ],
       },
       climate: {
@@ -482,6 +563,17 @@ function audienceSections(
           'Advice for follow-up maintenance where structural replacement is needed',
         ],
       },
+      underfloor: {
+        title: 'Underfloor heating faults, manifolds and heat distribution',
+        body:
+          'For underfloor heating maintenance, we check accessible components, manifolds, circuits and heat distribution. We assess the cause of comfort issues or faults and coordinate what can be repaired directly.',
+        items: [
+          'Checks on manifolds, circuits, connections and accessible pipework',
+          'Assessment of uneven heat distribution or comfort complaints',
+          'Repair or advice for leaks, blockages or defective components',
+          'Coordination with the manager or installation specialist where needed',
+        ],
+      },
       climate: {
         title: 'Ventilation, heat pump components and climate repair',
         body:
@@ -545,8 +637,19 @@ function audienceSections(
         'Clean execution with limited disruption in occupied homes',
       ],
     },
+    underfloor: {
+      title: 'Underfloor heating for private homes',
+      body:
+        'We install underfloor heating in homes with attention to comfort, floor build-up and connection to the existing heating system. The work is aligned with the room, floor finish and daily use of the home.',
+      items: [
+        'Underfloor heating, manifolds, circuits and connection points',
+        'Coordination with tiling, parquet, levelling or screed',
+        'Preparation for heat pumps or energy-efficient heating systems',
+        'Clean execution in occupied homes and renovation projects',
+      ],
+    },
     climate: {
-      title: 'Ventilation, underfloor heating and heat pump preparation',
+      title: 'Ventilation and heat pump preparation',
       body:
         'For homes, we combine comfort and energy efficiency with practical execution. We look at heat distribution, ventilation, build-up height, access and connection to existing systems.',
       items: [
@@ -592,23 +695,18 @@ export function getAudienceServiceContent(
 ): AudienceServiceContent {
   const name = audienceServiceName(audience, service, locale);
   const audienceLabel = audienceName(audience, locale);
+  const descriptionLabel = locale === 'nl' ? nlAudienceDescriptionLabels[audience] : enAudienceDescriptionLabels[audience];
   const image = serviceImages[service];
   const path = audienceServiceUrl(audience, service, locale);
   const altLocale = locale === 'nl' ? 'en' : 'nl';
   const altPath = audienceServiceUrl(audience, service, altLocale);
 
-  const heading =
-    locale === 'nl'
-      ? `${name} voor ${audienceLabel.toLowerCase()}`
-      : `${name} for ${audienceLabel.toLowerCase()}`;
-  const title =
-    locale === 'nl'
-      ? `${heading} regio Utrecht | AZGS`
-      : `${heading} in the Utrecht region | AZGS`;
+  const heading = name;
+  const title = locale === 'nl' ? `${name} regio Utrecht | AZGS` : `${name} in the Utrecht region | AZGS`;
   const description =
     locale === 'nl'
-      ? `${name} voor ${audienceLabel.toLowerCase()} door AZ Grand Solutions. Technische uitvoering, duidelijke planning en nette oplevering in regio Utrecht.`
-      : `${name} for ${audienceLabel.toLowerCase()} by AZ Grand Solutions. Technical execution, clear planning and clean handover in the Utrecht region.`;
+      ? `${name} door AZ Grand Solutions. Technische uitvoering voor ${descriptionLabel} met duidelijke planning en nette oplevering in regio Utrecht.`
+      : `${name} by AZ Grand Solutions. Technical execution for ${descriptionLabel} with clear planning and clean handover in the Utrecht region.`;
 
   return {
     audience,
@@ -648,7 +746,7 @@ export function getAudienceServiceContent(
 
 export function getAudienceServiceParams(locale: Locale) {
   const audiences: ServiceAudience[] = ['private', 'business', 'maintenance'];
-  const services: AudienceServiceKey[] = ['plumbing', 'heating', 'climate', 'drywall'];
+  const services: AudienceServiceKey[] = ['plumbing', 'heating', 'underfloor', 'climate', 'drywall'];
 
   return audiences.flatMap((audience) =>
     services.map((service) => ({
@@ -664,7 +762,7 @@ export function resolveAudienceServiceParams(
   serviceSlugValue: string
 ): { audience: ServiceAudience; service: AudienceServiceKey } | null {
   const audiences: ServiceAudience[] = ['private', 'business', 'maintenance'];
-  const services: AudienceServiceKey[] = ['plumbing', 'heating', 'climate', 'drywall'];
+  const services: AudienceServiceKey[] = ['plumbing', 'heating', 'underfloor', 'climate', 'drywall'];
 
   const audience = audiences.find((item) => audienceSlug(item, locale) === audienceSlugValue);
   const service = services.find((item) => audienceServiceSlug(item, locale) === serviceSlugValue);

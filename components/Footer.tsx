@@ -15,6 +15,7 @@ function footerServices(locale: Locale, audience: AudienceScope) {
       items: [
         { href: audienceServiceUrl('business', 'plumbing', locale), label: isNl ? 'Installatiewerk B2B' : 'B2B installation work' },
         { href: audienceServiceUrl('business', 'heating', locale), label: isNl ? 'Thermische installaties' : 'Thermal systems' },
+        { href: audienceServiceUrl('business', 'underfloor', locale), label: isNl ? 'Vloerverwarming B2B' : 'B2B underfloor heating' },
         { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompvoorbereiding' : 'Ventilation and heat pump preparation' },
         { href: audienceServiceUrl('business', 'drywall', locale), label: isNl ? 'Gipsplaten en metalstud projecten' : 'Drywall and metal stud projects' },
       ],
@@ -28,6 +29,7 @@ function footerServices(locale: Locale, audience: AudienceScope) {
         { href: url('maintenance', locale), label: isNl ? 'Gebouwonderhoud' : 'Building maintenance' },
         { href: audienceServiceUrl('maintenance', 'plumbing', locale), label: isNl ? 'Lekkage en sanitair herstel' : 'Leaks and plumbing repair' },
         { href: audienceServiceUrl('maintenance', 'heating', locale), label: isNl ? 'Verwarming en storingen' : 'Heating and faults' },
+        { href: audienceServiceUrl('maintenance', 'underfloor', locale), label: isNl ? 'Vloerverwarming storingen' : 'Underfloor heating faults' },
         { href: audienceServiceUrl('maintenance', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
         { href: audienceServiceUrl('maintenance', 'drywall', locale), label: isNl ? 'Gipsplaten en herstel' : 'Drywall and repair' },
         { href: url('maintenanceTiling', locale), label: isNl ? 'Tegel- en wandherstel' : 'Tile and wall repair' },
@@ -42,7 +44,8 @@ function footerServices(locale: Locale, audience: AudienceScope) {
       items: [
         { href: audienceServiceUrl('private', 'plumbing', locale), label: isNl ? 'Sanitair en badkamer' : 'Plumbing and bathroom' },
         { href: audienceServiceUrl('private', 'heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
-        { href: audienceServiceUrl('private', 'climate', locale), label: isNl ? 'Vloerverwarming en comfort' : 'Underfloor heating and comfort' },
+        { href: audienceServiceUrl('private', 'underfloor', locale), label: isNl ? 'Vloerverwarming' : 'Underfloor heating' },
+        { href: audienceServiceUrl('private', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
         { href: audienceServiceUrl('private', 'drywall', locale), label: isNl ? 'Gipsplaten en renovatie' : 'Drywall and renovation' },
         { href: url('privateTiling', locale), label: isNl ? 'Tegelwerk badkamer' : 'Bathroom tiling' },
         { href: url('privatePainting', locale), label: isNl ? 'Herstel en schilderwerk' : 'Repair and painting' },
