@@ -40,6 +40,11 @@
 /blog-vloerverwarming-warmtepomp.html           /blog/vloerverwarming-warmtepomp      301
 /blog-vloerverwarming-bestaande-woning.html     /blog/vloerverwarming-bestaande-woning 301
 /blog-lekkage-eerste-10-minuten.html            /blog/lekkage-eerste-10-minuten       301
+/blog-tegels-kiezen-badkamer                    /blog/tegels-kiezen-badkamer          301
+/blog-vloerverwarming-warmtepomp                /blog/vloerverwarming-warmtepomp      301
+/blog-vloerverwarming-bestaande-woning          /blog/vloerverwarming-bestaande-woning 301
+/blog-lekkage-eerste-10-minuten                 /blog/lekkage-eerste-10-minuten       301
+/urgente.html                                   /spoed                                301
 
 # EN home & pages
 /en/index.html                                  /en                                   301
@@ -66,3 +71,6 @@
 /en/blog-choosing-bathroom-tiles.html           /en/blog/choosing-bathroom-tiles      301
 /en/blog-underfloor-heating-existing-home.html  /en/blog/underfloor-heating-existing-home  301
 /en/blog-leak-first-10-minutes.html             /en/blog/leak-first-10-minutes        301
+/en/blog-choosing-bathroom-tiles                /en/blog/choosing-bathroom-tiles      301
+/en/blog-underfloor-heating-existing-home       /en/blog/underfloor-heating-existing-home 301
+/en/blog-leak-first-10-minutes                  /en/blog/leak-first-10-minutes        301
