@@ -10,13 +10,11 @@ import {
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
   for (const [, paths] of Object.entries(SLUGS)) {
     entries.push({
       url: `${SITE_URL}${paths.nl}`,
-      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
       alternates: {
@@ -29,7 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
     entries.push({
       url: `${SITE_URL}${paths.en}`,
-      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.7,
       alternates: {
@@ -49,7 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const content = getAudienceServiceContent(resolved.audience, resolved.service, locale);
       entries.push({
         url: `${SITE_URL}${content.path}`,
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: resolved.audience === 'business' ? 0.82 : 0.76,
         alternates: {

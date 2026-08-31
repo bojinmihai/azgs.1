@@ -34,7 +34,7 @@ export function MobileNavScript() {
     const onLinkClick = (e: Event) => {
       const target = e.target as HTMLElement;
       const dropdownLink = target.closest<HTMLElement>('.has-dropdown > a');
-      if (dropdownLink && window.innerWidth <= 900) {
+      if (dropdownLink) {
         e.preventDefault();
         const parent = dropdownLink.parentElement!;
         const expanded = !parent.classList.contains('is-expanded');
@@ -51,10 +51,30 @@ export function MobileNavScript() {
     };
     nav.addEventListener('click', onLinkClick);
 
+    const onDocumentClick = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (!header.contains(target)) closeMenu();
+    };
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        const expandedLink = header.querySelector<HTMLAnchorElement>(
+          '.has-dropdown.is-expanded > a'
+        );
+        closeMenu();
+        (expandedLink ?? toggle).focus();
+      }
+    };
+
+    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('keydown', onKeyDown);
+
     return () => {
       toggle.removeEventListener('click', onToggle);
       window.removeEventListener('resize', onResize);
       nav.removeEventListener('click', onLinkClick);
+      document.removeEventListener('click', onDocumentClick);
+      document.removeEventListener('keydown', onKeyDown);
     };
   }, []);
 

@@ -61,12 +61,11 @@ function serviceMenu(locale: Locale, audience: AudienceScope): { heading: string
   }
 
   return {
-    heading: isNl ? 'Technische diensten' : 'Technical services',
+    heading: isNl ? 'Kies uw situatie' : 'Choose your project type',
     items: [
-      { href: url('plumbing', locale), label: isNl ? 'Sanitair en leidingwerk' : 'Plumbing and pipework' },
-      { href: url('heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
-      { href: url('underfloorHeating', locale), label: isNl ? 'Vloerverwarming, ventilatie en warmtepompen' : 'Underfloor heating, ventilation and heat pumps' },
-      { href: url('drywall', locale), label: isNl ? 'Gipsplaten' : 'Drywall' },
+      { href: url('private', locale), label: isNl ? 'Particulier' : 'Private clients' },
+      { href: url('business', locale), label: isNl ? 'Zakelijk / B2B' : 'Business / B2B' },
+      { href: url('maintenance', locale), label: isNl ? 'Service en onderhoud' : 'Service & maintenance' },
     ],
   };
 }
@@ -85,9 +84,9 @@ export function Header({ locale, altPath, audience = 'general' }: Props) {
           <Image
             src="/assets/img/logo/logo-primary.svg"
             alt={COMPANY.name}
-            width={150}
+            width={49}
             height={44}
-            style={{ width: 'auto', height: 'auto' }}
+            priority
           />
         </Link>
 

@@ -4,6 +4,7 @@ import { Footer } from './Footer';
 import { WhatsAppFloat } from './WhatsAppFloat';
 import { CookieConsent } from './CookieConsent';
 import { MobileNavScript } from './MobileNavScript';
+import { ExternalMapConsent } from './ExternalMapConsent';
 import { TermsConsentScript } from './TermsConsentScript';
 import { getMessages } from '@/lib/i18n';
 
@@ -27,6 +28,7 @@ export function SiteShell({ locale, altPath, audience = 'general', children }: P
       <WhatsAppFloat label={`${t.common.whatsapp} ${t.nav.contact}`} />
       <CookieConsent locale={locale} />
       <MobileNavScript />
+      <ExternalMapConsent />
       <TermsConsentScript />
     </>
   );

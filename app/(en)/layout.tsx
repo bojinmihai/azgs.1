@@ -31,7 +31,7 @@ export default function EnRootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd()),
+            __html: JSON.stringify(localBusinessJsonLd('en')),
           }}
         />
       </head>

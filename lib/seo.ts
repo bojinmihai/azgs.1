@@ -84,7 +84,8 @@ export function buildMetadata({
   };
 }
 
-export function localBusinessJsonLd() {
+export function localBusinessJsonLd(locale: Locale) {
+  const isNl = locale === 'nl';
   return {
     '@context': 'https://schema.org',
     '@type': ['HomeAndConstructionBusiness', 'Electrician', 'Plumber'],
@@ -123,20 +124,16 @@ export function localBusinessJsonLd() {
         closes: '18:00',
       },
     ],
-    availableService: [
-      { '@type': 'Service', name: 'Gipsplaten plaatsen' },
-      { '@type': 'Service', name: 'Sanitair installeren' },
-      { '@type': 'Service', name: 'Verwarming aanleggen' },
-      { '@type': 'Service', name: 'Ventilatie ondersteuning' },
-      { '@type': 'Service', name: 'Warmtepomp voorbereiding' },
-      { '@type': 'Service', name: 'Vloerverwarming aanleggen' },
-      { '@type': 'Service', name: 'Gebouwonderhoud' },
-      { '@type': 'Service', name: 'Herstelafwerking na installatiewerk' },
-      { '@type': 'Service', name: '24/7 spoedservice' },
-    ],
-    slogan: 'Installaties, gipsplaten en onderhoud met één aanspreekpunt',
-    description:
-      'Technische installaties, gipsplaten en onderhoud voor woningen, bedrijven en gebouwbeheerders in regio Utrecht: sanitair, verwarming, ventilatie, warmtepompen, vloerverwarming en herstelafwerking na reparatie.',
-    inLanguage: ['nl-NL', 'en'],
+    availableService: (isNl
+      ? ['Gipsplaten plaatsen', 'Sanitair installeren', 'Verwarming aanleggen', 'Ventilatieondersteuning', 'Warmtepompvoorbereiding', 'Vloerverwarming aanleggen', 'Gebouwonderhoud', 'Herstelafwerking na installatiewerk', '24/7 spoedservice']
+      : ['Drywall installation', 'Plumbing installation', 'Heating installation', 'Ventilation support', 'Heat-pump preparation', 'Underfloor heating installation', 'Building maintenance', 'Finishing repair after installation work', '24/7 emergency service']
+    ).map((name) => ({ '@type': 'Service', name })),
+    slogan: isNl
+      ? 'Installaties, gipsplaten en onderhoud met één aanspreekpunt'
+      : 'Installations, drywall and maintenance with one point of contact',
+    description: isNl
+      ? 'Technische installaties, gipsplaten en onderhoud voor woningen, bedrijven en gebouwbeheerders in regio Utrecht: sanitair, verwarming, ventilatie, warmtepompen, vloerverwarming en herstelafwerking na reparatie.'
+      : 'Technical installations, drywall and building maintenance for homes, businesses and property managers in the Utrecht region, including plumbing, heating, ventilation, heat pumps and underfloor heating.',
+    inLanguage: isNl ? 'nl-NL' : 'en',
   };
 }

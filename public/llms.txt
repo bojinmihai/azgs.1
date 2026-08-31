@@ -108,6 +108,7 @@ AZ Grand Solutions is a technical installation, drywall and maintenance company 
 
 ## Crawling
 
+- AI discovery file: https://azgs.nl/llms.txt
 - Sitemap: https://azgs.nl/sitemap.xml
 - Robots: https://azgs.nl/robots.txt
 - Security contact: https://azgs.nl/.well-known/security.txt

@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/harden-csp.mjs",
+    "css:dedupe": "node scripts/deduplicate-css.mjs",
+    "audit:export": "node scripts/audit-export.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs",
     "start": "next start",
     "lint": "eslint ."
@@ -24,6 +26,7 @@
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "^15.5.18",
+    "postcss": "8.5.10",
     "typescript": "5.6.3"
   },
   "overrides": {

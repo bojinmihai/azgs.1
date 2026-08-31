@@ -40,9 +40,9 @@ function buildCsp(scriptHashes) {
   return [
     "default-src 'self'",
     `script-src 'self' ${scriptHashes.join(' ')} https://*.googletagmanager.com`,
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com data:",
-    "img-src 'self' data: https:",
+    "style-src 'self' 'unsafe-inline'",
+    "font-src 'self' data:",
+    "img-src 'self' data:",
     "frame-src 'self' https://maps.google.com https://www.google.com",
     "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://*.googletagmanager.com",
     "base-uri 'self'",

@@ -23,7 +23,7 @@
           </div>
 
           <!-- Formspree endpoint — submissions go to aanvragen@azgs.nl -->
-          <form action="https://formspree.io/f/xjgjryzn" method="POST" novalidate id="contact-form">
+          <form action="https://formspree.io/f/xjgjryzn" method="POST" id="contact-form">
 
             <!-- Formspree hidden fields: email subject + redirect after submit -->
             <input type="hidden" name="_subject" value="New inquiry via azgs.nl (EN)">
@@ -117,18 +117,10 @@
                 </div>
               </div>
 
-              <div class="form-row full">
-                <div class="form-checkbox-row">
-                  <input class="form-checkbox" type="checkbox" id="terms-agree" name="terms_agree" required>
-                  <label for="terms-agree">
-                    I have read and agree to the <a href="/en/terms-and-conditions#terms-acceptance">terms and conditions</a>. <span class="required">*</span>
-                  </label>
-                </div>
-              </div>
             </div>
 
             <div class="form-submit">
-              <small>Fields marked <span class="required">*</span> are required.</small>
+              <small>Fields marked <span class="required">*</span> are required. Our <a href="/en/terms-and-conditions">terms and conditions</a> apply to our services.</small>
               <button type="submit" class="btn btn-primary btn-large">
                 Send
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -241,13 +233,12 @@
             Alpenstraat 12, 3446 DN Woerden
           </div>
         </header>
-        <div class="map-embed">
-          <iframe
-            src="https://maps.google.com/maps?q=Alpenstraat+12+3446+DN+Woerden+Nederland&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            title="Location AZ Grand Solutions — Alpenstraat 12, Woerden"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
+        <div class="map-embed external-map" data-google-map data-map-src="https://maps.google.com/maps?q=Alpenstraat+12+3446+DN+Woerden+Nederland&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" data-map-title="Location AZ Grand Solutions — Alpenstraat 12, Woerden">
+          <div class="external-map__placeholder">
+            <strong>Google Maps is blocked for your privacy</strong>
+            <p>The map loads only after you choose to view it. Google may then receive technical data.</p>
+            <button type="button" class="btn btn-primary" data-load-google-map>Load Google Maps</button>
+          </div>
         </div>
       </div>
     </section>
