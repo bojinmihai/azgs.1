@@ -42,7 +42,7 @@ function buildCsp(scriptHashes) {
     `script-src 'self' ${scriptHashes.join(' ')} https://*.googletagmanager.com`,
     "style-src 'self' 'unsafe-inline'",
     "font-src 'self' data:",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com",
     "frame-src 'self' https://maps.google.com https://www.google.com",
     "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://*.googletagmanager.com",
     "base-uri 'self'",
