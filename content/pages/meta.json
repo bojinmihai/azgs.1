@@ -76,8 +76,8 @@
     "description": "Cookiebeleid van AZ Grand Solutions (AZGS). Welke cookies onze website gebruikt — functionele cookies voor Google Maps en Formspree, en Google Analytics alleen met uw toestemming."
   },
   "terms.nl": {
-    "title": "Algemene voorwaarden | AZ Grand Solutions",
-    "description": "Algemene voorwaarden van AZ Grand Solutions (AZGS) voor particulieren in regio Utrecht. Transparante afspraken over offertes, uitvoering, oplevering, garantie en aansprakelijkheid."
+    "title": "Algemene voorwaarden consumenten | AZGS",
+    "description": "Algemene voorwaarden van AZ Grand Solutions (AZGS) voor consumenten (B2C). Afspraken over offertes, uitvoering, oplevering, garantie en aansprakelijkheid."
   },
   "home.en": {
     "title": "Installation Company Woerden & Utrecht Region | AZGS",
@@ -156,7 +156,7 @@
     "description": "Cookie policy of AZ Grand Solutions (AZGS): essential website storage, optional Google Analytics, Google Maps and the external Formspree contact service."
   },
   "terms.en": {
-    "title": "Terms and conditions | AZ Grand Solutions",
-    "description": "Terms and conditions of AZ Grand Solutions (AZGS) for homeowners in the Utrecht region. Clear agreements on quotes, execution, delivery, warranty, and liability."
+    "title": "Consumer terms and conditions | AZGS",
+    "description": "Consumer terms and conditions (B2C) of AZ Grand Solutions. Clear agreements on quotes, execution, delivery, warranty, and liability."
   }
 }
