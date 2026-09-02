@@ -2,6 +2,8 @@ export const SITE_URL = 'https://azgs.nl';
 
 export const COMPANY = {
   name: 'AZ Grand Solutions',
+  legalName: 'AZ Grand Solutions vof',
+  tradeName: 'A-Z Grand Solutions',
   shortName: 'AZGS',
   phone: '+31613636925',
   phoneDisplay: '+31 6 13636925',

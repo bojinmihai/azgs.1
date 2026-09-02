@@ -12,7 +12,8 @@ export const dynamic = 'force-static';
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const [, paths] of Object.entries(SLUGS)) {
+  for (const [key, paths] of Object.entries(SLUGS)) {
+    if (key === 'thankYou') continue;
     entries.push({
       url: `${SITE_URL}${paths.nl}`,
       changeFrequency: 'monthly',

@@ -37,9 +37,15 @@ const copy = {
     maintenanceItems: ['Horeca, hotels, kantoren', 'Storingen & lekkages', 'Techniek + herstel'],
     call: `Bel ${COMPANY.phoneDisplay}`,
     trust: ['Installatietechniek centraal', 'Gericht advies per type opdrachtgever', 'KvK 42064891'],
-    serviceHeading: 'Drie professionele werkstromen',
-    serviceText:
-      'Kies de ingang die past bij uw situatie. Een woningproject, B2B-project en onderhoudsmelding vragen elk om een andere aanpak, planning en communicatie.',
+    proofHeading: 'Een controleerbare basis voor professionele uitvoering',
+    proofText:
+      'Nog vóór de praktijkprojecten en klantfoto’s worden toegevoegd, zijn deze bedrijfsgegevens en werkafspraken al controleerbaar.',
+    proofItems: [
+      { value: '35+ jaar', label: 'Internationale vakpraktijk in installatietechniek, renovatie en technische uitvoering.' },
+      { value: '2 VCA-diploma’s', label: 'Beide vennoten beschikken over een persoonlijk VCA-diploma; bewijs is op verzoek beschikbaar.' },
+      { value: 'KvK 42064891', label: 'AZ Grand Solutions vof, gevestigd aan Alpenstraat 12 in Woerden.' },
+      { value: '24/7 bereikbaar', label: 'Voor urgente lekkages, verstoppingen en storingen binnen het werkgebied.' },
+    ],
   },
   en: {
     eyebrow: 'AZ Grand Solutions · Technical execution in the Utrecht region',
@@ -69,9 +75,15 @@ const copy = {
     maintenanceItems: ['Hotels, offices, hospitality', 'Faults & leaks', 'Technical + repair'],
     call: `Call ${COMPANY.phoneDisplay}`,
     trust: ['Installation technology first', 'Clear guidance for each type of client', 'KvK 42064891'],
-    serviceHeading: 'Three professional workstreams',
-    serviceText:
-      'Choose the entry point that matches your situation. A home project, B2B project and maintenance request each need a different approach, planning and communication.',
+    proofHeading: 'A verifiable basis for professional execution',
+    proofText:
+      'Even before real project cases and client photography are added, these company details and working commitments can already be verified.',
+    proofItems: [
+      { value: '35+ years', label: 'International trade practice in installation technology, renovation and technical execution.' },
+      { value: '2 VCA diplomas', label: 'Both partners hold a personal VCA diploma; evidence is available on request.' },
+      { value: 'KvK 42064891', label: 'AZ Grand Solutions vof, based at Alpenstraat 12 in Woerden.' },
+      { value: 'Available 24/7', label: 'For urgent leaks, blockages and faults within the service area.' },
+    ],
   },
 } as const;
 
@@ -157,90 +169,22 @@ export function AudienceLanding({ locale, altPath }: Props) {
         </div>
       </section>
 
-      <section className="services" aria-labelledby="audience-heading">
+      <section className="content-section alt" aria-labelledby="proof-heading">
         <div className="container">
           <header className="section-head">
-            <p className="section-eyebrow">AZGS</p>
-            <h2 id="audience-heading">{t.serviceHeading}</h2>
-            <p>{t.serviceText}</p>
+            <p className="section-eyebrow">{locale === 'nl' ? 'Ervaring en zekerheid' : 'Experience and assurance'}</p>
+            <h2 id="proof-heading">{t.proofHeading}</h2>
+            <p>{t.proofText}</p>
           </header>
 
-          <div className="services-grid audience-services-grid">
-            <article className="service-card service-card--audience">
-              <div className="service-card-image">
-                <picture>
-                  <source type="image/webp" srcSet="/assets/img/services/service-sanitair-800.webp" />
-                  <img
-                    src="/assets/img/services/service-sanitair-800.jpg"
-                    alt={t.privateTitle}
-                    width="800"
-                    height="600"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-              <div className="service-card-body">
-                <span className="service-category cat-finisaje">{t.privateTitle}</span>
-                <h3>
-                  <AudienceChoiceLink href={url('private', locale)} audience="private" locale={locale} className="service-card-link">
-                    {t.privateTitle}
-                  </AudienceChoiceLink>
-                </h3>
-                <p>{t.privateText}</p>
-              </div>
-            </article>
-
-            <article className="service-card service-card--audience">
-              <div className="service-card-image">
-                <picture>
-                  <source type="image/webp" srcSet="/assets/img/services/service-gipsplaten-800.webp" />
-                  <img
-                    src="/assets/img/services/service-gipsplaten-800.jpg"
-                    alt={t.businessTitle}
-                    width="800"
-                    height="600"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-              <div className="service-card-body">
-                <span className="service-category cat-installaties">{t.businessTitle}</span>
-                <h3>
-                  <AudienceChoiceLink href={url('business', locale)} audience="business" locale={locale} className="service-card-link">
-                    {t.businessTitle}
-                  </AudienceChoiceLink>
-                </h3>
-                <p>{t.businessText}</p>
-              </div>
-            </article>
-
-            <article className="service-card service-card--audience">
-              <div className="service-card-image">
-                <picture>
-                  <source type="image/webp" srcSet="/assets/img/services/service-verwarming-800.webp" />
-                  <img
-                    src="/assets/img/services/service-verwarming-800.jpg"
-                    alt={t.maintenanceTitle}
-                    width="800"
-                    height="600"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-              <div className="service-card-body">
-                <span className="service-category cat-installaties">{t.maintenanceTitle}</span>
-                <h3>
-                  <AudienceChoiceLink href={url('maintenance', locale)} audience="maintenance" locale={locale} className="service-card-link">
-                    {t.maintenanceTitle}
-                  </AudienceChoiceLink>
-                </h3>
-                <p>{t.maintenanceText}</p>
-              </div>
-            </article>
-          </div>
+          <ul className="trust-grid">
+            {t.proofItems.map((item) => (
+              <li className="trust-item" key={item.value}>
+                <span className="trust-item-value">{item.value}</span>
+                <span className="trust-item-label">{item.label}</span>
+              </li>
+            ))}
+          </ul>
 
           <div className="hero-ctas" style={{ justifyContent: 'center', marginTop: '2rem' }}>
             <a href={`tel:${COMPANY.phone}`} className="btn btn-ghost btn-large">

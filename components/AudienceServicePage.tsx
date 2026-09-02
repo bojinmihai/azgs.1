@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { COMPANY, audienceServiceUrl, url } from '@/lib/site';
 import type { AudienceServiceContent, ServiceAudience } from '@/lib/audience-services';
+import { serviceJsonLd } from '@/lib/seo';
 import { SiteShell } from './SiteShell';
 
 type Props = {
@@ -43,9 +44,19 @@ function audienceText(audience: ServiceAudience, locale: 'nl' | 'en') {
 
 export function AudienceServicePage({ content }: Props) {
   const isNl = content.locale === 'nl';
+  const schema = serviceJsonLd({
+    locale: content.locale,
+    name: content.heading,
+    description: content.description,
+    path: content.path,
+  });
 
   return (
     <SiteShell locale={content.locale} altPath={content.altPath} audience={content.audience}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <section className="service-hero">
         <div className="container service-hero-grid">
           <div>

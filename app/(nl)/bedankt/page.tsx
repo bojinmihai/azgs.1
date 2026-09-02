@@ -10,13 +10,16 @@ const ALT_PATH = '/en/thank-you';
 
 export function generateMetadata(): Metadata {
   const m = getPageMeta(KEY, LOCALE);
-  return buildMetadata({
-    locale: LOCALE,
-    title: m.title,
-    description: m.description,
-    path: PATH,
-    altPath: ALT_PATH,
-  });
+  return {
+    ...buildMetadata({
+      locale: LOCALE,
+      title: m.title,
+      description: m.description,
+      path: PATH,
+      altPath: ALT_PATH,
+    }),
+    robots: { index: false, follow: false },
+  };
 }
 
 export default function Page() {

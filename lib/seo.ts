@@ -89,8 +89,10 @@ export function localBusinessJsonLd(locale: Locale) {
   return {
     '@context': 'https://schema.org',
     '@type': ['HomeAndConstructionBusiness', 'Electrician', 'Plumber'],
+    '@id': `${SITE_URL}/#business`,
     name: COMPANY.name,
-    legalName: COMPANY.name,
+    legalName: COMPANY.legalName,
+    alternateName: [COMPANY.tradeName, COMPANY.shortName],
     url: SITE_URL,
     telephone: COMPANY.phone,
     email: COMPANY.email,
@@ -135,5 +137,38 @@ export function localBusinessJsonLd(locale: Locale) {
       ? 'Technische installaties, gipsplaten en onderhoud voor woningen, bedrijven en gebouwbeheerders in regio Utrecht: sanitair, verwarming, ventilatie, warmtepompen, vloerverwarming en herstelafwerking na reparatie.'
       : 'Technical installations, drywall and building maintenance for homes, businesses and property managers in the Utrecht region, including plumbing, heating, ventilation, heat pumps and underfloor heating.',
     inLanguage: isNl ? 'nl-NL' : 'en',
+  };
+}
+
+type ServiceJsonLdArgs = {
+  locale: Locale;
+  name: string;
+  description: string;
+  path: string;
+};
+
+export function serviceJsonLd({ locale, name, description, path }: ServiceJsonLdArgs) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}${path}#service`,
+    name,
+    serviceType: name,
+    description,
+    url: `${SITE_URL}${path}`,
+    provider: {
+      '@type': 'HomeAndConstructionBusiness',
+      '@id': `${SITE_URL}/#business`,
+      name: COMPANY.name,
+      legalName: COMPANY.legalName,
+      telephone: COMPANY.phone,
+      url: SITE_URL,
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Woerden' },
+      { '@type': 'City', name: 'Utrecht' },
+      { '@type': 'AdministrativeArea', name: 'Regio Utrecht' },
+    ],
+    inLanguage: locale === 'nl' ? 'nl-NL' : 'en',
   };
 }
