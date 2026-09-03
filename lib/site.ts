@@ -53,6 +53,7 @@ export const SLUGS = {
   privacy: { nl: '/privacybeleid', en: '/en/privacy-policy' },
   cookies: { nl: '/cookiebeleid', en: '/en/cookie-policy' },
   terms: { nl: '/algemene-voorwaarden', en: '/en/terms-and-conditions' },
+  termsBusiness: { nl: '/algemene-voorwaarden-zakelijk', en: '/en/business-terms-and-conditions' },
   thankYou: { nl: '/bedankt', en: '/en/thank-you' },
 } as const;
 

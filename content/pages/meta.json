@@ -79,6 +79,10 @@
     "title": "Algemene voorwaarden consumenten | AZGS",
     "description": "Algemene voorwaarden van AZ Grand Solutions (AZGS) voor consumenten (B2C). Afspraken over offertes, uitvoering, oplevering, garantie en aansprakelijkheid."
   },
+  "termsBusiness.nl": {
+    "title": "Algemene voorwaarden zakelijk (B2B) | AZGS",
+    "description": "Zakelijke algemene voorwaarden van AZ Grand Solutions vof voor B2B opdrachten: scope, planning, meerwerk, betaling, oplevering en aansprakelijkheid."
+  },
   "home.en": {
     "title": "Installation Company Woerden & Utrecht Region | AZGS",
     "description": "Installations, drywall and building maintenance for homes and businesses in Woerden and the Utrecht region. Plumbing, heating, ventilation and underfloor heating."
@@ -158,5 +162,9 @@
   "terms.en": {
     "title": "Consumer terms and conditions | AZGS",
     "description": "Consumer terms and conditions (B2C) of AZ Grand Solutions. Clear agreements on quotes, execution, delivery, warranty, and liability."
+  },
+  "termsBusiness.en": {
+    "title": "Business terms and conditions (B2B) | AZGS",
+    "description": "Business terms and conditions of AZ Grand Solutions vof for B2B projects: scope, planning, variations, payment, completion and liability."
   }
 }

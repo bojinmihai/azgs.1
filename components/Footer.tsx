@@ -167,6 +167,7 @@ export function Footer({ locale, audience = 'general' }: Props) {
             <Link href={url('privacy', locale)}>{t.footer.privacy}</Link>
             <Link href={url('cookies', locale)}>{t.footer.cookies}</Link>
             <Link href={url('terms', locale)}>{t.footer.terms}</Link>
+            <Link href={url('termsBusiness', locale)}>{t.footer.termsBusiness}</Link>
           </div>
         </div>
       </div>
