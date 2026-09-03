@@ -1,318 +1,182 @@
-# AZ Grand Solutions — Deployment Guide
+# AZ Grand Solutions — deployment runbook
 
-**Complete static HTML website for `azgs.nl`**
-Status: ✅ **READY FOR PRODUCTION**
+Last updated: 3 September 2026
+Current state: local release candidate; publication and post-deploy verification still required
 
----
+## Application
 
-## 📦 File Inventory (18 files total)
+- Next.js 15 static export with Dutch at the root and English under `/en`.
+- Canonical production host: `https://azgs.nl`.
+- Production output: `out/`.
+- No application API or database is present in this repository.
+- The contact form posts from the visitor's browser to the fixed Formspree endpoint only after client-side validation.
+- GA4 is loaded only after affirmative analytics consent. Localhost and `file:` previews never load the Google script.
+- Google Maps is available only on the NL/EN contact pages and is not loaded until the visitor requests it.
 
-### HTML Pages (17)
-```
-index.html                    Home page
-diensten.html                 Services umbrella page
-spoed.html                    24/7 emergency service
-over-ons.html                 About us + KvK details
-blog.html                     Blog placeholder (SEO-optimized)
-contact.html                  Contact form (Formspree)
-bedankt.html                  Thank-you after form submit
+## Mandatory publication route
 
-gipsplaten.html               Afwerking — Drywall
-schilderwerk.html             Afwerking — Painting
-parket.html                   Afwerking — Parquet flooring
-tegelwerk.html                Afwerking — Tiling
+Publication is performed through GitHub and the connected hosting build. Do not deploy with Wrangler or another direct Cloudflare CLI command.
 
-sanitair.html                 Installaties — Plumbing
-verwarming.html               Installaties — Heating
-vloerverwarming.html          Installaties — Underfloor heating
-elektra.html                  Installaties — Electrical
+At the checkpoint of 3 September 2026 the remotes are:
 
-privacybeleid.html            GDPR Privacy Policy
-cookiebeleid.html             Cookie Policy
-algemene-voorwaarden.html     General Terms & Conditions (17 articles)
-```
+| Remote | Repository | Role to verify before every release |
+|---|---|---|
+| `origin` | `https://github.com/bojinmihai/azgs.1.git` | development/source mirror |
+| `live` | `https://github.com/bojinmihai/azgs.git` | production-connected repository |
 
-### Technical (2)
-```
-sitemap.xml                   XML sitemap (17 URLs, hreflang NL+EN)
-robots.txt                    Crawler instructions + sitemap reference
+Both remote-tracking `main` branches and local `main` were at `1c63315` before the current release work. Re-read the remote URLs and remote branch heads immediately before pushing; do not rely on this table as permanent configuration.
+
+## Hosting build configuration to confirm
+
+The GitHub-connected hosting project must use:
+
+```text
+Production branch: main
+Build command: npm run build
+Build output directory: out
 ```
 
-### Assets
-```
-favicon.ico + 6 favicon PNGs  All sizes (16, 32, 48, 180, 192, 512)
-assets/img/logo/              Primary + white-orange SVG logos
-assets/img/hero/              Home hero image
-assets/img/services/          9 service images × 3 sizes (800/1200/1600) × 2 formats (webp/jpg)
-```
+`npm run build` performs these release gates:
 
----
+1. validates that unapproved reviews cannot be published;
+2. creates the Next.js static export;
+3. generates common security headers in `out/_headers`;
+4. generates route-specific CSP middleware in `functions/_middleware.js`;
+5. audits metadata, canonicals, hreflang, sitemap membership, internal links, local assets, JSON-LD, form destination, downloadable PDFs and generated security policies.
 
-## 🚀 Deployment Checklist
+`functions/_middleware.js` is deliberately ignored by Git because it is generated. The production build must run the full command above so that the hosting platform receives it. A host that only serves `out/` and ignores the generated function will not enforce the route-specific CSP.
 
-### 1. Pre-deployment (LOCAL TESTING)
+## Local pre-deploy checks
 
-```bash
-# Test locally with Python's built-in server (all pages)
-cd /path/to/azgs-home
-python -m http.server 8000
+Run from the repository root:
 
-# Open http://localhost:8000 and verify:
-```
-
-- [ ] All 17 pages load (no 404s)
-- [ ] Header dropdown "Diensten" shows all 8 services
-- [ ] Mobile hamburger menu works (resize browser or use device mode)
-- [ ] Google Maps iframe loads on `/over-ons.html` and `/contact.html`
-- [ ] WhatsApp floating button appears on all pages
-- [ ] Footer legal links work (privacybeleid, cookiebeleid, algemene-voorwaarden)
-- [ ] Contact form pre-selects service when coming from `/sanitair.html?dienst=sanitair`
-
-### 2. Upload to Hosting
-
-**Recommended hosts:** Netlify, Vercel, Cloudflare Pages, Hostnet, TransIP (NL hosters)
-
-**File structure on server** (root):
-```
-/ (webroot)
-├── index.html
-├── diensten.html
-├── spoed.html
-├── ... (all HTML files)
-├── sitemap.xml
-├── robots.txt
-├── favicon.ico
-├── favicon-16.png, favicon-32.png, etc.
-├── apple-touch-icon.png
-└── assets/
-    └── img/
-        ├── logo/
-        ├── hero/
-        └── services/
+```powershell
+npm.cmd install
+npm.cmd run lint
+npx.cmd tsc --noEmit --incremental false
+npm.cmd run build
+npm.cmd run audit:export
+npm.cmd audit
 ```
 
-### 3. Post-deployment Verification
+Also run the two PDF verifiers with the configured Python environment:
 
-- [ ] Visit `https://azgs.nl/` — HTTPS works, SSL certificate valid
-- [ ] Test contact form submission — goes to `aanvragen@azgs.nl`
-- [ ] Test on mobile device (actual phone, not just resize)
-- [ ] Test all 17 pages return HTTP 200 (not 404)
-- [ ] Check `https://azgs.nl/sitemap.xml` loads correctly
-- [ ] Check `https://azgs.nl/robots.txt` loads correctly
+```powershell
+python scripts/verify-legal-pdfs.py
+python scripts/verify-b2b-capabilities.py
+```
 
-### 4. Google Search Console Setup
+Before committing:
 
-1. Register **https://azgs.nl** at [search.google.com/search-console](https://search.google.com/search-console)
-2. Verify ownership via DNS or HTML file
-3. Submit sitemap: `https://azgs.nl/sitemap.xml`
-4. Request indexing for top pages: Home, Diensten, Spoed, Contact, top 3 services
+- inspect `git status --short` and `git diff --check`;
+- inspect the exact staged list with `git diff --cached --name-status`;
+- include only project changes from the approved work groups;
+- exclude ZIP files, `tmp/`, caches and unrelated untracked files;
+- do not stage a generated `functions/_middleware.js`;
+- do not send a real form submission during local testing.
 
-### 5. Google Business Profile (OPTIONAL but POWERFUL for local SEO)
+## Files and routes that need explicit release review
 
-Create at [business.google.com](https://business.google.com):
-- Business name: **AZ Grand Solutions**
-- Address: **Alpenstraat 12, 3446 DN Woerden**
-- Phone: **+31 6 13636925**
-- Category: **General contractor** or **Handyman**
-- Service area: **regio Utrecht** (set as radius)
-- Website: **https://azgs.nl**
+- NL and EN website source, components, metadata, sitemap and redirects;
+- adaptive B2C/B2B/maintenance/emergency form;
+- consent-gated analytics and the analytics event specification;
+- B2C and B2B legal pages plus four legal PDFs;
+- B2B sector pages and the NL/EN capability statements;
+- maintenance and How we work pages;
+- unpublished review infrastructure with `publicationEnabled=false`;
+- security/build audit scripts and dependency lockfile.
 
----
+The project pages and photography are outside the current content work. Review infrastructure must remain unpublished until real content and publication permission are available.
 
-## 📞 Critical Business Details (verify ALL are correct before launch)
+## Identity and approved service boundaries
 
-| Field | Value |
-|-------|-------|
-| Bedrijfsnaam | AZ Grand Solutions |
-| Handelsnaam | AZGS |
+| Field | Current value |
+|---|---|
+| Legal name | AZ Grand Solutions vof |
+| Trade name | A-Z Grand Solutions |
+| Presentation name | AZ Grand Solutions / AZGS |
 | KvK | 42064891 |
-| Adres | Alpenstraat 12, 3446 DN Woerden |
-| Telefoon | +31 6 13636925 |
-| Email algemeen | info@azgs.nl |
-| Email offertes | aanvragen@azgs.nl |
-| Website | https://azgs.nl |
-| Servicegebied | regio Utrecht, 60 km rond Woerden |
+| Establishment number | 000053925335 |
+| Address | Alpenstraat 12, 3446 DN Woerden |
+| Telephone | +31 6 13636925 |
+| General email | info@azgs.nl |
+| Request email | aanvragen@azgs.nl |
 
----
+B2B project execution is limited to plumbing and pipework, thermal systems including underfloor heating, and ventilation. The stated cities are orientation points from Woerden, not an unconditional coverage or acceptance promise. Other locations are assessed per project.
 
-## 🛠️ Formspree Configuration
+Building maintenance is assessed within a maximum of 50 km or about one hour of travel from Woerden. Urgent requests are assessed within a maximum of 50 km or about 40 minutes' drive. These are service-area criteria, not arrival times or SLAs. A B2B urgent request is assessed only for a plumbing, thermal or ventilation project or installation previously carried out by AZGS.
 
-**Endpoint:** `https://formspree.io/f/xjgjryzn`
+## External account checks before relying on integrations
 
-Form submissions → `aanvragen@azgs.nl`
+Repository code cannot verify provider-dashboard settings. Confirm these in the owning accounts:
 
-**Settings configured:**
-- `_subject`: "Nieuwe offerte-aanvraag via azgs.nl"
-- `_next`: `https://azgs.nl/bedankt.html`
-- `_language`: `nl`
-- Anti-spam: Akismet AI + hidden honeypot field
+### Formspree
 
-**After go-live:** Log in to [formspree.io](https://formspree.io) and:
-1. Verify `aanvragen@azgs.nl` is receiving submissions
-2. Enable reCAPTCHA if spam becomes an issue
-3. Upgrade to paid plan if >50 submissions/month expected (free tier limit)
+- endpoint ownership and intended notification recipients;
+- allowed-domain/origin settings, server-side spam controls and rate limits;
+- monthly submission quota and retention;
+- whether the free plan still covers actual use;
+- no file upload is enabled in the current form.
 
----
+### Google Analytics 4
 
-## 🎨 Design System Reference
+- property ownership and measurement ID;
+- Google Signals, advertising personalization and Google Ads links disabled;
+- Enhanced Measurement form interactions disabled to avoid unintended field/event collection and duplicates;
+- data redaction, retention, data sharing and processing terms confirmed;
+- one controlled DebugView/Realtime test only after the approved deployment.
 
-**Brand colors:**
-- Navy: `#1E3A5F` (primary)
-- Orange: `#F5A623` (accent/CTA)
-- Red: `#C8392E` (spoed/emergency only)
-- Background: `#FBFAF7` (off-white)
+### GitHub and hosting
 
-**Typography:**
-- Display: **Outfit** (headings)
-- Body: **Source Sans 3** (paragraphs)
-- Both from Google Fonts
+- production repository, `main` branch and commit SHA;
+- build command and output directory;
+- deploy result and rollback route;
+- branch protection and repository access appropriate to the release process.
 
-**Slogan:** "Rust, warmte en comfort in uw woning"
+## Paid plans
 
----
+No paid plan is required for the current static pages, downloads, build, SEO metadata or consent-gated GA4 implementation.
 
-## 🌐 Bilingual Structure (hreflang)
+Consider a paid Formspree plan only when verified usage requires a higher submission quota, file uploads, stronger account-side workflows, retention or support features not available on the actual plan. Do not enable uploads before checking the plan and updating privacy/data-minimisation decisions.
 
-All pages have `<link rel="alternate" hreflang="en" ...>` pointing to `/en/*.html` paths.
+GA4 Standard is sufficient for the current event set. GA4 360 is not justified by any verified AZGS requirement. A paid reviews platform is unnecessary while the review registry is unpublished and the native review-source workflow is adequate.
 
-**⚠️ IMPORTANT:** The English versions are NOT yet built. When an English visitor switches to EN, they will hit a 404.
+## Git publication sequence
 
-**Options:**
-1. **Build /en/ versions later** — translate all 17 pages to English, place in `/en/` folder
-2. **Remove EN hreflang temporarily** — if you don't want to confuse Google, remove the `hreflang` tags and EN switcher buttons from all pages until English version is ready
-3. **Leave as-is** — Google will simply not use hreflang, users see 404. Not ideal but not catastrophic
+1. Confirm local branch, commit and both remote URLs.
+2. Fetch both GitHub remotes and compare `main`; resolve divergence before publication.
+3. Run every local check above on the exact release candidate.
+4. Present the exact staged file list and release risks for approval.
+5. Create one descriptive commit on `main`.
+6. Push the exact commit to the required `main` branches, with `live` treated as the production-connected remote after readback confirms that fact.
+7. Wait for the GitHub-connected hosting deployment; do not run Wrangler.
+8. Verify the deployed commit/status in the hosting/GitHub UI when available.
 
-**Recommendation:** Build Dutch version first (DONE), get traffic + feedback, then invest in English translation if international/expat customers prove valuable.
+## Post-deploy verification
 
----
+Check at minimum:
 
-## 📊 SEO Strategy Summary
+- `/`, `/en`, `/zakelijk`, `/en/business`;
+- `/contact`, `/en/contact`;
+- `/onderhoud`, `/en/maintenance`;
+- `/werkwijze`, `/en/how-we-work`;
+- both B2C and B2B legal routes;
+- all new B2B sector routes;
+- `robots.txt`, `sitemap.xml`, `_redirects` behaviour and the six PDF downloads.
 
-**Primary keywords** (already integrated):
-- "afwerkings- en installatiebedrijf regio Utrecht"
-- "[service] regio Utrecht" (e.g., "tegelwerk regio Utrecht")
-- "spoedservice 24/7 Woerden"
+For representative HTML responses verify:
 
-**Internal linking structure:**
-- Home → Diensten (umbrella) → 8 service pages
-- Blog.html → all 8 service pages (SEO hub)
-- Each service page cross-sells 3 related services
-- Footer links to all pages from every page
+- HTTP 200, correct canonical and language content;
+- HSTS, nosniff, framing, referrer, permissions and cross-origin headers;
+- route-specific Content-Security-Policy;
+- no analytics loader/request before consent;
+- no review or rating schema while publication is disabled;
+- mobile menu, language switch, adaptive form and downloads.
 
-**Schema.org markup:**
-- `LocalBusiness` on homepage + over-ons + spoed
-- `Service` on each service page
-- `BreadcrumbList` on all inner pages
-- `ItemList` on diensten.html
-- `Blog` on blog.html
+Do not send a real production form merely to test the release unless the company explicitly approves that one transmission and the receiving account is monitored. Provider-dashboard readback is the safer first check.
 
-**Cities targeted** (in footer + FAQ):
-Utrecht, Woerden, Amersfoort, Nieuwegein, Zeist, Houten, IJsselstein, Gouda, Alphen aan den Rijn, Hilversum, Veenendaal, Bunnik.
+## Rollback
 
----
+If the deployed release is faulty, create a normal Git revert of the release commit and push that revert through the same verified GitHub remotes. Do not rewrite `main`, use `git reset --hard`, or deploy a local directory directly.
 
-## 🔒 Legal Compliance Checklist
-
-- [x] **Privacy Policy** (AVG/GDPR) — mentions Formspree (US), Google Fonts, Google Maps, WhatsApp, SCC
-- [x] **Cookie Policy** — lists all 4 third-party cookies (Maps, Fonts, WhatsApp, Formspree)
-- [x] **General Terms & Conditions** — 17 articles for B2C consumers in NL
-- [x] **KvK number** (42064891) visible on Over ons + footer
-- [x] **Address** visible on Over ons + footer + Contact page
-- [x] **Contact options:** phone + 2 emails + WhatsApp
-- [x] **Clear pricing statement:** "Vrijblijvende offerte" (not "gratis offerte")
-- [x] **No false certifications** — no "gecertificeerd", "NEN 1010", etc.
-
----
-
-## 🧪 Pre-launch Final Test (5 minute checklist)
-
-On real device (mobile phone):
-
-1. Open `https://azgs.nl/` → loads fast?
-2. Tap hamburger menu → opens?
-3. Navigate to Diensten → dropdown shows?
-4. Tap a service (e.g. Sanitair) → page loads?
-5. Tap "Vrijblijvende offerte" button → Contact form with service pre-selected?
-6. Fill form → submits → goes to bedankt.html?
-7. Check email at aanvragen@azgs.nl → received?
-8. Tap footer "Privacybeleid" → page loads?
-9. Tap WhatsApp float → opens WhatsApp to your number?
-10. Tap "+31 6 13636925" in header → opens phone dialer?
-
-If all 10 pass → **LIVE READY**.
-
----
-
-## 📈 After Launch — First Week
-
-1. **Monitor Formspree** daily for form submissions
-2. **Check Google Search Console** daily for crawl errors
-3. **Request indexing** for all 17 pages in Search Console
-4. **Test from different devices** (phone, tablet, desktop)
-5. **Ask 3 trusted contacts** to click through and report bugs
-6. **Set up Google Business Profile** (see above)
-
-## 📈 After Launch — First Month
-
-1. Add **first blog article** — replace the placeholder with real content
-2. Start collecting **customer reviews** (Google Business)
-3. Consider **Google Analytics 4** — if you want traffic data (will require adding consent banner)
-4. Monitor **form spam** — add reCAPTCHA if needed
-5. Update `lastmod` in sitemap.xml when you add new content
-
----
-
-## 💡 Quick Wins for More SEO Traffic
-
-1. **Claim Google Business Profile** (free, 1 hour work, huge impact for local SEO)
-2. **Get 5 Google reviews** from happy customers
-3. **Write 1 blog article** about a specific project (with photos if possible)
-4. **Join local Facebook groups** in Utrecht and answer DIY questions professionally
-5. **Add structured FAQ to top service pages** (already done for most)
-
----
-
-## 🆘 Troubleshooting
-
-**Problem:** Google Maps doesn't load
-→ Make sure site is served over HTTPS. Google Maps iframe requires HTTPS in production.
-
-**Problem:** Fonts look wrong
-→ Google Fonts may be slow on first visit. `<link rel="preconnect">` is already in all `<head>`.
-
-**Problem:** Form doesn't submit
-→ Check Formspree dashboard; endpoint `xjgjryzn` must be active and verified.
-
-**Problem:** 404 on legal pages
-→ Make sure `privacybeleid.html`, `cookiebeleid.html`, `algemene-voorwaarden.html` are in webroot.
-
-**Problem:** Mobile menu doesn't open
-→ JavaScript might be blocked. Test without browser extensions.
-
----
-
-## 🎯 Success Metrics (first 3 months)
-
-- **Indexed pages:** Target all 17 indexed by Google (check Search Console)
-- **Form submissions:** Target 5-10/month minimum
-- **Phone calls:** Impossible to track without tracking, but expect 5-15/month if local SEO works
-- **Google Business profile views:** Target 100+/month after 30 days
-- **Organic keyword rankings:** "[service] regio Utrecht" should rank in top 20 within 60 days
-
----
-
-## Contact for website technical issues
-
-All HTML is static, self-contained, and version-controlled in this package.
-No backend, no database — just upload files to any web host.
-
-If content needs to be updated later, edit the HTML files directly.
-Common updates:
-- **Phone number change** → search & replace `+31613636925` in all HTML
-- **Address change** → update `over-ons.html` + all 3 legal pages + footer
-- **New service** → copy an existing service page as template + update meta/content
-- **New blog article** → replace placeholder section in `blog.html`
-
----
-
-**Built with care, ready for deployment. Good luck with the launch!** 🚀
+Record the release commit, deployed routes, checks, remaining dashboard/legal decisions and rollback status in `AZGS-ROADMAP.md`.

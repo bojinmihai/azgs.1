@@ -9,6 +9,7 @@ export const COMPANY = {
   phoneDisplay: '+31 6 13636925',
   whatsapp: '31613636925',
   kvk: '42064891',
+  establishmentNumber: '000053925335',
   email: 'info@azgs.nl',
   emailRequest: 'aanvragen@azgs.nl',
   address: {
@@ -33,6 +34,7 @@ export const SLUGS = {
   business: { nl: '/zakelijk', en: '/en/business' },
   maintenance: { nl: '/onderhoud', en: '/en/maintenance' },
   services: { nl: '/diensten', en: '/en/services' },
+  howWeWork: { nl: '/werkwijze', en: '/en/how-we-work' },
   about: { nl: '/over-ons', en: '/en/about' },
   emergency: { nl: '/spoed', en: '/en/emergency' },
   contact: { nl: '/contact', en: '/en/contact' },
@@ -79,7 +81,15 @@ export function audienceSlug(audience: Exclude<AudienceScope, 'general'>, locale
   return slugs[audience][locale];
 }
 
-export function audienceServiceSlug(service: AudienceServiceKey, locale: Locale): string {
+export function audienceServiceSlug(
+  service: AudienceServiceKey,
+  locale: Locale,
+  audience?: Exclude<AudienceScope, 'general'>
+): string {
+  if (service === 'climate' && audience === 'business') {
+    return locale === 'nl' ? 'ventilatie' : 'ventilation';
+  }
+
   const slugs = {
     plumbing: { nl: 'sanitair', en: 'plumbing' },
     heating: { nl: 'verwarming', en: 'heating' },
@@ -96,5 +106,5 @@ export function audienceServiceUrl(
   locale: Locale
 ): string {
   const prefix = locale === 'nl' ? '' : '/en';
-  return `${prefix}/${audienceSlug(audience, locale)}/${audienceServiceSlug(service, locale)}`;
+  return `${prefix}/${audienceSlug(audience, locale)}/${audienceServiceSlug(service, locale, audience)}`;
 }

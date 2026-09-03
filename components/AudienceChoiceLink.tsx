@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import type { Locale } from '@/lib/site';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 type Props = {
   href: string;
@@ -12,18 +13,10 @@ type Props = {
   children: ReactNode;
 };
 
-type WindowWithGtag = Window & {
-  gtag?: (...args: unknown[]) => void;
-};
-
-export function AudienceChoiceLink({ href, audience, locale, className, children }: Props) {
+export function AudienceChoiceLink({ href, audience, className, children }: Props) {
   const trackChoice = () => {
-    const browserWindow = window as WindowWithGtag;
-    if (typeof browserWindow.gtag !== 'function') return;
-
-    browserWindow.gtag('event', 'audience_select', {
+    trackAnalyticsEvent('audience_select', {
       audience_type: audience,
-      language: locale,
       destination_path: href,
     });
   };

@@ -12,6 +12,10 @@ functions/_middleware.js
 # Local manual backups
 backups/
 
+# Local release archives and QA artifacts
+*.zip
+tmp/
+
 # TypeScript cache
 tsconfig.tsbuildinfo
 

@@ -16,8 +16,7 @@ function footerServices(locale: Locale, audience: AudienceScope) {
         { href: audienceServiceUrl('business', 'plumbing', locale), label: isNl ? 'Installatiewerk B2B' : 'B2B installation work' },
         { href: audienceServiceUrl('business', 'heating', locale), label: isNl ? 'Thermische installaties' : 'Thermal systems' },
         { href: audienceServiceUrl('business', 'underfloor', locale), label: isNl ? 'Vloerverwarming B2B' : 'B2B underfloor heating' },
-        { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompvoorbereiding' : 'Ventilation and heat pump preparation' },
-        { href: audienceServiceUrl('business', 'drywall', locale), label: isNl ? 'Gipsplaten en metalstud projecten' : 'Drywall and metal stud projects' },
+        { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatieprojecten' : 'Ventilation projects' },
       ],
     };
   }
@@ -55,12 +54,12 @@ function footerServices(locale: Locale, audience: AudienceScope) {
   }
 
   return {
-    heading: isNl ? 'Technische diensten' : 'Technical services',
+    heading: isNl ? 'Per type aanvraag' : 'By request type',
     items: [
-      { href: url('plumbing', locale), label: isNl ? 'Sanitair en leidingwerk' : 'Plumbing and pipework' },
-      { href: url('heating', locale), label: isNl ? 'Verwarming' : 'Heating' },
-      { href: url('underfloorHeating', locale), label: isNl ? 'Vloerverwarming en warmtepompen' : 'Underfloor heating and heat pumps' },
-      { href: url('drywall', locale), label: isNl ? 'Gipsplaten' : 'Drywall' },
+      { href: url('private', locale), label: isNl ? 'Particulier' : 'Private' },
+      { href: url('business', locale), label: isNl ? 'Zakelijk / B2B installaties' : 'Business / B2B installations' },
+      { href: url('maintenance', locale), label: isNl ? 'Gebouwonderhoud' : 'Building maintenance' },
+      { href: url('emergency', locale), label: isNl ? 'Spoed aanvragen' : 'Urgent request' },
     ],
   };
 }
@@ -112,6 +111,9 @@ export function Footer({ locale, audience = 'general' }: Props) {
               </li>
               <li>
                 <Link href={url('about', locale)}>{t.nav.about}</Link>
+              </li>
+              <li>
+                <Link href={url('howWeWork', locale)}>{t.nav.howWeWork}</Link>
               </li>
               <li>
                 <Link href={url('emergency', locale)}>{t.footer.emergencyService}</Link>
@@ -166,6 +168,9 @@ export function Footer({ locale, audience = 'general' }: Props) {
           <div className="footer-bottom-legal">
             <Link href={url('privacy', locale)}>{t.footer.privacy}</Link>
             <Link href={url('cookies', locale)}>{t.footer.cookies}</Link>
+            <button type="button" className="footer-legal-button" data-consent-action="reject">
+              {locale === 'nl' ? 'Analytics weigeren/intrekken' : 'Decline/withdraw analytics'}
+            </button>
             <Link href={url('terms', locale)}>{t.footer.terms}</Link>
             <Link href={url('termsBusiness', locale)}>{t.footer.termsBusiness}</Link>
           </div>

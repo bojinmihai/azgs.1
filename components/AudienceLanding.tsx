@@ -10,10 +10,10 @@ type Props = {
 
 const copy = {
   nl: {
-    eyebrow: 'AZ Grand Solutions · Technische uitvoering in regio Utrecht',
+    eyebrow: 'AZ Grand Solutions · Projectuitvoering en onderhoud vanuit Woerden',
     title: 'Kies de juiste ingang voor uw project',
     intro:
-      'AZ Grand Solutions levert technische installaties, gipsplaten en onderhoud voor woningen, commerciele projecten en beheerde gebouwen. Elke ingang is ingericht op een andere manier van werken.',
+      'AZ Grand Solutions voert installatiewerk uit voor woningen en zakelijke projecten. Gipsplaat- en herstelwerk hoort bij particuliere of onderhoudsopdrachten, niet bij het B2B-installatieaanbod. Elke ingang heeft een eigen scope en werkgebied.',
     privateTitle: 'Particulier',
     privateText:
       'Voor woningen waar comfort, betrouwbaarheid en nette uitvoering belangrijk zijn: sanitair, verwarming, ventilatie, warmtepompen, gipsplaten en noodzakelijke herstelafwerking.',
@@ -23,35 +23,44 @@ const copy = {
     privateItems: ['Installaties in woningen', 'Comfort en energie', 'Herstelafwerking'],
     businessTitle: 'Business / B2B',
     businessText:
-      'Voor aannemers, architecten, projectleiders, installatiebedrijven, ventilatiebedrijven en vastgoedpartijen die een professionele uitvoeringspartner zoeken.',
+      'Voor aannemers, projectleiders, installatiebedrijven, ventilatiebedrijven en andere zakelijke opdrachtgevers die uitvoering zoeken voor sanitaire, thermische of ventilatie-installaties.',
     businessCta: 'Start zakelijke aanvraag',
     businessHover:
-      'B2B-uitvoering voor installatiewerk, thermische systemen, vloerverwarming, ventilatie, warmtepompvoorbereiding, gipsplaten en metalstud binnen commerciele projecten.',
-    businessItems: ['B2B installaties', 'Vloerverwarming & ventilatie', 'Gipsplaten & metalstud'],
+      'B2B-projectuitvoering is beperkt tot sanitair en leidingwerk, thermische installaties — waaronder vloerverwarming — en ventilatie. Een zakelijke spoedvraag wordt alleen beoordeeld voor een project of installatie die AZGS zelf heeft uitgevoerd.',
+    businessItems: ['Sanitaire installaties', 'Thermische installaties', 'Ventilatieprojecten'],
     maintenanceTitle: 'Gebouwonderhoud',
     maintenanceText:
-      'Voor beheerders van kantoren, horeca, hotels, winkels en vastgoed: storingen oplossen, technische reparaties uitvoeren en de locatie weer bruikbaar opleveren.',
+      'Voor beheerders van kantoren, horeca, hotels, winkels en vastgoed: onderhoudsmeldingen, planmatig onderhoud en werk voor meerdere locaties na beoordeling en afspraak.',
     maintenanceCta: 'Start onderhoudsaanvraag',
     maintenanceHover:
-      'Onderhoud per melding of samenwerking: lekkage, verwarming, ventilatie, sanitair, gipsherstel, tegelherstel, kitwerk, schilderwerk en afwerking na technische reparatie.',
+      'Onderhoud per melding of volgens een schriftelijke afspraak, binnen de bevestigde scope, planning en verantwoordelijkheidsverdeling.',
     maintenanceItems: ['Horeca, hotels, kantoren', 'Storingen & lekkages', 'Techniek + herstel'],
+    scopeEyebrow: 'Werkgebied per aanvraag',
+    scopeTitle: 'B2B-projecten, onderhoud en spoed zijn duidelijk gescheiden',
+    scopeIntro: 'Wij beoordelen iedere locatie vanuit Woerden volgens de grens van het gekozen traject. Reistijd is een gebiedscriterium en geen beloofde aankomsttijd.',
+    businessAreaTitle: 'Zakelijke installatieprojecten',
+    businessAreaText: 'Alleen sanitair en leidingwerk, thermische installaties — waaronder vloerverwarming — en ventilatie. Oriëntatiepunten: Breda, Tilburg, Eindhoven, Purmerend, Beverwijk, Den Haag, Rotterdam, Leiden, Lelystad en Zwolle. Andere locaties per project beoordeeld.',
+    maintenanceAreaTitle: 'Gebouwonderhoud',
+    maintenanceAreaText: 'Rond Woerden: maximaal 50 km of ongeveer één uur reistijd, per route en verkeer beoordeeld.',
+    emergencyAreaTitle: 'Spoed',
+    emergencyAreaText: 'Rond Woerden: maximaal 50 km of ongeveer 40 minuten rijden. Geen SLA. Zakelijke spoed wordt alleen beoordeeld voor een project of installatie die AZGS eerder zelf heeft uitgevoerd.',
     call: `Bel ${COMPANY.phoneDisplay}`,
     trust: ['Installatietechniek centraal', 'Gericht advies per type opdrachtgever', 'KvK 42064891'],
-    proofHeading: 'Een controleerbare basis voor professionele uitvoering',
+    proofHeading: 'Controleerbare bedrijfsgegevens en duidelijke afspraken',
     proofText:
-      'Nog vóór de praktijkprojecten en klantfoto’s worden toegevoegd, zijn deze bedrijfsgegevens en werkafspraken al controleerbaar.',
+      'De juridische identiteit is controleerbaar. Scope, materialen, planning en voorwaarden worden per opdracht vastgelegd.',
     proofItems: [
-      { value: '35+ jaar', label: 'Internationale vakpraktijk in installatietechniek, renovatie en technische uitvoering.' },
-      { value: '2 VCA-diploma’s', label: 'Beide vennoten beschikken over een persoonlijk VCA-diploma; bewijs is op verzoek beschikbaar.' },
+      { value: 'AZ Grand Solutions vof', label: 'Juridische entiteit met handelsnaam A-Z Grand Solutions.' },
       { value: 'KvK 42064891', label: 'AZ Grand Solutions vof, gevestigd aan Alpenstraat 12 in Woerden.' },
-      { value: '24/7 bereikbaar', label: 'Voor urgente lekkages, verstoppingen en storingen binnen het werkgebied.' },
+      { value: '000053925335', label: 'Vestigingsnummer van de locatie in Woerden.' },
+      { value: 'NL / EN', label: 'Nederlandse hoofdinformatie met een informatieve Engelse vertaling.' },
     ],
   },
   en: {
-    eyebrow: 'AZ Grand Solutions · Technical execution in the Utrecht region',
+    eyebrow: 'AZ Grand Solutions · Project execution and maintenance from Woerden',
     title: 'Choose the right entry point for your project',
     intro:
-      'AZ Grand Solutions delivers technical installations, drywall and maintenance for homes, commercial projects and managed buildings. Each entry point is structured around a different way of working.',
+      'AZ Grand Solutions carries out installation work for homes and business projects. Drywall and finishing repair belong to private or maintenance assignments, not to the B2B installation offer. Each entry point has its own scope and service area.',
     privateTitle: 'Private clients',
     privateText:
       'For homes where comfort, reliability and clean execution matter: plumbing, heating, ventilation, heat pumps, drywall and required finishing repair.',
@@ -61,28 +70,37 @@ const copy = {
     privateItems: ['Home installations', 'Comfort and energy', 'Finishing repair'],
     businessTitle: 'Business / B2B',
     businessText:
-      'For contractors, architects, project managers, installation companies, ventilation companies and property teams looking for a professional execution partner.',
+      'For contractors, project managers, installation companies, ventilation companies and other business clients seeking execution of plumbing, thermal or ventilation systems.',
     businessCta: 'Start business request',
     businessHover:
-      'B2B execution for installation work, thermal systems, underfloor heating, ventilation, heat pump preparation, drywall and metal stud within commercial projects.',
-    businessItems: ['B2B installations', 'Underfloor heating & ventilation', 'Drywall & metal stud'],
+      'B2B project execution is limited to plumbing and pipework, thermal systems — including underfloor heating — and ventilation. A business emergency request is assessed only for a project or installation previously carried out by AZGS.',
+    businessItems: ['Plumbing installations', 'Thermal systems', 'Ventilation projects'],
     maintenanceTitle: 'Building maintenance',
     maintenanceText:
-      'For offices, hospitality, hotels, shops and property management: resolve faults, execute technical repairs and return the location to usable condition.',
+      'For offices, hospitality, hotels, shops and property management: maintenance requests, planned maintenance and work across multiple locations after assessment and agreement.',
     maintenanceCta: 'Start maintenance request',
     maintenanceHover:
-      'Maintenance per request or cooperation: leaks, heating, ventilation, plumbing, drywall repair, tile repair, sealant, painting and finishing after technical repair.',
+      'Maintenance per request or under a written agreement, within the confirmed scope, planning and allocation of responsibilities.',
     maintenanceItems: ['Hotels, offices, hospitality', 'Faults & leaks', 'Technical + repair'],
+    scopeEyebrow: 'Service area by request',
+    scopeTitle: 'B2B projects, maintenance and urgent work are clearly separated',
+    scopeIntro: 'We assess each location from Woerden using the boundary for the selected route. Travel time is a service-area criterion, not a promised arrival time.',
+    businessAreaTitle: 'Business installation projects',
+    businessAreaText: 'Only plumbing and pipework, thermal systems — including underfloor heating — and ventilation. Orientation points: Breda, Tilburg, Eindhoven, Purmerend, Beverwijk, The Hague, Rotterdam, Leiden, Lelystad and Zwolle. Other locations assessed per project.',
+    maintenanceAreaTitle: 'Building maintenance',
+    maintenanceAreaText: 'Around Woerden: up to 50 km or about one hour of travel, assessed by route and traffic.',
+    emergencyAreaTitle: 'Urgent requests',
+    emergencyAreaText: 'Around Woerden: up to 50 km or about 40 minutes\' drive. No SLA. Business emergencies are assessed only for a project or installation previously carried out by AZGS.',
     call: `Call ${COMPANY.phoneDisplay}`,
     trust: ['Installation technology first', 'Clear guidance for each type of client', 'KvK 42064891'],
-    proofHeading: 'A verifiable basis for professional execution',
+    proofHeading: 'Verifiable company details and clear agreements',
     proofText:
-      'Even before real project cases and client photography are added, these company details and working commitments can already be verified.',
+      'The legal identity can be verified. Scope, materials, planning and applicable terms are recorded for each assignment.',
     proofItems: [
-      { value: '35+ years', label: 'International trade practice in installation technology, renovation and technical execution.' },
-      { value: '2 VCA diplomas', label: 'Both partners hold a personal VCA diploma; evidence is available on request.' },
+      { value: 'AZ Grand Solutions vof', label: 'Legal entity trading as A-Z Grand Solutions.' },
       { value: 'KvK 42064891', label: 'AZ Grand Solutions vof, based at Alpenstraat 12 in Woerden.' },
-      { value: 'Available 24/7', label: 'For urgent leaks, blockages and faults within the service area.' },
+      { value: '000053925335', label: 'Establishment number for the Woerden location.' },
+      { value: 'NL / EN', label: 'Dutch primary information with an informative English translation.' },
     ],
   },
 } as const;
@@ -169,10 +187,37 @@ export function AudienceLanding({ locale, altPath }: Props) {
         </div>
       </section>
 
+      <section className="content-section" aria-labelledby="audience-scope-heading">
+        <div className="container">
+          <header className="section-head">
+            <p className="section-eyebrow">{t.scopeEyebrow}</p>
+            <h2 id="audience-scope-heading">{t.scopeTitle}</h2>
+            <p>{t.scopeIntro}</p>
+          </header>
+          <div className="steps-grid audience-scope-grid">
+            <article className="step-card">
+              <div className="step-number">1</div>
+              <h3>{t.businessAreaTitle}</h3>
+              <p>{t.businessAreaText}</p>
+            </article>
+            <article className="step-card">
+              <div className="step-number">2</div>
+              <h3>{t.maintenanceAreaTitle}</h3>
+              <p>{t.maintenanceAreaText}</p>
+            </article>
+            <article className="step-card">
+              <div className="step-number">3</div>
+              <h3>{t.emergencyAreaTitle}</h3>
+              <p>{t.emergencyAreaText}</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="content-section alt" aria-labelledby="proof-heading">
         <div className="container">
           <header className="section-head">
-            <p className="section-eyebrow">{locale === 'nl' ? 'Ervaring en zekerheid' : 'Experience and assurance'}</p>
+            <p className="section-eyebrow">{locale === 'nl' ? 'Bedrijfsgegevens en afspraken' : 'Company details and agreements'}</p>
             <h2 id="proof-heading">{t.proofHeading}</h2>
             <p>{t.proofText}</p>
           </header>

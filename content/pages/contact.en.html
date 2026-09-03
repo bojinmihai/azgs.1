@@ -1,244 +1,34 @@
 <!-- PAGE HERO -->
-    <section class="page-hero">
-      <div class="container">
-        <div class="page-hero-inner">
-          <p class="page-hero-eyebrow">Contact</p>
-          <h1>Let's get in touch</h1>
-          <p class="page-hero-subtitle">
-            Tell us about your project in Woerden or the Utrecht region. Fill in the form, call us, or send a WhatsApp message — we'll get back to you as soon as possible.
-          </p>
-        </div>
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <p class="page-hero-eyebrow">Contact</p>
+      <h1>Let's get in touch</h1>
+      <p class="page-hero-subtitle">
+        First choose Private, Business, Building maintenance or Emergency. The form then shows the relevant services and separate service-area limit. You can also call or send a WhatsApp message.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ADAPTIVE_CONTACT_SECTION -->
+
+<!-- MAP SECTION -->
+<section class="map-section" aria-labelledby="map-heading">
+  <div class="container">
+    <header class="map-header">
+      <div class="map-header-text">
+        <h2 id="map-heading">Where to find us</h2>
+        <p>AZ Grand Solutions is based in Woerden. Visits are by appointment only.</p>
       </div>
-    </section>
-
-    <!-- CONTACT MAIN — Form + Info -->
-    <section class="contact-main">
-      <div class="container contact-grid">
-
-        <!-- LEFT: Form -->
-        <div class="form-card">
-          <div class="form-card-header">
-            <h2>Send us a message</h2>
-            <p>Fill in the form and we'll get back to you with a personal reply.</p>
-          </div>
-
-          <!-- Formspree endpoint — submissions go to aanvragen@azgs.nl -->
-          <form action="https://formspree.io/f/xjgjryzn" method="POST" id="contact-form">
-
-            <!-- Formspree hidden fields: email subject + redirect after submit -->
-            <input type="hidden" name="_subject" value="New inquiry via azgs.nl (EN)">
-            <input type="hidden" name="_next" value="https://azgs.nl/en/thank-you">
-            <input type="hidden" name="_language" value="en">
-
-            <!-- Honeypot anti-spam (verborgen voor mensen) -->
-            <div class="form-honeypot" aria-hidden="true">
-              <label for="website">Leave this field empty</label>
-              <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
-              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
-            </div>
-
-            <div class="form-grid">
-
-              <div class="form-row">
-                <label class="form-label" for="naam">
-                  Name <span class="required">*</span>
-                </label>
-                <input class="form-input" type="text" id="naam" name="naam" required autocomplete="name" placeholder="Jan de Vries">
-              </div>
-
-              <div class="form-row">
-                <label class="form-label" for="email">
-                  Email address <span class="required">*</span>
-                </label>
-                <input class="form-input" type="email" id="email" name="email" required autocomplete="email" placeholder="jan@example.com">
-              </div>
-
-              <div class="form-row">
-                <label class="form-label" for="telefoon">
-                  Phone <span class="optional">optional</span>
-                </label>
-                <input class="form-input" type="tel" id="telefoon" name="telefoon" autocomplete="tel" placeholder="06 12 34 56 78">
-              </div>
-
-              <div class="form-row">
-                <label class="form-label" for="plaats">
-                  City or postal code <span class="optional">optional</span>
-                </label>
-                <input class="form-input" type="text" id="plaats" name="plaats" autocomplete="address-level2" placeholder="Utrecht or 3446 DN">
-              </div>
-
-              <div class="form-row">
-                <label class="form-label" for="type">
-                  Type of inquiry <span class="required">*</span>
-                </label>
-                <select class="form-select" id="type" name="type" required>
-                  <option value="" disabled selected>Select an option</option>
-                  <option value="offerte">Request a quote</option>
-                  <option value="vraag">General question</option>
-                  <option value="spoed">Emergency (24/7)</option>
-                </select>
-              </div>
-
-              <div class="form-row">
-                <label class="form-label" for="dienst">
-                  Service <span class="required">*</span>
-                </label>
-                <select class="form-select" id="dienst" name="dienst" required>
-                  <option value="" disabled selected>Select a service</option>
-                  <optgroup label="Finishing">
-                    <option value="drywall">Drywall</option>
-                    <option value="painting">Painting</option>
-                    <option value="parquet">Parquet</option>
-                    <option value="tiling">Tiling</option>
-                  </optgroup>
-                  <optgroup label="Installations">
-                    <option value="plumbing">Plumbing</option>
-                    <option value="heating">Heating</option>
-                    <option value="underfloor-heating">Underfloor heating</option>
-                    <option value="electrical">Electrical</option>
-                  </optgroup>
-                  <option value="other">Other / multiple services</option>
-                </select>
-              </div>
-
-              <div class="form-row full">
-                <label class="form-label" for="bericht">
-                  Your message <span class="required">*</span>
-                </label>
-                <textarea class="form-textarea" id="bericht" name="bericht" required placeholder="Briefly tell us about your project, goals, or question — the more specific, the better we can help."></textarea>
-              </div>
-
-              <div class="form-row full">
-                <div class="form-checkbox-row">
-                  <input class="form-checkbox" type="checkbox" id="akkoord" name="akkoord" required>
-                  <label for="akkoord">
-                    I agree to the <a href="/en/privacy-policy">privacy policy</a> and give permission to process my data in order to be contacted. <span class="required">*</span>
-                  </label>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="form-submit">
-              <small>Fields marked <span class="required">*</span> are required. View the terms for <a href="/en/terms-and-conditions">consumers (B2C)</a> or for <a href="/en/business-terms-and-conditions">business clients (B2B)</a>.</small>
-              <button type="submit" class="btn btn-primary btn-large">
-                Send
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6"/>
-                </svg>
-              </button>
-            </div>
-
-          </form>
-        </div>
-
-        <!-- RIGHT: Contact info -->
-        <aside class="contact-info" aria-label="Direct contact details">
-          <h3>Or get in touch directly</h3>
-          <p class="contact-info-intro">Prefer to call, email, or send a quick message? That works too.</p>
-
-          <a href="tel:+31613636925" class="contact-card">
-            <div class="contact-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
-            </div>
-            <div class="contact-card-body">
-              <div class="contact-card-label">Phone</div>
-              <div class="contact-card-value">+31 6 13636925</div>
-              <div class="contact-card-hint">Mon–Fri · 08:00 – 18:00</div>
-            </div>
-          </a>
-
-          <a href="mailto:aanvragen@azgs.nl" class="contact-card">
-            <div class="contact-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <div class="contact-card-body">
-              <div class="contact-card-label">Email for quotes</div>
-              <div class="contact-card-value">aanvragen@azgs.nl</div>
-              <div class="contact-card-hint">Reply within one business day</div>
-            </div>
-          </a>
-
-          <a href="mailto:info@azgs.nl" class="contact-card">
-            <div class="contact-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <div class="contact-card-body">
-              <div class="contact-card-label">General</div>
-              <div class="contact-card-value">info@azgs.nl</div>
-              <div class="contact-card-hint">For general questions</div>
-            </div>
-          </a>
-
-          <a href="https://wa.me/31613636925" class="contact-card" target="_blank" rel="noopener noreferrer">
-            <div class="contact-card-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-              </svg>
-            </div>
-            <div class="contact-card-body">
-              <div class="contact-card-label">WhatsApp</div>
-              <div class="contact-card-value">+31 6 13636925</div>
-              <div class="contact-card-hint">Send a quick message</div>
-            </div>
-          </a>
-
-          <div class="contact-card">
-            <div class="contact-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <div class="contact-card-body">
-              <div class="contact-card-label">Visiting address</div>
-              <div class="contact-card-value">Alpenstraat 12<br>3446 DN Woerden</div>
-              <div class="contact-card-hint">By appointment only</div>
-            </div>
-          </div>
-
-          <!-- Emergency notice -->
-          <div class="emergency-notice">
-            <span class="emergency-notice-badge">24/7 emergency</span>
-            <p>Water leak, heating or electrical issue? Call us directly — we're available day and night for emergencies.</p>
-            <a href="tel:+31613636925" class="btn btn-orange">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
-              Call for emergency
-            </a>
-          </div>
-        </aside>
-
+      <div class="map-header-address">Alpenstraat 12, 3446 DN Woerden</div>
+    </header>
+    <div class="map-embed external-map" data-google-map data-map-src="https://maps.google.com/maps?q=Alpenstraat+12+3446+DN+Woerden+Nederland&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" data-map-title="Location AZ Grand Solutions — Alpenstraat 12, Woerden">
+      <div class="external-map__placeholder">
+        <strong>Google Maps is blocked for your privacy</strong>
+        <p>The map loads only after you choose to view it. Google may then receive technical data.</p>
+        <button type="button" class="btn btn-primary" data-load-google-map>Load Google Maps</button>
       </div>
-    </section>
-
-    <!-- MAP SECTION -->
-    <section class="map-section" aria-labelledby="map-heading">
-      <div class="container">
-        <header class="map-header">
-          <div class="map-header-text">
-            <h2 id="map-heading">Where to find us</h2>
-            <p>Centrally located in Woerden, near the A12 — easily accessible from Utrecht, Amsterdam, and Rotterdam.</p>
-          </div>
-          <div class="map-header-address">
-            Alpenstraat 12, 3446 DN Woerden
-          </div>
-        </header>
-        <div class="map-embed external-map" data-google-map data-map-src="https://maps.google.com/maps?q=Alpenstraat+12+3446+DN+Woerden+Nederland&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" data-map-title="Location AZ Grand Solutions — Alpenstraat 12, Woerden">
-          <div class="external-map__placeholder">
-            <strong>Google Maps is blocked for your privacy</strong>
-            <p>The map loads only after you choose to view it. Google may then receive technical data.</p>
-            <button type="button" class="btn btn-primary" data-load-google-map>Load Google Maps</button>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>

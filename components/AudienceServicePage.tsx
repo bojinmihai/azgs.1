@@ -10,6 +10,12 @@ type Props = {
 
 const audienceOrder: ServiceAudience[] = ['private', 'business', 'maintenance'];
 
+function audiencesForService(service: AudienceServiceContent['service']) {
+  return service === 'drywall'
+    ? audienceOrder.filter((audience) => audience !== 'business')
+    : audienceOrder;
+}
+
 function audienceLabel(audience: ServiceAudience, locale: 'nl' | 'en') {
   const labels = {
     nl: {
@@ -26,7 +32,27 @@ function audienceLabel(audience: ServiceAudience, locale: 'nl' | 'en') {
   return labels[locale][audience];
 }
 
-function audienceText(audience: ServiceAudience, locale: 'nl' | 'en') {
+function audienceText(
+  audience: ServiceAudience,
+  locale: 'nl' | 'en',
+  service: AudienceServiceContent['service'],
+) {
+  if (service === 'climate') {
+    const climateLabels = {
+      nl: {
+        private: 'Ventilatie en warmtepompwerk voor particuliere woningen.',
+        business: 'Voor B2B uitsluitend ventilatieprojecten; geen warmtepompwerk.',
+        maintenance: 'Ventilatie en afgesproken klimaatonderhoud voor beheerde gebouwen.',
+      },
+      en: {
+        private: 'Ventilation and heat-pump work for private homes.',
+        business: 'For B2B, ventilation projects only; no heat-pump work.',
+        maintenance: 'Ventilation and agreed climate maintenance for managed buildings.',
+      },
+    } as const;
+    return climateLabels[locale][audience];
+  }
+
   const labels = {
     nl: {
       private: 'Voor bewoners en particuliere woningen.',
@@ -49,7 +75,14 @@ export function AudienceServicePage({ content }: Props) {
     name: content.heading,
     description: content.description,
     path: content.path,
+    audience: content.audience,
   });
+  const audienceChoices = audiencesForService(content.service);
+  const audienceNavTitle = content.service === 'drywall'
+    ? (isNl ? 'Werk voor woningen en onderhoudsopdrachten' : 'Work for homes and maintenance assignments')
+    : content.service === 'climate'
+      ? (isNl ? 'Zakelijk uitsluitend ventilatie; warmtepompwerk alleen particulier of onderhoud' : 'Business: ventilation only; heat-pump work only for private or maintenance requests')
+      : (isNl ? 'Werk voor woningen, bedrijven en beheerde gebouwen' : 'Work for homes, businesses and managed buildings');
 
   return (
     <SiteShell locale={content.locale} altPath={content.altPath} audience={content.audience}>
@@ -91,11 +124,11 @@ export function AudienceServicePage({ content }: Props) {
           <div className="audience-nav__head">
             <div>
               <p className="audience-nav__eyebrow">{isNl ? 'Kies de juiste aanvraag' : 'Choose the right request'}</p>
-              <h2 className="audience-nav__title">{isNl ? 'Werk voor woningen, bedrijven en beheerde gebouwen' : 'Work for homes, businesses and managed buildings'}</h2>
+              <h2 className="audience-nav__title">{audienceNavTitle}</h2>
             </div>
           </div>
           <nav className="audience-nav__grid" aria-label={isNl ? 'Projectrichtingen' : 'Project directions'}>
-            {audienceOrder.map((audience) => (
+            {audienceChoices.map((audience) => (
               <Link
                 key={audience}
                 className={`audience-nav__card${audience === content.audience ? ' is-active' : ''}`}
@@ -103,7 +136,7 @@ export function AudienceServicePage({ content }: Props) {
                 aria-current={audience === content.audience ? 'page' : undefined}
               >
                 <span className="audience-nav__label">{audienceLabel(audience, content.locale)}</span>
-                <span className="audience-nav__text">{audienceText(audience, content.locale)}</span>
+                <span className="audience-nav__text">{audienceText(audience, content.locale, content.service)}</span>
               </Link>
             ))}
           </nav>

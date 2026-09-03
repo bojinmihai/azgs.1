@@ -2,6 +2,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+if (process.env.AZGS_ALLOW_LEGACY_EXTRACT !== '1') {
+  console.error(
+    'Legacy page extraction is blocked: legacy/ contains obsolete legal and service claims. ' +
+      'Use the maintained content/pages sources. Set AZGS_ALLOW_LEGACY_EXTRACT=1 only after a deliberate legacy review.',
+  );
+  process.exit(1);
+}
+
 const LEGACY_DIR = path.join(process.cwd(), 'legacy');
 const OUT_DIR = path.join(process.cwd(), 'content/pages');
 fs.mkdirSync(OUT_DIR, { recursive: true });

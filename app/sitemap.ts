@@ -6,6 +6,7 @@ import {
   getAudienceServiceParams,
   resolveAudienceServiceParams,
 } from '@/lib/audience-services';
+import { getBusinessSectorBySlug, getBusinessSectorParams } from '@/lib/business-sectors';
 
 export const dynamic = 'force-static';
 
@@ -54,6 +55,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
             [locale]: `${SITE_URL}${content.path}`,
             [locale === 'nl' ? 'en' : 'nl']: `${SITE_URL}${content.altPath}`,
             'x-default': locale === 'nl' ? `${SITE_URL}${content.path}` : `${SITE_URL}${content.altPath}`,
+          },
+        },
+      });
+    }
+  }
+
+  for (const locale of ['nl', 'en'] as const) {
+    for (const params of getBusinessSectorParams(locale)) {
+      const content = getBusinessSectorBySlug(locale, params.sector);
+      if (!content) continue;
+      entries.push({
+        url: `${SITE_URL}${content.path}`,
+        changeFrequency: 'monthly',
+        priority: 0.78,
+        alternates: {
+          languages: {
+            nl: `${SITE_URL}${locale === 'nl' ? content.path : content.altPath}`,
+            en: `${SITE_URL}${locale === 'en' ? content.path : content.altPath}`,
+            'x-default': `${SITE_URL}${locale === 'nl' ? content.path : content.altPath}`,
           },
         },
       });

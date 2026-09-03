@@ -109,8 +109,8 @@ function audienceServiceName(audience: ServiceAudience, service: AudienceService
       plumbing: 'Installatiewerk voor B2B projecten',
       heating: 'Thermische installaties voor commerciele projecten',
       underfloor: 'Vloerverwarming voor B2B projecten',
-      climate: 'Ventilatie en warmtepompvoorbereiding',
-      drywall: 'Gipsplaten en metalstud voor commerciele projecten',
+      climate: 'Ventilatie voor B2B projecten',
+      drywall: 'Niet aangeboden voor zakelijke projecten',
     },
     maintenance: {
       plumbing: 'Lekkage, sanitair herstel en leidingreparatie',
@@ -133,8 +133,8 @@ function audienceServiceName(audience: ServiceAudience, service: AudienceService
       plumbing: 'Installation work for B2B projects',
       heating: 'Thermal systems for commercial projects',
       underfloor: 'Underfloor heating for B2B projects',
-      climate: 'Ventilation and heat pump preparation',
-      drywall: 'Drywall and metal stud for commercial projects',
+      climate: 'Ventilation for B2B projects',
+      drywall: 'Not offered for business projects',
     },
     maintenance: {
       plumbing: 'Leaks, plumbing repair and pipework repair',
@@ -174,9 +174,9 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
       underfloor:
         'Voor zakelijke projecten voeren wij vloerverwarming uit als technisch projectonderdeel, afgestemd op bouwplanning, vloeropbouw, verdelers en aansluitpunten.',
       climate:
-        'Voor bedrijven en projectteams voeren wij ventilatie, warmtepompvoorbereiding en energiezuinige installatieoplossingen uit als onderdeel van commerciele bouw, fit-out en technische projecten.',
+        'Voor bedrijven en projectteams voeren wij ventilatiekanalen, doorvoeren en aansluitpunten uit als afgebakend onderdeel van zakelijke installatieprojecten.',
       drywall:
-        'Voor zakelijke projecten leveren en monteren wij complete gipsplaat- en metalstudconstructies, inclusief technische afstemming rond leidingen, schachten, plafonds en planning.',
+        'Gipsplaat-, metalstud- en andere afbouwwerkzaamheden maken geen deel uit van het zakelijke dienstenaanbod van AZGS.',
     },
     maintenance: {
       plumbing:
@@ -213,9 +213,9 @@ function serviceSpecificIntro(audience: ServiceAudience, service: AudienceServic
       underfloor:
         'For business projects, we execute underfloor heating as a technical project component, aligned with site planning, floor build-up, manifolds and connection points.',
       climate:
-        'For companies and project teams, we execute ventilation, heat pump preparation and energy-efficient installation work as part of commercial construction, fit-out and technical projects.',
+        'For companies and project teams, we execute ventilation ducts, penetrations and connection points as a defined component of business installation projects.',
       drywall:
-        'For business projects, we supply and install complete drywall and metal stud systems, coordinated around pipework, shafts, ceilings and project planning.',
+        'Drywall, metal stud and other fit-out work are not part of the AZGS business service offer.',
     },
     maintenance: {
       plumbing:
@@ -241,9 +241,17 @@ function audienceSections(
 ): AudienceServiceContent['sections'] {
   if (locale === 'nl') {
     if (audience === 'business') {
-      const technicalOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+      if (service === 'drywall') {
+        return [{
+          title: 'Geen zakelijke dienst',
+          body: 'Gipsplaat-, metalstud- en andere afbouwwerkzaamheden worden niet als B2B-dienst aangeboden.',
+          items: ['Gebruik het zakelijke formulier uitsluitend voor sanitair en leidingwerk, thermische installaties of ventilatie.'],
+        }];
+      }
+
+      const technicalOffer: Record<Exclude<AudienceServiceKey, 'drywall'>, AudienceServiceContent['sections'][number]> = {
         plumbing: {
-          title: 'B2B installatiewerk voor bouw- en afbouwprojecten',
+          title: 'B2B installatiewerk voor zakelijke projecten',
           body:
             'Wij voeren leidingwerk, sanitaire aansluitingen en technische voorbereidingen uit voor commerciele projecten. De samenwerking is gericht op aannemers, architecten, projectleiders, installatiebedrijven, ventilatiebedrijven en vastgoedpartijen die extra uitvoeringscapaciteit of een gespecialiseerde partner nodig hebben.',
           items: [
@@ -256,45 +264,34 @@ function audienceSections(
         heating: {
           title: 'Thermische installaties voor commerciele gebouwen',
           body:
-            'Wij realiseren verwarmingsleidingen, verdelers, radiatoren, vloerverwarming en technische voorbereidingen voor warmtepompen binnen zakelijke projecten. De uitvoering wordt afgestemd op de planning van het totale project en de technische randvoorwaarden van het gebouw.',
+            'Wij realiseren verwarmingsleidingen, verdelers, radiatoren en vloerverwarming binnen zakelijke projecten. De uitvoering wordt afgestemd op de planning van het totale project en de bevestigde technische randvoorwaarden van het gebouw.',
           items: [
             'Verwarmingsleidingen, verdelers, radiatoren en aansluitpunten',
-            'Voorbereiding voor vloerverwarming en warmtepompcomponenten',
-            'Technische afstemming met installatie- en afbouwpartners',
+            'Vloerverwarming als onderdeel van de thermische installatie',
+            'Technische afstemming met andere installatiepartners',
             'Praktische opleverpunten voor projectleiding of opdrachtgever',
           ],
         },
         underfloor: {
           title: 'Vloerverwarming als onderdeel van B2B projectuitvoering',
           body:
-            'Wij voeren vloerverwarming uit voor zakelijke projecten waar vloeropbouw, planning en technische afstemming bepalend zijn. De uitvoering wordt afgestemd met aannemers, installatiepartners, vloerbedrijven en projectleiding, zodat het systeem past binnen de totale bouwvolgorde.',
+            'Wij voeren vloerverwarming uit voor zakelijke projecten waar vloeropbouw, planning en technische afstemming bepalend zijn. De uitvoering wordt afgestemd met aannemers, installatiepartners en projectleiding, zodat het systeem past binnen de totale bouwvolgorde.',
           items: [
             'Vloerverwarmingsgroepen, verdelers, leidingpatronen en aansluitpunten',
-            'Afstemming met vloeropbouw, isolatie, dekvloer en afwerking',
+            'Afstemming met vloeropbouw, isolatie en dekvloer',
             'Uitvoering voor kantoren, horeca, retail, zorglocaties en bedrijfsruimten',
             'Controle op zones, bereikbaarheid en overdracht aan projectleiding',
           ],
         },
         climate: {
-          title: 'Ventilatie en warmtepompvoorbereiding voor projectteams',
+          title: 'Ventilatie voor zakelijke projectteams',
           body:
-            'Wij voeren montage, aanpassingen en technische voorbereiding uit rond ventilatie, luchtdoorvoeren, warmtepompcomponenten en energiezuinige installaties. De uitvoering sluit aan op bouwkundige en installatietechnische planning.',
+            'Wij voeren montage en aanpassingen uit aan ventilatiekanalen, luchtdoorvoeren en aansluitpunten binnen een vooraf afgebakend installatiepakket. De uitvoering sluit aan op de bevestigde bouw- en installatieplanning.',
           items: [
             'Ventilatiekanalen, doorvoeren, aansluitpunten en technische zones',
-            'Voorbereidend werk voor warmtepompen en energiezuinige systemen',
+            'Montage en aanpassing binnen bevestigde systeemgrenzen',
             'Samenwerking met ventilatiebedrijven, installateurs en bouwteams',
-            'Nette uitvoering rond plafonds, schachten en technische ruimtes',
-          ],
-        },
-        drywall: {
-          title: 'Gipsplaten en metalstud voor professionele projecten',
-          body:
-            'Wij leveren en monteren complete gipsplaat- en metalstudconstructies voor zakelijke omgevingen. Wanden, plafonds, schachten en technische sparingen worden afgestemd op installaties, ventilatie, brandwerende eisen waar relevant en de planning van het project.',
-          items: [
-            'Metalstudwanden, plafonds, voorzetwanden en technische schachten',
-            'Sparingen en voorbereiding rond leidingen, ventilatie en aansluitpunten',
-            'Strakke montage voor kantoren, horeca, retail en bedrijfsruimten',
-            'Projectmatige uitvoering met controle op maatvoering en oplevering',
+            'Overdracht van het uitgevoerde ventilatieonderdeel volgens afspraak',
           ],
         },
       };
@@ -302,14 +299,14 @@ function audienceSections(
       return [
         technicalOffer[service],
         {
-          title: 'Samenwerking op professioneel projectniveau',
+          title: 'Zakelijke scope en projectlocatie worden vooraf beoordeeld',
           body:
-            'Zakelijke opdrachtgevers hebben geen behoefte aan losse beloftes, maar aan uitvoerders die meedenken, afspraken nakomen en het project niet vertragen. Daarom werken wij met duidelijke werkafspraken, praktische communicatie en een professionele opleverstructuur.',
+            'Het B2B-aanbod is beperkt tot sanitair en leidingwerk, thermische installaties en ventilatie. Vanuit Woerden beoordelen wij projectlocaties aan de hand van scope, planning, reistijd en beschikbare capaciteit.',
           items: [
-            'Voor aannemers, architecten, projectontwikkelaars en installatiepartners',
-            'Geschikt voor kantoren, horeca, retail, zorglocaties en bedrijfsruimten',
-            'Heldere afbakening van werkzaamheden, planning en verantwoordelijkheden',
-            'Representatieve uitvoering op locaties waar professionele uitstraling telt',
+            'Oriëntatiepunten zuid: Breda, Tilburg en Eindhoven; noord: Purmerend en Beverwijk',
+            'Oriëntatiepunten west: Den Haag, Rotterdam en Leiden; oost: Lelystad en Zwolle',
+            'Genoemde plaatsen zijn geen dekkings- of acceptatiegarantie; andere locaties alleen na beoordeling',
+            'Spoed alleen beoordeeld voor installaties die AZGS eerder binnen het betreffende project uitvoerde; geen openbare SLA of gegarandeerde aankomsttijd',
           ],
         },
       ];
@@ -331,7 +328,7 @@ function audienceSections(
         heating: {
           title: 'Verwarmingsstoringen en warmteherstel',
           body:
-            'Voor kantoren, horeca, hotels en beheerde gebouwen herstellen wij verwarmingsproblemen met focus op comfort, veiligheid en minimale verstoring van de locatie. Het doel is dat gebruikers zo snel mogelijk weer normaal verder kunnen.',
+            'Voor kantoren, horeca, hotels en beheerde gebouwen herstellen wij verwarmingsproblemen met focus op comfort, veiligheid en minimale verstoring van de locatie. Het doel is dat de locatie na de afgesproken werkzaamheden verantwoord weer kan worden gebruikt.',
           items: [
             'Storingen, lekkages, radiatoren, leidingen en verdelers',
             'Praktische diagnose en herstel van bereikbare technische onderdelen',
@@ -465,9 +462,17 @@ function audienceSections(
   }
 
   if (audience === 'business') {
-    const technicalOffer: Record<AudienceServiceKey, AudienceServiceContent['sections'][number]> = {
+    if (service === 'drywall') {
+      return [{
+        title: 'Not a business service',
+        body: 'Drywall, metal stud and other fit-out work are not offered as B2B services.',
+        items: ['Use the business form only for plumbing and pipework, thermal systems or ventilation.'],
+      }];
+    }
+
+    const technicalOffer: Record<Exclude<AudienceServiceKey, 'drywall'>, AudienceServiceContent['sections'][number]> = {
       plumbing: {
-        title: 'B2B installation work for construction and fit-out projects',
+        title: 'B2B installation work for business projects',
         body:
           'We execute pipework, plumbing connections and technical preparations for commercial projects. The cooperation is built for contractors, architects, project managers, installation companies, ventilation companies and property teams that need execution capacity or a specialist partner.',
         items: [
@@ -480,45 +485,34 @@ function audienceSections(
       heating: {
         title: 'Thermal systems for commercial buildings',
         body:
-          'We deliver heating pipework, manifolds, radiators, underfloor heating and technical preparation for heat pumps within business projects. The execution is aligned with the overall project planning and technical conditions of the building.',
+          'We deliver heating pipework, manifolds, radiators and underfloor heating within business projects. Execution is aligned with the overall project programme and confirmed technical conditions of the building.',
         items: [
           'Heating pipework, manifolds, radiators and connection points',
-          'Preparation for underfloor heating and heat pump components',
-          'Technical coordination with installation and finishing partners',
+          'Underfloor heating as part of the thermal system',
+          'Technical coordination with other installation partners',
           'Practical handover points for project management or client',
         ],
       },
       underfloor: {
         title: 'Underfloor heating as part of B2B project execution',
         body:
-          'We execute underfloor heating for business projects where floor build-up, planning and technical coordination are critical. The work is aligned with contractors, installation partners, flooring companies and project management so the system fits the full site sequence.',
+          'We execute underfloor heating for business projects where floor build-up, planning and technical coordination are critical. The work is aligned with contractors, installation partners and project management so the system fits the full site sequence.',
         items: [
           'Underfloor heating circuits, manifolds, pipe layouts and connection points',
-          'Coordination with floor build-up, insulation, screed and finishing',
+          'Coordination with floor build-up, insulation and screed',
           'Execution for offices, hospitality, retail, care locations and commercial spaces',
           'Checks on zones, access and handover to project management',
         ],
       },
       climate: {
-        title: 'Ventilation and heat pump preparation for project teams',
+        title: 'Ventilation for business project teams',
         body:
-          'We support commercial projects with installation, modifications and technical preparation around ventilation, air penetrations, heat pump components and energy-efficient systems. Execution is aligned with construction and MEP planning.',
+          'We install and modify ventilation ducts, air penetrations and connection points within a defined installation package. Execution is aligned with the confirmed construction and installation programme.',
         items: [
           'Ventilation ducts, penetrations, connection points and technical zones',
-          'Preparation for heat pumps and energy-efficient systems',
+          'Installation and modification within confirmed system boundaries',
           'Cooperation with ventilation companies, installers and construction teams',
-          'Clean execution around ceilings, shafts and technical rooms',
-        ],
-      },
-      drywall: {
-        title: 'Drywall and metal stud for professional projects',
-        body:
-          'We supply and install complete drywall and metal stud systems for business environments. Walls, ceilings, shafts and technical openings are coordinated with installations, ventilation, relevant fire requirements and project planning.',
-        items: [
-          'Metal stud walls, ceilings, partition walls and technical shafts',
-          'Openings and preparation around pipework, ventilation and connections',
-          'Clean installation for offices, hospitality, retail and commercial spaces',
-          'Project-based execution with checks on dimensions and handover',
+          'Handover of the executed ventilation component as agreed',
         ],
       },
     };
@@ -526,14 +520,14 @@ function audienceSections(
     return [
       technicalOffer[service],
       {
-        title: 'Professional project cooperation',
+        title: 'Business scope and project location are assessed in advance',
         body:
-          'Business clients need execution partners who think ahead, keep agreements and do not slow the project down. We work with clear agreements, practical communication and a professional handover structure.',
+          'The B2B offer is limited to plumbing and pipework, thermal systems and ventilation. From Woerden, we assess project locations against scope, programme, travel time and available capacity.',
         items: [
-          'For contractors, architects, developers and installation partners',
-          'Suitable for offices, hospitality, retail, care locations and commercial spaces',
-          'Clear boundaries for work, planning and responsibilities',
-          'Representative execution on sites where professional appearance matters',
+          'Orientation points south: Breda, Tilburg and Eindhoven; north: Purmerend and Beverwijk',
+          'Orientation points west: The Hague, Rotterdam and Leiden; east: Lelystad and Zwolle',
+          'Named places do not guarantee coverage or acceptance; other locations require assessment',
+          'Urgent work is assessed only for installations previously executed by AZGS within that project; no public SLA or guaranteed arrival time',
         ],
       },
     ];
@@ -555,7 +549,7 @@ function audienceSections(
       heating: {
         title: 'Heating faults and restoring comfort',
         body:
-          'For offices, hospitality, hotels and managed buildings, we repair heating problems with focus on comfort, safety and minimal disruption to the location. The goal is to get users back to normal quickly.',
+          'For offices, hospitality, hotels and managed buildings, we repair heating problems with focus on comfort, safety and minimal disruption to the location. The aim is for the location to return to responsible use after the agreed work.',
         items: [
           'Faults, leaks, radiators, pipework and manifolds',
           'Practical diagnosis and repair of accessible technical components',
@@ -702,11 +696,26 @@ export function getAudienceServiceContent(
   const altPath = audienceServiceUrl(audience, service, altLocale);
 
   const heading = name;
-  const title = locale === 'nl' ? `${name} regio Utrecht | AZGS` : `${name} in the Utrecht region | AZGS`;
-  const description =
-    locale === 'nl'
-      ? `${name} door AZ Grand Solutions. Technische uitvoering voor ${descriptionLabel} met duidelijke planning en nette oplevering in regio Utrecht.`
-      : `${name} by AZ Grand Solutions. Technical execution for ${descriptionLabel} with clear planning and clean handover in the Utrecht region.`;
+  const title = audience === 'business'
+    ? `${name} | AZGS`
+    : audience === 'maintenance'
+      ? locale === 'nl'
+        ? `${name} vanuit Woerden | AZGS`
+        : `${name} from Woerden | AZGS`
+      : locale === 'nl'
+        ? `${name} regio Utrecht | AZGS`
+        : `${name} in the Utrecht region | AZGS`;
+  const description = audience === 'business'
+    ? locale === 'nl'
+      ? `${name} door AZ Grand Solutions. Projectlocatie, technische scope, planning en capaciteit worden vooraf vanuit Woerden beoordeeld.`
+      : `${name} by AZ Grand Solutions. Project location, technical scope, programme and capacity are assessed from Woerden in advance.`
+    : audience === 'maintenance'
+      ? locale === 'nl'
+        ? `${name} voor ${descriptionLabel}, binnen 50 km of circa 1 uur reizen vanaf Woerden. Werkgebiedscriterium, geen SLA.`
+        : `${name} for ${descriptionLabel}, up to 50 km or about 1 hour from Woerden. Service-area criterion, not an SLA.`
+      : locale === 'nl'
+        ? `${name} door AZ Grand Solutions. Technische uitvoering voor ${descriptionLabel} met duidelijke planning en nette oplevering in regio Utrecht.`
+        : `${name} by AZ Grand Solutions. Technical execution for ${descriptionLabel} with clear planning and clean handover in the Utrecht region.`;
 
   return {
     audience,
@@ -720,7 +729,11 @@ export function getAudienceServiceContent(
     heading,
     intro: serviceSpecificIntro(audience, service, locale),
     image: image.image,
-    imageAlt: image.alt[locale],
+    imageAlt: audience === 'business' && service === 'climate'
+      ? locale === 'nl'
+        ? 'Ventilatie-installatie als onderdeel van een zakelijk project'
+        : 'Ventilation installation as part of a business project'
+      : image.alt[locale],
     sections: audienceSections(audience, service, locale),
     proofTitle: locale === 'nl' ? 'Onze werkwijze' : 'Our working method',
     proofItems:
@@ -746,12 +759,15 @@ export function getAudienceServiceContent(
 
 export function getAudienceServiceParams(locale: Locale) {
   const audiences: ServiceAudience[] = ['private', 'business', 'maintenance'];
-  const services: AudienceServiceKey[] = ['plumbing', 'heating', 'underfloor', 'climate', 'drywall'];
+  const servicesFor = (audience: ServiceAudience): AudienceServiceKey[] =>
+    audience === 'business'
+      ? ['plumbing', 'heating', 'underfloor', 'climate']
+      : ['plumbing', 'heating', 'underfloor', 'climate', 'drywall'];
 
   return audiences.flatMap((audience) =>
-    services.map((service) => ({
+    servicesFor(audience).map((service) => ({
       audience: audienceSlug(audience, locale),
-      service: audienceServiceSlug(service, locale),
+      service: audienceServiceSlug(service, locale, audience),
     }))
   );
 }
@@ -762,11 +778,15 @@ export function resolveAudienceServiceParams(
   serviceSlugValue: string
 ): { audience: ServiceAudience; service: AudienceServiceKey } | null {
   const audiences: ServiceAudience[] = ['private', 'business', 'maintenance'];
-  const services: AudienceServiceKey[] = ['plumbing', 'heating', 'underfloor', 'climate', 'drywall'];
 
   const audience = audiences.find((item) => audienceSlug(item, locale) === audienceSlugValue);
-  const service = services.find((item) => audienceServiceSlug(item, locale) === serviceSlugValue);
+  if (!audience) return null;
 
-  if (!audience || !service) return null;
+  const services: AudienceServiceKey[] = audience === 'business'
+    ? ['plumbing', 'heating', 'underfloor', 'climate']
+    : ['plumbing', 'heating', 'underfloor', 'climate', 'drywall'];
+  const service = services.find((item) => audienceServiceSlug(item, locale, audience) === serviceSlugValue);
+
+  if (!service) return null;
   return { audience, service };
 }

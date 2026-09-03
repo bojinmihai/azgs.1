@@ -1,43 +1,72 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AudienceServicePage } from '@/components/AudienceServicePage';
+import { BusinessSectorPage } from '@/components/BusinessSectorPage';
 import {
   getAudienceServiceContent,
   getAudienceServiceParams,
   resolveAudienceServiceParams,
 } from '@/lib/audience-services';
+import { getBusinessSectorBySlug, getBusinessSectorParams } from '@/lib/business-sectors';
 import { buildMetadata } from '@/lib/seo';
+import { audienceSlug } from '@/lib/site';
 
 type Params = Promise<{ audience: string; service: string }>;
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return getAudienceServiceParams('en');
+  return [
+    ...getAudienceServiceParams('en'),
+    ...getBusinessSectorParams('en').map(({ sector }) => ({
+      audience: audienceSlug('business', 'en'),
+      service: sector,
+    })),
+  ];
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { audience, service } = await params;
   const resolved = resolveAudienceServiceParams('en', audience, service);
-  if (!resolved) notFound();
+  if (resolved) {
+    const content = getAudienceServiceContent(resolved.audience, resolved.service, 'en');
+    return buildMetadata({
+      locale: 'en',
+      title: content.title,
+      description: content.description,
+      path: content.path,
+      altPath: content.altPath,
+      image: content.image,
+    });
+  }
 
-  const content = getAudienceServiceContent(resolved.audience, resolved.service, 'en');
+  const sector =
+    audience === audienceSlug('business', 'en') ? getBusinessSectorBySlug('en', service) : null;
+  if (!sector) notFound();
+
   return buildMetadata({
     locale: 'en',
-    title: content.title,
-    description: content.description,
-    path: content.path,
-    altPath: content.altPath,
-    image: content.image,
+    title: sector.title,
+    description: sector.description,
+    path: sector.path,
+    altPath: sector.altPath,
   });
 }
 
 export default async function Page({ params }: { params: Params }) {
   const { audience, service } = await params;
   const resolved = resolveAudienceServiceParams('en', audience, service);
-  if (!resolved) notFound();
+  if (resolved) {
+    return (
+      <AudienceServicePage
+        content={getAudienceServiceContent(resolved.audience, resolved.service, 'en')}
+      />
+    );
+  }
 
-  return (
-    <AudienceServicePage
-      content={getAudienceServiceContent(resolved.audience, resolved.service, 'en')}
-    />
-  );
+  const sector =
+    audience === audienceSlug('business', 'en') ? getBusinessSectorBySlug('en', service) : null;
+  if (!sector) notFound();
+
+  return <BusinessSectorPage content={sector} />;
 }

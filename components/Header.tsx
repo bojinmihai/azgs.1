@@ -22,8 +22,7 @@ function serviceMenu(locale: Locale, audience: AudienceScope): { heading: string
         { href: audienceServiceUrl('business', 'plumbing', locale), label: isNl ? 'Installatiewerk B2B' : 'B2B installation work' },
         { href: audienceServiceUrl('business', 'heating', locale), label: isNl ? 'Thermische installaties' : 'Thermal systems' },
         { href: audienceServiceUrl('business', 'underfloor', locale), label: isNl ? 'Vloerverwarming B2B' : 'B2B underfloor heating' },
-        { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompvoorbereiding' : 'Ventilation and heat pump preparation' },
-        { href: audienceServiceUrl('business', 'drywall', locale), label: isNl ? 'Gipsplaten en metalstud projecten' : 'Drywall and metal stud projects' },
+        { href: audienceServiceUrl('business', 'climate', locale), label: isNl ? 'Ventilatieprojecten' : 'Ventilation projects' },
       ],
     };
   }

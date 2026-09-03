@@ -5,23 +5,19 @@ import Link from 'next/link';
 import type { Locale } from '@/lib/site';
 import { getMessages } from '@/lib/i18n';
 import { COMPANY, url } from '@/lib/site';
-
-const STORAGE_KEY = 'azgs-consent-v1';
+import {
+  ANALYTICS_CONSENT_STORAGE_KEY,
+  announceAnalyticsConsent,
+  clearAnalyticsAttribution,
+  deleteAnalyticsCookies,
+  getAnalyticsConsent,
+  isLocalAnalyticsPreview,
+  safePageLocation,
+  safePageReferrer,
+  setAnalyticsCollectionDisabled,
+} from '@/lib/analytics';
 
 type Props = { locale: Locale };
-
-declare global {
-  interface Window {
-    dataLayer: unknown[];
-    gtag: (...args: unknown[]) => void;
-    azgsConsent?: {
-      accept: () => void;
-      reject: () => void;
-      reset: () => void;
-      status: () => string | null;
-    };
-  }
-}
 
 export function CookieConsent({ locale }: Props) {
   const t = getMessages(locale).consent;
@@ -30,13 +26,36 @@ export function CookieConsent({ locale }: Props) {
 
   const loadGA = useCallback(() => {
     if (typeof window === 'undefined') return;
-    if (document.getElementById('ga4-script')) return;
+    setAnalyticsCollectionDisabled(false);
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer.push(args);
+    window.gtag = window.gtag || function gtag(...args: unknown[]) {
+      (window.dataLayer ||= []).push(args);
     };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+    });
+    window.gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
     window.gtag('js', new Date());
-    window.gtag('config', COMPANY.ga4, { anonymize_ip: true });
+    window.gtag('config', COMPANY.ga4, {
+      anonymize_ip: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      ads_data_redaction: true,
+      page_location: safePageLocation(),
+      page_referrer: safePageReferrer(),
+    });
+    if (isLocalAnalyticsPreview()) return;
+    if (document.getElementById('ga4-script')) return;
     const script = document.createElement('script');
     script.id = 'ga4-script';
     script.async = true;
@@ -44,35 +63,59 @@ export function CookieConsent({ locale }: Props) {
     document.head.appendChild(script);
   }, []);
 
+  const stopGA = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+    }
+    setAnalyticsCollectionDisabled(true);
+    document.getElementById('ga4-script')?.remove();
+    deleteAnalyticsCookies();
+    clearAnalyticsAttribution();
+  }, []);
+
   const accept = useCallback(() => {
-    localStorage.setItem(STORAGE_KEY, 'accepted');
+    try { localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, 'accepted'); } catch { /* no-op */ }
     loadGA();
+    announceAnalyticsConsent('accepted');
     setVisible(false);
   }, [loadGA]);
 
   const reject = useCallback(() => {
-    localStorage.setItem(STORAGE_KEY, 'rejected');
+    try { localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, 'rejected'); } catch { /* no-op */ }
+    stopGA();
+    announceAnalyticsConsent('rejected');
     setVisible(false);
-  }, []);
+  }, [stopGA]);
 
   const reset = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY);
+    try { localStorage.removeItem(ANALYTICS_CONSENT_STORAGE_KEY); } catch { /* no-op */ }
+    stopGA();
+    announceAnalyticsConsent(null);
     setVisible(true);
-  }, []);
+  }, [stopGA]);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = getAnalyticsConsent();
     if (!stored) {
+      stopGA();
       setVisible(true);
     } else if (stored === 'accepted') {
       loadGA();
+    } else {
+      stopGA();
     }
 
     window.azgsConsent = {
       accept,
       reject,
       reset,
-      status: () => localStorage.getItem(STORAGE_KEY),
+      status: getAnalyticsConsent,
     };
 
     const onConsentAction = (event: MouseEvent) => {
@@ -90,7 +133,7 @@ export function CookieConsent({ locale }: Props) {
       document.removeEventListener('click', onConsentAction);
       delete window.azgsConsent;
     };
-  }, [accept, loadGA, reject, reset]);
+  }, [accept, loadGA, reject, reset, stopGA]);
 
   if (!visible) return null;
 
@@ -120,14 +163,14 @@ export function CookieConsent({ locale }: Props) {
         <div className="consent-banner__actions">
           <button
             type="button"
-            className="consent-banner__btn consent-banner__btn--ghost"
+            className="consent-banner__btn consent-banner__btn--choice"
             onClick={reject}
           >
             {t.reject}
           </button>
           <button
             type="button"
-            className="consent-banner__btn consent-banner__btn--primary"
+            className="consent-banner__btn consent-banner__btn--choice"
             onClick={accept}
           >
             {t.accept}

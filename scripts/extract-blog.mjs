@@ -2,6 +2,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+if (process.env.AZGS_ALLOW_LEGACY_EXTRACT !== '1') {
+  console.error(
+    'Legacy blog extraction is blocked: legacy/ contains obsolete service claims. ' +
+      'Use the maintained content/blog sources. Set AZGS_ALLOW_LEGACY_EXTRACT=1 only after a deliberate legacy review.',
+  );
+  process.exit(1);
+}
+
 const ROOT = process.cwd();
 const LEGACY = path.join(ROOT, 'legacy');
 const OUT = path.join(ROOT, 'content/blog');

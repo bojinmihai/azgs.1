@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "publicationEnabled": false,
+  "lastAudited": "2026-09-03",
+  "sourceAudit": [
+    {
+      "platform": "Werkspot",
+      "profileUrl": "https://www.werkspot.nl/profiel/a-z-grand-solutions?profileTabSelected=reviews",
+      "observedAt": "2026-09-03",
+      "observedAggregate": {
+        "ratingValue": 4.5,
+        "reviewCount": 6
+      },
+      "connectionStatus": "public-source-identified",
+      "republicationPermission": "not-documented",
+      "note": "Audit evidence only. Do not render the aggregate or copy individual reviews without a recorded source check and separate publication permission."
+    }
+  ],
+  "reviews": []
+}

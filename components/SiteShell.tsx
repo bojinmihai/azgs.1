@@ -5,17 +5,18 @@ import { WhatsAppFloat } from './WhatsAppFloat';
 import { CookieConsent } from './CookieConsent';
 import { MobileNavScript } from './MobileNavScript';
 import { ExternalMapConsent } from './ExternalMapConsent';
-import { TermsConsentScript } from './TermsConsentScript';
+import { AnalyticsTracker } from './AnalyticsTracker';
 import { getMessages } from '@/lib/i18n';
 
 type Props = {
   locale: Locale;
   altPath?: string;
   audience?: AudienceScope;
+  showWhatsApp?: boolean;
   children: React.ReactNode;
 };
 
-export function SiteShell({ locale, altPath, audience = 'general', children }: Props) {
+export function SiteShell({ locale, altPath, audience = 'general', showWhatsApp = true, children }: Props) {
   const t = getMessages(locale);
   return (
     <>
@@ -25,11 +26,11 @@ export function SiteShell({ locale, altPath, audience = 'general', children }: P
       <Header locale={locale} altPath={altPath} audience={audience} />
       <main id="main">{children}</main>
       <Footer locale={locale} audience={audience} />
-      <WhatsAppFloat label={`${t.common.whatsapp} ${t.nav.contact}`} />
+      {showWhatsApp ? <WhatsAppFloat label={`${t.common.whatsapp} ${t.nav.contact}`} /> : null}
       <CookieConsent locale={locale} />
+      <AnalyticsTracker />
       <MobileNavScript />
       <ExternalMapConsent />
-      <TermsConsentScript />
     </>
   );
 }

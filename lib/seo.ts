@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { COMPANY, SITE_URL, type Locale } from './site';
+import { COMPANY, SITE_URL, type AudienceScope, type Locale } from './site';
 
 type SeoArgs = {
   locale: Locale;
@@ -25,18 +25,6 @@ export function buildMetadata({
   return {
     title,
     description,
-    keywords: [
-      'AZ Grand Solutions',
-      'installatiebedrijf Woerden',
-      'loodgieter Woerden',
-      'verwarming installateur Utrecht',
-      'ventilatie onderhoud Utrecht',
-      'warmtepomp voorbereiding',
-      'gipsplaten bedrijf Utrecht',
-      'gebouw onderhoud Utrecht',
-      'vloerverwarming Woerden',
-      'regio Utrecht',
-    ],
     metadataBase: new URL(SITE_URL),
     alternates: {
       canonical,
@@ -88,17 +76,20 @@ export function localBusinessJsonLd(locale: Locale) {
   const isNl = locale === 'nl';
   return {
     '@context': 'https://schema.org',
-    '@type': ['HomeAndConstructionBusiness', 'Electrician', 'Plumber'],
+    '@type': ['HomeAndConstructionBusiness', 'Plumber'],
     '@id': `${SITE_URL}/#business`,
     name: COMPANY.name,
     legalName: COMPANY.legalName,
     alternateName: [COMPANY.tradeName, COMPANY.shortName],
+    identifier: [
+      { '@type': 'PropertyValue', propertyID: 'KVK', value: COMPANY.kvk },
+      { '@type': 'PropertyValue', propertyID: 'Vestigingsnummer', value: COMPANY.establishmentNumber },
+    ],
     url: SITE_URL,
     telephone: COMPANY.phone,
     email: COMPANY.email,
     image: `${SITE_URL}/assets/img/logo/logo-primary.svg`,
     logo: `${SITE_URL}/assets/img/logo/logo-primary.svg`,
-    priceRange: '€€',
     address: {
       '@type': 'PostalAddress',
       streetAddress: COMPANY.address.street,
@@ -106,36 +97,31 @@ export function localBusinessJsonLd(locale: Locale) {
       addressLocality: COMPANY.address.city,
       addressCountry: COMPANY.address.country,
     },
-    areaServed: [
-      { '@type': 'City', name: 'Woerden' },
-      { '@type': 'City', name: 'Utrecht' },
-      { '@type': 'City', name: 'De Meern' },
-      { '@type': 'City', name: 'Maarssen' },
-      { '@type': 'City', name: 'Nieuwegein' },
-      { '@type': 'City', name: 'Houten' },
-      { '@type': 'City', name: 'Zeist' },
-      { '@type': 'City', name: 'Gouda' },
-      { '@type': 'AdministrativeArea', name: 'Regio Utrecht' },
-      { '@type': 'Country', name: 'Netherlands' },
-    ],
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '18:00',
-      },
-    ],
+    // Woerden is the common denominator. Broader B2B project areas and the
+    // separate maintenance/urgent-request limits belong to service schemas.
+    areaServed: [{ '@type': 'City', name: 'Woerden' }],
     availableService: (isNl
-      ? ['Gipsplaten plaatsen', 'Sanitair installeren', 'Verwarming aanleggen', 'Ventilatieondersteuning', 'Warmtepompvoorbereiding', 'Vloerverwarming aanleggen', 'Gebouwonderhoud', 'Herstelafwerking na installatiewerk', '24/7 spoedservice']
-      : ['Drywall installation', 'Plumbing installation', 'Heating installation', 'Ventilation support', 'Heat-pump preparation', 'Underfloor heating installation', 'Building maintenance', 'Finishing repair after installation work', '24/7 emergency service']
+      ? [
+          'Sanitaire installaties voor particuliere en zakelijke projecten',
+          'Thermische installaties voor particuliere en zakelijke projecten',
+          'Ventilatie voor particuliere en zakelijke projecten',
+          'Gipsplaat- en herstelwerk voor particuliere en onderhoudsopdrachten',
+          'Gebouwonderhoud rond Woerden',
+        ]
+      : [
+          'Plumbing installations for private and business projects',
+          'Thermal systems for private and business projects',
+          'Ventilation for private and business projects',
+          'Drywall and finishing repair for private and maintenance assignments',
+          'Building maintenance around Woerden',
+        ]
     ).map((name) => ({ '@type': 'Service', name })),
     slogan: isNl
-      ? 'Installaties, gipsplaten en onderhoud met één aanspreekpunt'
-      : 'Installations, drywall and maintenance with one point of contact',
+      ? 'Technische uitvoering met een duidelijk afgesproken scope'
+      : 'Technical execution with a clearly agreed scope',
     description: isNl
-      ? 'Technische installaties, gipsplaten en onderhoud voor woningen, bedrijven en gebouwbeheerders in regio Utrecht: sanitair, verwarming, ventilatie, warmtepompen, vloerverwarming en herstelafwerking na reparatie.'
-      : 'Technical installations, drywall and building maintenance for homes, businesses and property managers in the Utrecht region, including plumbing, heating, ventilation, heat pumps and underfloor heating.',
+      ? 'Sanitaire, thermische en ventilatie-installaties voor particuliere en zakelijke projecten. Gipsplaat- en herstelwerk is beperkt tot particuliere en onderhoudsopdrachten. Werkgebieden verschillen per type aanvraag en worden vanuit Woerden beoordeeld.'
+      : 'Plumbing, thermal and ventilation systems for private and business projects. Drywall and finishing repair is limited to private and maintenance assignments. Service areas differ by request type and are assessed from Woerden.',
     inLanguage: isNl ? 'nl-NL' : 'en',
   };
 }
@@ -145,9 +131,41 @@ type ServiceJsonLdArgs = {
   name: string;
   description: string;
   path: string;
+  audience?: AudienceScope;
 };
 
-export function serviceJsonLd({ locale, name, description, path }: ServiceJsonLdArgs) {
+function serviceArea(locale: Locale, audience: AudienceScope = 'general') {
+  if (audience === 'business') {
+    return ['Woerden', 'Breda', 'Tilburg', 'Eindhoven', 'Purmerend', 'Beverwijk', 'Den Haag', 'Rotterdam', 'Leiden', 'Lelystad', 'Zwolle'].map(
+      (name) => ({ '@type': 'City', name })
+    );
+  }
+
+  if (audience === 'maintenance') {
+    return [
+      { '@type': 'City', name: 'Woerden' },
+      {
+        '@type': 'Place',
+        name:
+          locale === 'nl'
+            ? 'Werkgebied gebouwonderhoud: maximaal 50 km of circa 1 uur reistijd vanaf Woerden'
+            : "Building-maintenance area: up to 50 km or about 1 hour's travel from Woerden",
+      },
+    ];
+  }
+
+  if (audience === 'private') {
+    return [
+      { '@type': 'City', name: 'Woerden' },
+      { '@type': 'City', name: 'Utrecht' },
+      { '@type': 'AdministrativeArea', name: 'Regio Utrecht' },
+    ];
+  }
+
+  return [{ '@type': 'City', name: 'Woerden' }];
+}
+
+export function serviceJsonLd({ locale, name, description, path, audience = 'general' }: ServiceJsonLdArgs) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -164,11 +182,7 @@ export function serviceJsonLd({ locale, name, description, path }: ServiceJsonLd
       telephone: COMPANY.phone,
       url: SITE_URL,
     },
-    areaServed: [
-      { '@type': 'City', name: 'Woerden' },
-      { '@type': 'City', name: 'Utrecht' },
-      { '@type': 'AdministrativeArea', name: 'Regio Utrecht' },
-    ],
+    areaServed: serviceArea(locale, audience),
     inLanguage: locale === 'nl' ? 'nl-NL' : 'en',
   };
 }
