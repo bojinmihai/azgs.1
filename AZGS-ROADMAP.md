@@ -967,7 +967,7 @@ Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organic
 
 - Utilizatorul a confirmat că AZGS nu primește clienți la sediu. Afișarea adresei Alpenstraat 12 a fost dezactivată în cont, iar readback-ul editorului confirmă `Fără locație. Doar livrări și servicii la domiciliu`.
 - Paginile Contact și Despre noi, precum și cardul de contact NL/EN, identifică Alpenstraat exclusiv drept adresă de înregistrare și precizează că nu este o locație pentru vizite ale clienților. Harta și CTA-ul de localizare au fost eliminate pentru a nu transmite un semnal contradictoriu de storefront; politicile cookies/privacy au fost aliniate la eliminarea integrării Google Maps.
-- Cele 14 zone de servicii au rămas neschimbate. Propagarea adresei ascunse în rezultatul public Google Search/Maps este încă în așteptare.
+- Cele 14 zone de servicii au rămas neschimbate. Verificarea ulterioară în rezultatul public Google confirmă că strada nu mai este afișată și că profilul prezintă numai zona deservită.
 - Programul luni–vineri 08:00–17:00 a rămas neschimbat. Trebuie confirmat dacă acesta este programul obișnuit de funcționare orientat către clienți. Disponibilitatea telefonică poate susține programul unui service-area business, dar nu justifică afișarea adresei ca storefront.
 - Semnalizarea permanentă ar fi însemnat numele firmei afișat fizic pe un panou fix. Clarificarea nu mai este necesară pentru decizia actuală, deoarece lipsa primirii clienților impune oricum ascunderea adresei.
 
@@ -982,5 +982,5 @@ Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organic
 
 - AZGS nu are încă un cont Apple Business. Înscrierea începe la `business.apple.com` cu o adresă de e-mail de business controlată de companie; fluxul creează administratorul inițial, apoi urmează verificarea organizației și brandul `Single brand`.
 - Alpenstraat 12 nu va fi publicată drept locație Apple Maps unde sunt primiți clienți. Nu presupunem că Apple oferă un echivalent al profilului Google de tip service-area business.
-- Rămân de confirmat programul obișnuit orientat către clienți și toate accesările Google Ads. După deploy se verifică live comportamentul cookie și propagarea adresei ascunse.
+- Rămân de confirmat programul obișnuit orientat către clienți și toate accesările Google Ads. Comportamentul cookie și ascunderea publică a adresei au fost verificate live.
 - Fotografiile și pagina de proiecte rămân intenționat pentru ultima etapă, cu verificarea atentă a sursei, drepturilor și conținutului înainte de publicare.

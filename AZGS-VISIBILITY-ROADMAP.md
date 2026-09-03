@@ -47,7 +47,7 @@ Nu este necesar un plan plătit pentru această etapă. Search Console, Google B
 ### Google Business Profile
 
 - Profilul verificat este `A-Z Grand Solutions`, cu website-ul și telefonul corecte.
-- Categoria principală `Instalator` a rămas neschimbată. Afișarea publică a adresei Alpenstraat 12 a fost dezactivată în cont, profilul este configurat ca service-area business, iar propagarea schimbării în Google Search/Maps este încă în așteptare.
+- Categoria principală `Instalator` a rămas neschimbată. Afișarea publică a adresei Alpenstraat 12 a fost dezactivată, iar verificarea ulterioară în rezultatul public Google confirmă că profilul nu mai afișează strada și prezintă numai zona deservită.
 - Descrierea aprobată, de 643 de caractere, este publicată integral în profil și nu mai conține afirmația „24/7 bereikbaar”.
 - URL-ul `https://azgs.nl/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=local_profile` este valoarea curentă publicată în profil.
 - Ariile generale Țările de Jos și Noord-Brabant au fost eliminate. Profilul păstrează exact 14 localități normalizate: Lopik, Utrecht, Woerden, Zegveld, Montfoort, Oudewater, Bodegraven, Nieuwegein, IJsselstein, Kamerik, Reeuwijk, Harmelen, Nieuwkoop și Breukelen.
@@ -95,7 +95,7 @@ Pachetul a fost executat după aprobarea explicită. Stările de mai jos separă
 
 1. **Search Console — finalizat:** sitemapul a fost retrimis și citit cu succes cu 98 de pagini; recrawl-ul celor zece URL-uri prioritare a fost acceptat. Nu s-au folosit Removals sau Validate Fix.
 2. **GA4 — configurare principală finalizată, test pending:** măsurările automate care ar dubla implementarea au fost dezactivate, redacția query-urilor a fost configurată, cele 12 dimensiuni au fost create și Search Console a fost asociat. Realtime/DebugView nu a putut fi finalizat, iar `generate_lead` a rămas neobservat și nemarcat.
-3. **Google Business Profile — modificare salvată, propagare publică în așteptare:** adresa a fost ascunsă în cont, iar readback-ul editorului confirmă profilul fără locație publică. Cele 14 localități au rămas neschimbate. Programul 08:00–17:00 nu a fost modificat; rămâne de confirmat dacă reprezintă programul obișnuit orientat către clienți al firmei.
+3. **Google Business Profile — finalizat și confirmat public:** adresa a fost ascunsă, readback-ul editorului confirmă profilul fără locație publică, iar rezultatul Google nu mai afișează strada. Cele 14 localități au rămas neschimbate. Programul 08:00–17:00 nu a fost modificat; rămâne de confirmat dacă reprezintă programul obișnuit orientat către clienți al firmei.
 4. **Bing Webmaster Tools — în așteptare:** nu exista autentificare, deci nu s-a făcut importul din Search Console și nu s-a modificat sitemapul în cont.
 5. **Bing Places for Business — neînceput:** listarea se verifică și se revendică numai cu un cont potrivit, separat de Bing Webmaster Tools.
 6. **Apple Business — în așteptarea înscrierii:** contul nu există încă; înscrierea începe la `business.apple.com` cu o adresă de e-mail de business controlată de companie și creează administratorul inițial. Verificarea organizației și brandul urmează după aceea. Alpenstraat 12 nu va fi publicată ca storefront.
