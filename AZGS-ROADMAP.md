@@ -787,3 +787,64 @@ Baseline public verificat în Git: `1c63315` — `Add B2B terms and conditions`
 - trebuie confirmate în dashboard setările Formspree pentru destinatari, domeniu, spam, cotă și retenție și setările GA4 pentru Enhanced Measurement, Signals, legături publicitare, redacție, partajare și retenție;
 - nu este necesar acum un plan plătit. Formspree plătit se reevaluează numai dacă limita reală, uploadurile sau automatizările devin necesare; GA4 Standard și găzduirea statică actuală sunt suficiente pentru implementarea verificată;
 - fotografiile și pagina de proiecte rămân în afara acestei lucrări, conform instrucțiunii explicite; asseturile existente nu au fost înlocuite în acest release.
+
+### Grupa 9 — checkpoint final publicat — 3 septembrie 2026
+
+**Status:** Grupele 0–9 sunt finalizate și publicate exclusiv prin GitHub. Nu s-a folosit Wrangler.
+
+**Commituri de producție**
+
+- `7e1f19f96383ff2d45a0d7824fc565f888be6dc6` — release-ul bilingv complet, documentele juridice și comerciale, formularul adaptiv, analytics, paginile B2B/mentenanță/werkwijze, infrastructura pentru recenzii și auditul final;
+- `668e20f2ec5f7875ee273eeb27ed63b94178fe96` — corecția post-deploy de accesibilitate: paletă separată pentru text portocaliu, stări hover conforme și benzi CTA comerciale cu contrast ridicat și layout responsive;
+- commitul care conține acest checkpoint modifică numai `AZGS-ROADMAP.md`; SHA-ul său poate fi citit cu `git log -1 --format=%H` la reluarea lucrării.
+
+Ambele commituri de producție sunt sincronizate identic pe:
+
+- `origin/main` — `https://github.com/bojinmihai/azgs.1.git`;
+- `live/main` — `https://github.com/bojinmihai/azgs.git`.
+
+Arhivele ZIP, `tmp/`, `.next/`, `out/`, middleware-ul generat și fișierele locale fără legătură au rămas în afara commiturilor.
+
+**Verificări finale locale**
+
+- `npm run lint`: trecut;
+- `npx tsc --noEmit --incremental false`: trecut;
+- `npm audit`: trecut, zero vulnerabilități;
+- `npm run build`: trecut cu Next.js `15.5.25`, 113 pagini statice generate și 109 pagini publice exportate;
+- audit final integrat: 104 URL-uri în sitemap, 196 blocuri JSON-LD, 4373 legături interne, 2478 referințe la assets locale, 6 PDF-uri publice și zero avertismente;
+- `npm run audit:export`: trecut pe toate cele 109 pagini;
+- verificator PDF juridic: trecut pentru cele patru documente și copiile publice, 7/7/8/8 pagini;
+- verificator capability statement: trecut pentru ambele documente și copiile publice, câte două pagini și patru linkuri active;
+- scanare standard de securitate `4147c9b8-e212-4d5d-a75e-1bd045cee5e6`: acoperire completă, 52 suprafețe închise și zero constatări raportabile;
+- verificarea de contrast după patch a trecut fără abateri pe paginile reprezentative Business, Services, How we work, B2C terms, Blog, Maintenance și Emergency.
+
+**Verificări post-deploy**
+
+- paginile NL/EN principale, juridice, sectoriale, Business, Maintenance, Emergency și How we work au răspuns `200`, au câte un H1, canonical propriu, perechi hreflang reciproce și fără overflow orizontal în controalele desktop/mobil;
+- serviciile formularului B2B sunt limitate la instalații sanitare și conducte, instalații termice, încălzire în pardoseală ca instalație termică și ventilație; validarea formularului a fost testată fără trimiterea unei solicitări reale;
+- toate cele șase PDF-uri publice răspund `200 application/pdf`, cu dimensiunile locale așteptate;
+- sitemap-ul și robots.txt răspund `200`; o rută inexistentă răspunde `404` și păstrează CSP plus `X-Content-Type-Options: nosniff`;
+- paginile HTML păstrează HSTS, CSP strict pe pagină, `script-src-attr 'none'`, `object-src 'none'`, COOP, CORP, Permissions Policy, Referrer Policy și protecția anti-framing;
+- analytics rămâne neîncărcat înainte de consimțământ, iar retragerea consimțământului elimină încărcarea GA la reîmprospătare;
+- controlul live de contrast a trecut fără abateri detectate pe zece pagini NL/EN reprezentative după activarea bundle-ului CSS din commitul `668e20f`.
+
+**PageSpeed Insights — măsurători de laborator din 3 septembrie 2026**
+
+- homepage mobil: performanță 95, accesibilitate 100, bune practici 100, SEO 100; FCP 1,1 s, LCP 3,0 s, TBT 0 ms, CLS 0, Speed Index 1,1 s;
+- homepage desktop: 100/100/100/100; FCP 0,3 s, LCP 0,6 s, TBT 0 ms, CLS 0, Speed Index 0,3 s;
+- Business mobil după corecția de contrast: 98/100/100/100; FCP 1,1 s, LCP 2,3 s, TBT 50 ms, CLS 0, Speed Index 2,6 s — raport `https://pagespeed.web.dev/analysis/https-azgs-nl-zakelijk/5q1ckaz4tn?form_factor=mobile`.
+
+Nu există încă suficiente date reale de utilizator (CrUX); scorurile de mai sus sunt rezultate Lighthouse de laborator și pot varia. Oportunitățile rămase sunt mici: aproximativ 41 KiB la livrarea imaginilor, 12 KiB CSS nefolosit și 11 KiB JavaScript vechi în auditul Business. Nu justifică un plan plătit și nu blochează lansarea.
+
+**Confirmări externe care rămân necesare**
+
+1. revizuirea documentelor juridice de către un jurist neerlandez înainte de utilizarea contractuală; documentele nu sunt prezentate drept aprobate juridic;
+2. verificarea în dashboardul Formspree a destinatarilor, domeniului, protecției spam, cotei și retenției înainte de promovarea intensă a formularului;
+3. verificarea în GA4 a Enhanced Measurement, Google Signals, legăturilor publicitare, redacției datelor, partajării și retenției;
+4. confirmarea sursei, drepturilor și consimțământului înainte de publicarea oricărei recenzii; infrastructura rămâne dezactivată și fără date inventate;
+5. deciziile comerciale documentate pentru contractele de mentenanță și orice SLA; nu există timpi publici garantați;
+6. fotografiile și pagina de proiecte rămân intenționat pentru o etapă separată.
+
+**Planuri plătite**
+
+Nu este necesar acum niciun plan plătit pentru funcționarea implementării publicate. Un plan Formspree plătit devine justificat numai dacă volumul real depășește cota gratuită ori sunt aprobate uploaduri/automatizări; alte servicii plătite se evaluează numai după apariția unei nevoi măsurabile. Grupa 9 este ultima grupă din acest roadmap, deci nu există un mod de gândire următor obligatoriu.
