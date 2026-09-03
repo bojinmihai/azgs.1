@@ -1,7 +1,7 @@
 # AZ Grand Solutions — analytics și conversii
 
 Ultima actualizare: 3 septembrie 2026
-Stare: versiunea inițială este publicată; actualizarea de vizibilitate și măsurare SPA este pregătită local, încă nepublicată
+Stare: corecția de vizibilitate și măsurare SPA din commitul `c88ea5d` este publicată și verificată HTTP pe `azgs.nl`; configurarea post-deploy confirmată și verificările rămase sunt consemnate mai jos
 
 ## Principii
 
@@ -14,7 +14,7 @@ Stare: versiunea inițială este publicată; actualizarea de vizibilitate și m�
 - Niciun eveniment nu conține valori introduse de utilizator în formular.
 - Scriptul Google poate fi încărcat exclusiv pe `azgs.nl` și `www.azgs.nl`. Pe localhost, `127.0.0.1`, `[::1]`, `file:` și orice hostname de preview comenzile rămân locale; nu se transmite trafic către proprietatea reală.
 - Parametrul tehnic `form_variant` folosește aceeași versiune ca formularul curent: `adaptive-contact-v3`.
-- `page_view` este controlat manual pentru navigarea Next.js; configurația folosește `send_page_view=false`, iar opțiunea GA4 pentru pageviews generate din browser history trebuie dezactivată înainte de testul live pentru a evita dublarea.
+- `page_view` este controlat manual pentru navigarea Next.js și configurația folosește `send_page_view=false`. Enhanced Measurement master este activ, dar pageviews generate din browser history sunt dezactivate pentru a evita dublarea; numai măsurările automate `Page loads` și `Scrolls` au rămas active.
 
 ## Evenimente
 
@@ -59,24 +59,32 @@ Valorile sunt validate din nou înainte de apelul `gtag`. Parametrii necunoscuț
 - Pagina măsurată nu conține query sau hash; segmentele suspecte din cale sunt înlocuite cu `redacted`.
 - Contextul first-touch este capturat temporar în memorie pentru ca sursa să nu se piardă înaintea alegerii privind cookies.
 - Atribuirea, pagina de intrare și originea CTA se scriu în `sessionStorage` numai după consimțământ și sunt șterse la refuz/retragere. Formularul primește aceleași categorii sigure ca hidden fields numai cât timp consimțământul analytics este activ; fără consimțământ, aceste câmpuri nu sunt incluse în trimitere.
-- Linkul pregătit pentru Google Business Profile este `https://azgs.nl/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=local_profile`. În GA4 se reconstruiesc numai valorile fixe `google_business_profile`, `organic` și `local_profile`; query-ul nu apare în `page_location`.
+- Linkul pentru Google Business Profile este `https://azgs.nl/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=local_profile`. Este publicat în profil și a fost confirmat prin readback la 3 septembrie 2026. În GA4 se reconstruiesc numai valorile fixe `google_business_profile`, `organic` și `local_profile`; query-ul nu apare în `page_location`.
 
 ## Date interzise în GA4
 
 Nu se trimit: nume, e-mail, telefon, adresă, postcode, KvK, companie, rol, mesaj, planning, documente disponibile, informații despre acces, valori libere din URL, identificatori de client sau conținutul formularului.
 
-## Starea contului GA4 și setări de finalizat
+## Starea contului GA4 și configurarea post-deploy
 
-Auditul din 3 septembrie 2026 a confirmat fluxul web cu meetcode `G-DK6FZHQRCB`, Google Signals dezactivat, redacția automată a adreselor de e-mail activă și retenția event/user la 14 luni. Proprietatea afișa încă „No data received”, deci setările și evenimentele trebuie validate după publicarea acestei corecții.
+Auditul inițial din 3 septembrie 2026 a confirmat meetcode-ul `G-DK6FZHQRCB`, Google Signals dezactivat, redacția automată a adreselor de e-mail activă și retenția event/user la 14 luni. Proprietatea afișa atunci „No data received”; aceasta rămâne o observație istorică, nu o descriere confirmată a stării de după deploy.
 
-1. Dezactivează în Enhanced Measurement: browser-history page changes, Form interactions, Outbound clicks și File downloads; acestea sunt măsurate controlat de implementarea AZGS. Site search și video engagement pot rămâne oprite cât timp site-ul nu are aceste funcții.
-2. Păstrează Google Signals, advertising personalization și orice legături Google Ads dezactivate. Google Ads este în afara acestei etape.
-3. Activează redacția parametrilor URL sensibili ca strat suplimentar, fără a înlocui eliminarea query-ului din cod.
-4. Marchează `generate_lead` ca key event numai după ce evenimentul a fost primit și verificat; clickurile de contact rămân intenții, nu leaduri confirmate.
-5. Înregistrează drept event-scoped custom dimensions numai parametrii cu cardinalitate mică necesari rapoartelor: `content_language`, `audience_context`, `service_context`, `request_type`, `business_sector`, `contact_location`, `document_type`, `document_audience`, `traffic_source`, `traffic_medium`, `entry_page` și `cta_origin`.
-6. Creează asocierea Search Console cu fluxul web AZGS; nu crea nicio asociere Ads.
-7. Verifică Data sharing, transferurile, rolurile contractuale Google și data-processing terms și menține politica de confidențialitate conformă cu starea reală.
-8. Rulează o probă controlată după publicarea aprobată în Realtime/DebugView: refuz, accept, schimbare rută, selectare serviciu, clickuri și o simulare locală de formular; nu trimite leaduri nedorite firmei.
+### Setări confirmate la 3 septembrie 2026
+
+1. Fluxul web `azgs.nl` are ID `12841759030` și meetcode `G-DK6FZHQRCB`.
+2. Enhanced Measurement master este activ. `Page loads` și `Scrolls` sunt active; `Browser history events`, `Outbound clicks`, `Site search`, `Form interactions`, `Video engagement` și `File downloads` sunt dezactivate. Astfel, pageviews SPA, clickurile, formularele și descărcările controlate de cod nu sunt dublate de opțiunile automate corespondente.
+3. Redacția adreselor de e-mail și redacția parametrilor URL sunt active. Lista explicită pentru query redaction conține 19 chei: `name`, `email`, `email_address`, `phone`, `contact_method`, `company`, `organization`, `contact_role`, `kvk`, `project_location`, `postcode`, `postal_code`, `address`, `planning_notes`, `message`, `first_name`, `last_name`, `firstname` și `lastname`. Acest strat nu înlocuiește eliminarea query-ului din cod.
+4. Google Signals este dezactivat. Advertising personalization este dezactivată global pentru toate cele 307 regiuni, iar implementarea păstrează parametrii `ad_*` refuzați.
+5. Există două asocieri Google Ads legacy preexistente: una afișează personalizarea activată la nivelul legăturii, iar cealaltă dezactivată. Ambele au rămas neatinse conform domeniului aprobat; nu s-a creat nicio asociere Ads nouă.
+6. Au fost create exact 12 dimensiuni custom event-scoped: `content_language`, `audience_context`, `service_context`, `request_type`, `business_sector`, `contact_location`, `document_type`, `document_audience`, `traffic_source`, `traffic_medium`, `entry_page` și `cta_origin`.
+7. Asocierea Search Console a fost creată la 3 septembrie 2026 între proprietatea Domain `azgs.nl` și fluxul web `azgs.nl`, ID `12841759030`.
+
+### Verificări rămase deschise
+
+- Proba Realtime/DebugView nu este finalizată. Browserul public păstra consimțământul în starea `rejected`, site-ul nu oferă o interfață pentru redeschiderea bannerului, iar browsere separate Chrome/Edge nu au fost disponibile. Realtime a rămas la 0 și nu s-a transmis niciun eveniment în această probă.
+- `generate_lead` nu a fost observat și nu a fost marcat drept key event. Se marchează numai după recepția și verificarea unui eveniment real; clickurile de contact rămân intenții, nu leaduri confirmate.
+- Auditul read-only pentru Data sharing, transferuri, rolurile contractuale Google și data-processing terms rămâne pentru o etapă ulterioară. Politica de confidențialitate trebuie menținută conform stării confirmate atunci.
+- Un test ulterior trebuie să acopere refuz, accept, schimbare de rută, selectare de serviciu și clickuri, fără PII și fără trimiterea unui lead nedorit firmei.
 
 ## Planuri plătite
 

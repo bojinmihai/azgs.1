@@ -891,3 +891,61 @@ Nu este necesar acum niciun plan plătit pentru funcționarea implementării pub
 5. înainte de schimbarea adresei în Google Business Profile trebuie confirmat dacă la Alpenstraat 12 există prezență și semnalizare permanentă și dacă sunt primiți clienți în programul publicat.
 
 Nu este necesar un plan plătit pentru această etapă. Modul `ULTRA` selectat este suficient și pentru poarta de publicare/configurare; Google Ads va fi evaluat separat, pe baza datelor organice și a nevoii reale.
+
+### Vizibilitate organică, SEO local și GA4 — checkpoint post-publicare și configurare externă — 3 septembrie 2026
+
+**Status:** release-ul din commitul `c88ea5d360937a271ed2503b47eb5e367745800c` este publicat și verificat live. Înaintea acestui patch documentar, `HEAD`, `origin/main` și `live/main` indicau toate același commit, iar worktree-ul Codex era curat și detașat exact la acel commit. Publicarea s-a făcut exclusiv prin GitHub; nu s-a folosit Wrangler. Google Ads și orice cheltuială publicitară rămân în afara acestei etape.
+
+**Verificări live ale release-ului**
+
+- Homepage-urile `/` și `/en` răspund `200`.
+- Sitemapul conține 98 de elemente `loc` și 98 de elemente `lastmod`: 88 de pagini statice au data `2026-09-03`, iar cele 10 articole își păstrează datele proprii.
+- Cele șase surse duplicate răspund `301` spre destinațiile canonice: `/particulier/schilderwerk` spre `/schilderwerk`, `/particulier/parket` spre `/parket`, `/particulier/tegelwerk` spre `/tegelwerk`, `/en/private/painting` spre `/en/painting`, `/en/private/parquet` spre `/en/parquet` și `/en/private/tiling` spre `/en/tiling`.
+- Titlurile blog sunt `Installatie- en renovatieblog | AZ Grand Solutions` și `Installation and renovation blog | AZ Grand Solutions`.
+- Canonical, hreflang, footerul `A-Z Grand Solutions · Woerden`, CSP și headerele de securitate au conținutul așteptat.
+- Înainte de consimțământ nu există request sau script GA4.
+
+**Search Console și IndexNow**
+
+- `https://azgs.nl/sitemap.xml` a fost retrimis la 3 septembrie 2026. Ultima citire este din aceeași zi, starea este `Succes`, iar raportul afișează 98 de pagini și 0 videoclipuri descoperite.
+- Recrawl-ul a fost solicitat cu dialog de succes pentru zece URL-uri prioritare: `/`, `/en`, `/blog`, `/en/blog`, `/schilderwerk`, `/parket`, `/tegelwerk`, `/en/painting`, `/en/parquet` și `/en/tiling`.
+- La inspecție, nouă URL-uri erau indexate. `/en` era neindexat ca duplicat, cu canonical declarat `/en` și canonical ales de Google `/`; situația trebuie monitorizată după recrawl fără schimbarea pripită a canonicalului declarat.
+- Nu s-au folosit Removals și nu s-a pornit Validate Fix pentru redirecturi sau canonical.
+- IndexNow a primit două submituri: 98 de URL-uri canonice și, separat, cele șase surse 301. Ambele au răspuns HTTP `200`, pentru 104 URL-uri transmise în total. Răspunsul confirmă acceptarea solicitărilor, nu crawlarea sau indexarea.
+
+**GA4 — configurare confirmată și limitele testului**
+
+- Fluxul web `azgs.nl` are ID `12841759030` și meetcode `G-DK6FZHQRCB`.
+- Enhanced Measurement master este activ. Au rămas active numai `Page loads` și `Scrolls`; `Browser history events`, `Outbound clicks`, `Site search`, `Form interactions`, `Video engagement` și `File downloads` sunt dezactivate.
+- Redacția adreselor de e-mail și redacția parametrilor URL sunt active. Query redaction folosește exact 19 chei: `name`, `email`, `email_address`, `phone`, `contact_method`, `company`, `organization`, `contact_role`, `kvk`, `project_location`, `postcode`, `postal_code`, `address`, `planning_notes`, `message`, `first_name`, `last_name`, `firstname` și `lastname`.
+- Google Signals este dezactivat. Personalizarea publicitară este dezactivată global pentru toate cele 307 regiuni, iar codul păstrează parametrii `ad_*` refuzați.
+- Există două asocieri Google Ads legacy preexistente, una afișată cu personalizare activă la nivelul legăturii și una cu personalizare dezactivată. Au rămas neatinse conform domeniului aprobat și nu s-a creat nicio asociere Ads nouă.
+- Au fost create exact 12 dimensiuni custom event-scoped: `content_language`, `audience_context`, `service_context`, `request_type`, `business_sector`, `contact_location`, `document_type`, `document_audience`, `traffic_source`, `traffic_medium`, `entry_page` și `cta_origin`.
+- Asocierea Search Console a fost creată la 3 septembrie 2026 între proprietatea Domain `azgs.nl` și fluxul web `azgs.nl`, ID `12841759030`.
+- Testul Realtime/DebugView nu este finalizat. Browserul public păstra consimțământul în starea `rejected`, site-ul nu oferă o interfață pentru redeschiderea bannerului, iar browsere separate Chrome/Edge nu au fost disponibile. Realtime a rămas la 0 și nu s-a transmis nimic.
+- `generate_lead` nu a fost observat și nu a fost marcat drept key event. Data sharing, transferurile, rolurile contractuale și data-processing terms rămân pentru un audit read-only ulterior.
+
+**Google Business Profile**
+
+- Categoria principală `Instalator`, adresa Alpenstraat 12 și programul luni–vineri 08:00–17:00, cu weekendul închis, au rămas neatinse.
+- Descrierea aprobată, de 643 de caractere și fără afirmația „24/7”, este publicată integral și a fost confirmată prin readback. URL-ul `https://azgs.nl/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=local_profile` este valoarea curentă publicată în profil.
+- Ariile generale Țările de Jos și Noord-Brabant au fost eliminate. Profilul afișează exact 14 localități normalizate: Lopik, Utrecht, Woerden, Zegveld, Montfoort, Oudewater, Bodegraven, Nieuwegein, IJsselstein, Kamerik, Reeuwijk, Harmelen, Nieuwkoop și Breukelen.
+- Serviciul neconfirmat `Instalare încălzitoare de apă` a fost eliminat. Au rămas `Detectare scurgeri instalații`, `Instalare robineți`, `Instalare toalete`, `Montaj sisteme de duș`, `Reparare țevi`, `Reparații robinete` și `Reparații toalete`.
+- Adresa nu a fost modificată sau ascunsă. Decizia rămâne deschisă până la răspunsul factual privind primirea clienților, semnalizarea permanentă și prezența în programul publicat.
+
+**Bing și Apple**
+
+- Bing Webmaster Tools a rămas neautentificat; nu s-a făcut importul din Search Console și nu s-a modificat sitemapul în cont. Bing Places nu a fost început.
+- Din 14 aprilie 2026, Apple Business Connect, Apple Business Manager și Apple Business Essentials sunt consolidate în `Apple Business`, la `https://business.apple.com/`. Apple Business nu a fost început.
+- O organizație și un brand de tip `Single brand` pot fi create înainte de decizia adresei. O locație Apple Maps se creează sau se revendică numai după confirmarea unei locații fizice reale unde sunt serviți clienții; regulile Google despre service areas ori ascunderea adresei nu sunt transpuse în lipsa unui echivalent documentat de Apple.
+
+**Decizii și verificări rămase**
+
+1. monitorizarea alegerii canonical pentru `/en` după recrawl;
+2. un test GA4 controlat în Realtime/DebugView, fără PII și fără lead nedorit, urmat de marcarea `generate_lead` numai după observarea și verificarea unui eveniment real;
+3. auditul read-only GA4 pentru Data sharing, transferuri, roluri și termenii de prelucrare;
+4. răspunsul factual despre condițiile fizice ale adresei Google Business Profile; readback-ul celorlalte câmpuri aprobate este finalizat;
+5. autentificarea potrivită pentru Bing Webmaster Tools/Bing Places și un cont Apple destinat companiei înaintea configurării lor;
+6. asocierile Google Ads legacy rămân neatinse până la evaluarea separată; nu se creează campanii, iar fotografiile și pagina de proiecte rămân în afara acestei etape.
+
+Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organice folosite sunt suficiente pentru starea verificată.
