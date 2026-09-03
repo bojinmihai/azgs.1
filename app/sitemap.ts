@@ -10,6 +10,10 @@ import { getBusinessSectorBySlug, getBusinessSectorParams } from '@/lib/business
 
 export const dynamic = 'force-static';
 
+// Update only when the corresponding static content has materially changed.
+// The current site-wide release was completed on this date.
+const STATIC_CONTENT_LAST_MODIFIED = new Date('2026-09-03T00:00:00.000Z');
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
@@ -17,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     if (key === 'thankYou') continue;
     entries.push({
       url: `${SITE_URL}${paths.nl}`,
+      lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
       alternates: {
@@ -29,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
     entries.push({
       url: `${SITE_URL}${paths.en}`,
+      lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.7,
       alternates: {
@@ -48,6 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const content = getAudienceServiceContent(resolved.audience, resolved.service, locale);
       entries.push({
         url: `${SITE_URL}${content.path}`,
+        lastModified: STATIC_CONTENT_LAST_MODIFIED,
         changeFrequency: 'monthly',
         priority: resolved.audience === 'business' ? 0.82 : 0.76,
         alternates: {
@@ -67,6 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       if (!content) continue;
       entries.push({
         url: `${SITE_URL}${content.path}`,
+        lastModified: STATIC_CONTENT_LAST_MODIFIED,
         changeFrequency: 'monthly',
         priority: 0.78,
         alternates: {

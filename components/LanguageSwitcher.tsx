@@ -69,11 +69,6 @@ export function LanguageSwitcher({ locale, altPath }: Props) {
             href={otherHref}
             role="menuitem"
             hrefLang={other}
-            onClick={() => {
-              try {
-                localStorage.setItem('azgs-lang', other);
-              } catch {}
-            }}
           >
             <span className="lang-switcher__flag" aria-hidden="true">
               {otherInfo.flag}

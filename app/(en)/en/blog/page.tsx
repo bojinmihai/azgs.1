@@ -6,9 +6,9 @@ import { buildMetadata } from '@/lib/seo';
 export function generateMetadata(): Metadata {
   return buildMetadata({
     locale: 'en',
-    title: 'Blog | AZ Grand Solutions',
+    title: 'Installation and renovation blog | AZ Grand Solutions',
     description:
-      'Practical guides and tips on finishing, installations, and maintenance for your home. Written by AZ Grand Solutions.',
+      'Practical guidance on home installations, renovation and maintenance, with tips to help you prepare your project.',
     path: '/en/blog',
     altPath: '/blog',
   });

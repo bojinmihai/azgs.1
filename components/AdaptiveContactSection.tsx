@@ -3,7 +3,16 @@
 import type { FormEvent } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { COMPANY, type Locale } from '@/lib/site';
-import { buildSafeAttribution, safePagePath, type SafeAttribution } from '@/lib/analytics';
+import {
+  ANALYTICS_CONSENT_EVENT,
+  getAnalyticsConsent,
+  getSafeAttribution,
+  getSafeCtaOrigin,
+  getSafeEntryPage,
+  primeSafeAnalyticsContext,
+  safePagePath,
+  type SafeAttribution,
+} from '@/lib/analytics';
 import type { BusinessSectorKey } from '@/lib/business-sectors';
 import { MailIcon, PhoneIcon, WhatsAppIcon } from './icons';
 
@@ -689,6 +698,9 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<SubmitStatus>({ kind: 'idle', message: '' });
   const [attribution, setAttribution] = useState<SafeAttribution>(DEFAULT_ATTRIBUTION);
   const [originPage, setOriginPage] = useState(locale === 'nl' ? '/contact' : '/en/contact');
+  const [entryPage, setEntryPage] = useState(locale === 'nl' ? '/' : '/en');
+  const [ctaOrigin, setCtaOrigin] = useState('none');
+  const [includeAnalyticsContext, setIncludeAnalyticsContext] = useState(false);
   const [businessSector, setBusinessSector] = useState<BusinessSectorKey | ''>('');
   const [emergencyClientType, setEmergencyClientType] = useState('');
   const [urgentIssue, setUrgentIssue] = useState('');
@@ -705,6 +717,7 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
   const periods = OPTIONS.periods[locale];
 
   useEffect(() => {
+    primeSafeAnalyticsContext();
     const params = new URLSearchParams(window.location.search);
     const requestedType = (params.get('requester_type') || params.get('type') || '').toLowerCase();
     const requestedService = (params.get('service') || params.get('dienst') || '').toLowerCase();
@@ -714,8 +727,18 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
     if (initialRequestType) setRequestType(initialRequestType);
     if (initialService && isServiceCompatible(initialRequestType, initialService)) setService(initialService);
     if (BUSINESS_SECTORS.has(requestedSector as BusinessSectorKey)) setBusinessSector(requestedSector as BusinessSectorKey);
-    setAttribution(buildSafeAttribution());
     setOriginPage(safePagePath());
+    const updateAnalyticsContext = () => {
+      const accepted = getAnalyticsConsent() === 'accepted';
+      setIncludeAnalyticsContext(accepted);
+      if (!accepted) return;
+      setAttribution(getSafeAttribution(true));
+      setEntryPage(getSafeEntryPage(true));
+      setCtaOrigin(getSafeCtaOrigin());
+    };
+    updateAnalyticsContext();
+    window.addEventListener(ANALYTICS_CONSENT_EVENT, updateAnalyticsContext);
+    return () => window.removeEventListener(ANALYTICS_CONSENT_EVENT, updateAnalyticsContext);
   }, []);
 
   const selectionAnnouncement = requestType ? t.selected[requestType] : '';
@@ -798,7 +821,7 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
     if (isLocalPreview()) {
       setStatus({ kind: 'success', message: t.localSuccess });
       window.dispatchEvent(new CustomEvent('azgs:form-success', {
-        detail: { requestType, service: requestType === 'emergency' ? 'emergency' : service },
+        detail: { requestType, service: requestType === 'emergency' ? 'emergency' : service, businessSector },
       }));
       requestAnimationFrame(() => statusRef.current?.focus());
       return;
@@ -819,11 +842,12 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
       }
 
       window.dispatchEvent(new CustomEvent('azgs:form-success', {
-        detail: { requestType, service: requestType === 'emergency' ? 'emergency' : service },
+        detail: { requestType, service: requestType === 'emergency' ? 'emergency' : service, businessSector },
       }));
       form.reset();
       setRequestType('');
       setService('');
+      setBusinessSector('');
       setEmergencyClientType('');
       setUrgentIssue('');
       setStatus({ kind: 'success', message: t.success });
@@ -879,11 +903,17 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
             <input type="hidden" name="subject" value={subjectFor(requestType, locale)} />
             <input type="hidden" name="form_version" value="adaptive-contact-v3" />
             <input type="hidden" name="language" value={locale} />
-            <input type="hidden" name="origin_page" value={originPage} />
-            <input type="hidden" name="traffic_source" value={attribution.traffic_source} />
-            <input type="hidden" name="traffic_medium" value={attribution.traffic_medium} />
-            <input type="hidden" name="campaign_present" value={attribution.campaign_present} />
-            <input type="hidden" name="referrer_type" value={attribution.referrer_type} />
+            {includeAnalyticsContext ? (
+              <>
+                <input type="hidden" name="origin_page" value={originPage} />
+                <input type="hidden" name="entry_page" value={entryPage} />
+                <input type="hidden" name="cta_origin" value={ctaOrigin} />
+                <input type="hidden" name="traffic_source" value={attribution.traffic_source} />
+                <input type="hidden" name="traffic_medium" value={attribution.traffic_medium} />
+                <input type="hidden" name="campaign_present" value={attribution.campaign_present} />
+                <input type="hidden" name="referrer_type" value={attribution.referrer_type} />
+              </>
+            ) : null}
             {requestType === 'business' && businessSector ? <input type="hidden" name="business_sector" value={businessSector} /> : null}
             <div className="form-honeypot" aria-hidden="true">
               <label htmlFor={`contact-website-${locale}`}>Website</label>

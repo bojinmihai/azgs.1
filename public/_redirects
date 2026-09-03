@@ -35,6 +35,11 @@
 /cookiebeleid.html                              /cookiebeleid                         301
 /algemene-voorwaarden.html                      /algemene-voorwaarden                 301
 
+# Consolidate duplicate private finishing routes into established canonical URLs
+/particulier/schilderwerk                       /schilderwerk                         301
+/particulier/parket                             /parket                               301
+/particulier/tegelwerk                          /tegelwerk                            301
+
 # NL blog posts
 /blog-tegels-kiezen-badkamer.html               /blog/tegels-kiezen-badkamer          301
 /blog-vloerverwarming-warmtepomp.html           /blog/vloerverwarming-warmtepomp      301
@@ -66,6 +71,11 @@
 /en/privacy-policy.html                         /en/privacy-policy                    301
 /en/cookie-policy.html                          /en/cookie-policy                     301
 /en/terms-and-conditions.html                   /en/terms-and-conditions              301
+
+# Consolidate duplicate private finishing routes into established canonical URLs
+/en/private/painting                            /en/painting                          301
+/en/private/parquet                             /en/parquet                           301
+/en/private/tiling                              /en/tiling                            301
 
 # EN blog posts
 /en/blog-choosing-bathroom-tiles.html           /en/blog/choosing-bathroom-tiles      301

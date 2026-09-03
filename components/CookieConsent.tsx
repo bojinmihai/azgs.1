@@ -11,7 +11,7 @@ import {
   clearAnalyticsAttribution,
   deleteAnalyticsCookies,
   getAnalyticsConsent,
-  isLocalAnalyticsPreview,
+  isProductionAnalyticsHost,
   safePageLocation,
   safePageReferrer,
   setAnalyticsCollectionDisabled,
@@ -47,6 +47,7 @@ export function CookieConsent({ locale }: Props) {
     });
     window.gtag('js', new Date());
     window.gtag('config', COMPANY.ga4, {
+      send_page_view: false,
       anonymize_ip: true,
       allow_google_signals: false,
       allow_ad_personalization_signals: false,
@@ -54,7 +55,7 @@ export function CookieConsent({ locale }: Props) {
       page_location: safePageLocation(),
       page_referrer: safePageReferrer(),
     });
-    if (isLocalAnalyticsPreview()) return;
+    if (!isProductionAnalyticsHost()) return;
     if (document.getElementById('ga4-script')) return;
     const script = document.createElement('script');
     script.id = 'ga4-script';
@@ -107,6 +108,7 @@ export function CookieConsent({ locale }: Props) {
       setVisible(true);
     } else if (stored === 'accepted') {
       loadGA();
+      announceAnalyticsConsent('accepted');
     } else {
       stopGA();
     }

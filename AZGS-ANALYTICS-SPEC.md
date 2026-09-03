@@ -1,7 +1,7 @@
 # AZ Grand Solutions — analytics și conversii
 
 Ultima actualizare: 3 septembrie 2026
-Stare: implementat local în Grupa 3; fără evenimente reale GA4 și fără publicare
+Stare: versiunea inițială este publicată; actualizarea de vizibilitate și măsurare SPA este pregătită local, încă nepublicată
 
 ## Principii
 
@@ -12,18 +12,21 @@ Stare: implementat local în Grupa 3; fără evenimente reale GA4 și fără pub
 - Retragerea este disponibilă printr-o acțiune permanentă în footer și prin pagina Cookiebeleid/Cookie Policy.
 - La refuz sau retragere sunt oprite evenimentele noi, scriptul GA4 este eliminat, starea de colectare este dezactivată, iar cookie-urile proprii `_ga`/`_ga_*` sunt șterse în măsura permisă browserului.
 - Niciun eveniment nu conține valori introduse de utilizator în formular.
-- Pe localhost, `127.0.0.1`, `[::1]` și `file:` comenzile sunt scrise numai în `dataLayer`; scriptul Google nu este încărcat și nu se transmit evenimente reale.
+- Scriptul Google poate fi încărcat exclusiv pe `azgs.nl` și `www.azgs.nl`. Pe localhost, `127.0.0.1`, `[::1]`, `file:` și orice hostname de preview comenzile rămân locale; nu se transmite trafic către proprietatea reală.
 - Parametrul tehnic `form_variant` folosește aceeași versiune ca formularul curent: `adaptive-contact-v3`.
+- `page_view` este controlat manual pentru navigarea Next.js; configurația folosește `send_page_view=false`, iar opțiunea GA4 pentru pageviews generate din browser history trebuie dezactivată înainte de testul live pentru a evita dublarea.
 
 ## Evenimente
 
 | Eveniment GA4 | Declanșare | Parametri specifici | Observații |
 |---|---|---|---|
+| `page_view` | prima pagină după consimțământ și fiecare schimbare reală de rută Next.js | `page_location`, `page_referrer`, `content_language`, `entry_page`, context și atribuire sigură | locația și referința nu conțin query sau fragment; aceeași locație nu este trimisă de două ori |
 | `audience_select` | alegerea Particulier, B2B sau Onderhoud din selectorul de audiență | `audience_type`, `destination_path` | destinația nu conține query sau fragment |
 | `request_type_select` | selectarea unui tip în formular | `request_type`, `service_context` | include și `emergency`; nu include eticheta sau datele persoanei |
-| `contact_form_start` | prima interacțiune relevantă cu formularul după consimțământ | `request_type`, `service_context`, `form_variant` | se trimite cel mult o dată pe încărcarea formularului |
-| `contact_form_abandon` | plecare din pagină după un `contact_form_start`, fără submit reușit sau conversie prin contact direct | `request_type`, `service_context`, `form_variant`, `transport_type=beacon` | fără număr de câmpuri, valori, text sau durată exactă |
-| `generate_lead` | numai după răspuns Formspree reușit | `request_type`, `service_context`, `form_variant` | eveniment GA4 recomandat pentru generarea unui lead; nu măsoară tentativa eșuată |
+| `service_select` | alegerea serviciului principal din formular | `request_type`, `service_context`, `business_sector` unde există | serviciul și sectorul provin exclusiv din liste fixe |
+| `contact_form_start` | prima interacțiune relevantă cu formularul după consimțământ | `request_type`, `service_context`, `business_sector`, `form_variant` | se trimite cel mult o dată pe încărcarea formularului |
+| `contact_form_abandon` | plecare din pagină după un `contact_form_start`, fără submit reușit sau conversie prin contact direct | `request_type`, `service_context`, `business_sector`, `form_variant`, `transport_type=beacon` | fără număr de câmpuri, valori, text sau durată exactă |
+| `generate_lead` | numai după răspuns Formspree reușit | `request_type`, `service_context`, `business_sector`, `form_variant` | eveniment GA4 recomandat pentru generarea unui lead; nu măsoară tentativa eșuată |
 | `phone_click` | clic pe orice link `tel:` | `contact_location` | nu se trimite numărul de telefon |
 | `whatsapp_click` | clic spre `wa.me`/WhatsApp | `contact_location` | nu se trimite numărul, URL-ul sau mesajul |
 | `email_click` | clic pe orice link `mailto:` | `contact_location`, `email_kind` | `email_kind` este doar `general`, `requests` sau `other`; adresa nu se trimite |
@@ -34,11 +37,13 @@ Stare: implementat local în Grupa 3; fără evenimente reale GA4 și fără pub
 
 Fiecare eveniment primește automat numai următoarele valori controlate:
 
-- `language`: `nl` sau `en`;
+- `content_language`: `nl` sau `en`; nu suprascrie parametrul standard GA4 `language`, care descrie preferința browserului;
 - `origin_page`: cale internă sigură, fără query sau fragment;
+- `entry_page`: prima cale internă sigură din sesiunea curentă;
+- `cta_origin`: pagina internă de pe care s-a deschis formularul, sau `none`;
 - `audience_context`: `general`, `private`, `business` sau `maintenance`;
 - `service_context`: serviciu dintr-o listă fixă sau `none`;
-- `traffic_source`: categorie fixă, de exemplu `google`, `bing`, `facebook`, `email`, `referral`, `direct` sau `other`;
+- `traffic_source`: categorie fixă, de exemplu `google`, `google_business_profile`, `bing`, `facebook`, `email`, `referral`, `direct` sau `other`;
 - `traffic_medium`: categorie fixă, de exemplu `organic`, `cpc`, `social`, `email`, `referral`, `direct` sau `other`;
 - `campaign_present`: numai `yes` sau `no`;
 - `referrer_type`: `direct`, `same_site`, `search`, `social` sau `referral`.
@@ -52,24 +57,26 @@ Valorile sunt validate din nou înainte de apelul `gtag`. Parametrii necunoscuț
 - Pentru campanie se păstrează numai faptul că parametrul a existat.
 - Referrerul extern este clasificat, nu stocat ca URL sau hostname liber.
 - Pagina măsurată nu conține query sau hash; segmentele suspecte din cale sunt înlocuite cu `redacted`.
-- Atribuirea sesiunii se scrie în `sessionStorage` numai după consimțământ. Formularul primește aceleași categorii sigure ca hidden fields fără a păstra valorile UTM brute.
+- Contextul first-touch este capturat temporar în memorie pentru ca sursa să nu se piardă înaintea alegerii privind cookies.
+- Atribuirea, pagina de intrare și originea CTA se scriu în `sessionStorage` numai după consimțământ și sunt șterse la refuz/retragere. Formularul primește aceleași categorii sigure ca hidden fields numai cât timp consimțământul analytics este activ; fără consimțământ, aceste câmpuri nu sunt incluse în trimitere.
+- Linkul pregătit pentru Google Business Profile este `https://azgs.nl/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=local_profile`. În GA4 se reconstruiesc numai valorile fixe `google_business_profile`, `organic` și `local_profile`; query-ul nu apare în `page_location`.
 
 ## Date interzise în GA4
 
 Nu se trimit: nume, e-mail, telefon, adresă, postcode, KvK, companie, rol, mesaj, planning, documente disponibile, informații despre acces, valori libere din URL, identificatori de client sau conținutul formularului.
 
-## Setări GA4 de confirmat înainte de publicare
+## Starea contului GA4 și setări de finalizat
 
-1. Meetcode-ul și proprietatea GA4 aparțin contului corect AZGS.
-2. Google Signals, advertising personalization și legăturile Google Ads sunt dezactivate și în dashboard, nu doar în cod.
-3. Enhanced Measurement → Form interactions este dezactivat pentru a evita evenimente automate la simpla tentativă și dublarea `contact_form_start`/`form_submit`.
-4. Enhanced Measurement → File downloads este fie documentat ca eveniment automat suplimentar, fie dezactivat dacă se dorește numai schema semantică AZGS.
-5. `generate_lead` este marcat ca key event după prima verificare controlată.
-6. Parametrii necesari rapoartelor sunt înregistrați ca event-scoped custom dimensions; nu se înregistrează dimensiuni cu PII sau cardinalitate mare.
-7. Data retention este confirmată. Recomandare inițială: 2 luni pentru date user/event în explorări, dacă nu există o nevoie justificată de 14 luni; rapoartele standard agregate nu depind de această setare în același mod.
-8. Data sharing, transferurile, rolurile contractuale Google și data-processing terms sunt verificate și reflectate exact în politica de confidențialitate.
-9. Data redaction pentru e-mail și parametri URL este activată în web data stream ca strat suplimentar, fără a înlocui protecțiile din cod.
-10. Realtime/DebugView este folosit pentru o probă controlată după publicarea aprobată.
+Auditul din 3 septembrie 2026 a confirmat fluxul web cu meetcode `G-DK6FZHQRCB`, Google Signals dezactivat, redacția automată a adreselor de e-mail activă și retenția event/user la 14 luni. Proprietatea afișa încă „No data received”, deci setările și evenimentele trebuie validate după publicarea acestei corecții.
+
+1. Dezactivează în Enhanced Measurement: browser-history page changes, Form interactions, Outbound clicks și File downloads; acestea sunt măsurate controlat de implementarea AZGS. Site search și video engagement pot rămâne oprite cât timp site-ul nu are aceste funcții.
+2. Păstrează Google Signals, advertising personalization și orice legături Google Ads dezactivate. Google Ads este în afara acestei etape.
+3. Activează redacția parametrilor URL sensibili ca strat suplimentar, fără a înlocui eliminarea query-ului din cod.
+4. Marchează `generate_lead` ca key event numai după ce evenimentul a fost primit și verificat; clickurile de contact rămân intenții, nu leaduri confirmate.
+5. Înregistrează drept event-scoped custom dimensions numai parametrii cu cardinalitate mică necesari rapoartelor: `content_language`, `audience_context`, `service_context`, `request_type`, `business_sector`, `contact_location`, `document_type`, `document_audience`, `traffic_source`, `traffic_medium`, `entry_page` și `cta_origin`.
+6. Creează asocierea Search Console cu fluxul web AZGS; nu crea nicio asociere Ads.
+7. Verifică Data sharing, transferurile, rolurile contractuale Google și data-processing terms și menține politica de confidențialitate conformă cu starea reală.
+8. Rulează o probă controlată după publicarea aprobată în Realtime/DebugView: refuz, accept, schimbare rută, selectare serviciu, clickuri și o simulare locală de formular; nu trimite leaduri nedorite firmei.
 
 ## Planuri plătite
 
@@ -86,4 +93,7 @@ Nu se trimit: nume, e-mail, telefon, adresă, postcode, KvK, companie, rol, mesa
 - Google — PII in Analytics: https://support.google.com/analytics/answer/6366371
 - Google — recommended event `generate_lead`: https://developers.google.com/analytics/devguides/collection/ga4/reference/events
 - Google — enhanced measurement events: https://support.google.com/analytics/answer/9216061
+- Google — manual pageviews și evitarea dublării: https://developers.google.com/analytics/devguides/collection/ga4/views
+- Google — configurația `gtag`, inclusiv parametrii de campanie și `language`: https://developers.google.com/analytics/devguides/collection/ga4/reference/config
+- Google — conectarea Search Console la GA4: https://support.google.com/analytics/answer/10737381
 - Google — data retention: https://support.google.com/analytics/answer/7667196

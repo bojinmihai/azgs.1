@@ -46,9 +46,9 @@ function footerServices(locale: Locale, audience: AudienceScope) {
         { href: audienceServiceUrl('private', 'underfloor', locale), label: isNl ? 'Vloerverwarming' : 'Underfloor heating' },
         { href: audienceServiceUrl('private', 'climate', locale), label: isNl ? 'Ventilatie en warmtepompen' : 'Ventilation and heat pumps' },
         { href: audienceServiceUrl('private', 'drywall', locale), label: isNl ? 'Gipsplaten en renovatie' : 'Drywall and renovation' },
-        { href: url('privateTiling', locale), label: isNl ? 'Tegelwerk badkamer' : 'Bathroom tiling' },
-        { href: url('privatePainting', locale), label: isNl ? 'Herstel en schilderwerk' : 'Repair and painting' },
-        { href: url('privateParquet', locale), label: isNl ? 'Parket en vloerafwerking' : 'Parquet and floor finishing' },
+        { href: url('tiling', locale), label: isNl ? 'Tegelwerk badkamer' : 'Bathroom tiling' },
+        { href: url('painting', locale), label: isNl ? 'Herstel en schilderwerk' : 'Repair and painting' },
+        { href: url('parquet', locale), label: isNl ? 'Parket en vloerafwerking' : 'Parquet and floor finishing' },
       ],
     };
   }
@@ -133,6 +133,11 @@ export function Footer({ locale, audience = 'general' }: Props) {
           <div className="footer-col">
             <h3>{t.footer.contactHeading}</h3>
             <ul>
+              <li>
+                <Link href={url('contact', locale)}>
+                  {COMPANY.tradeName} · {COMPANY.address.city}
+                </Link>
+              </li>
               <li className="footer-contact-item">
                 <PhoneIcon className="icon" size={16} />
                 <a href={`tel:${COMPANY.phone}`}>{COMPANY.phoneDisplay}</a>

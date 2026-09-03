@@ -418,7 +418,7 @@ Baseline public verificat în Git: `1c63315` — `Add B2B terms and conditions`
 
 - Pagina maintenance susține bine fluxul de intervenție punctuală, dar unele formulări sugerează rezultate/viteză și un singur interlocutor dincolo de scope-ul acceptat.
 - Rutele maintenance pentru schilderherstel și tegelherstel reutilizează corp de pagină orientat B2C și CTA generic; trebuie rescrise sau nelinkate.
-- Formularul și termenii nu garantează răspuns imediat, însă alte pagini existente și `public/llms.txt` conțin afirmații 24/7 și, uneori, sosire aproximativ într-o oră. Nu vor fi propagate și trebuie eliminate ori demonstrate înainte de publicare.
+- La momentul acestui audit, alte pagini și `public/llms.txt` conțineau afirmații 24/7 și, uneori, sosire aproximativ într-o oră. Aceste afirmații au fost eliminate în release-ul final; formularul și termenii nu garantează răspuns imediat.
 - Afirmațiile `35+ ani` și `VCA` nu au dovezi găsite în repository și rămân excluse din noul conținut.
 - Pagina Business și marcajul de draft al termenilor B2B trebuie aliniate înainte de publicare.
 
@@ -848,3 +848,46 @@ Nu există încă suficiente date reale de utilizator (CrUX); scorurile de mai s
 **Planuri plătite**
 
 Nu este necesar acum niciun plan plătit pentru funcționarea implementării publicate. Un plan Formspree plătit devine justificat numai dacă volumul real depășește cota gratuită ori sunt aprobate uploaduri/automatizări; alte servicii plătite se evaluează numai după apariția unei nevoi măsurabile. Grupa 9 este ultima grupă din acest roadmap, deci nu există un mod de gândire următor obligatoriu.
+
+### Vizibilitate organică, SEO local și GA4 — checkpoint local pre-publicare — 3 septembrie 2026
+
+**Status:** auditul extern și release-candidatul local sunt finalizate. Modificările de mai jos nu sunt încă în commit și nu sunt publicate. Site-ul live, `HEAD`, `origin/main` și `live/main` rămân la `2002b9ee4256b16409b2d42ee0315749ab4795cd` înaintea publicării acestei etape. Google Ads este exclus și contul vechi nu a fost modificat ori șters.
+
+**Rezultat și decizii asumate**
+
+- GA4 are acum pageviews manuale pentru navigarea Next.js, `send_page_view=false`, atribuire first-touch sigură, origine CTA și categorie separată pentru Google Business Profile. Scriptul se poate încărca numai pe `azgs.nl`/`www.azgs.nl` și numai după acceptare.
+- Formularul include câmpurile tehnice de atribuire numai cu consimțământ analytics activ. Nicio valoare liberă introdusă de utilizator și niciun URL cu query nu este trimis către GA4.
+- Redirectul automat bazat pe limba browserului a fost eliminat; selectorul explicit și hreflang rămân.
+- Cele șase pagini duplicate de finisare `/particulier/...` și `/en/private/...` au fost consolidate prin 301 către URL-urile scurte deja indexate. Linkurile interne și sitemapul folosesc numai destinațiile canonice.
+- Entitatea `LocalBusiness` folosește handelsnaam `A-Z Grand Solutions`, păstrează identitatea juridică și elimină două proprietăți Schema.org neaplicabile tipului. Serviciile continuă să fie descrise în nodurile `Service` dedicate.
+- Footerul afișează NAP compact `A-Z Grand Solutions · Woerden`, fără a afirma că adresa este un punct public de lucru. Titlurile blog NL/EN sunt distincte, iar dimensiunile Open Graph nu mai sunt declarate fals pentru imaginile 4:3.
+- Sitemapul are `lastmod` pentru conținutul modificat. Release-candidatul conține 98 URL-uri canonice, față de 104 înainte de eliminarea duplicatelor.
+- Raza B2C istorică de aproximativ 60 km a fost lăsată neschimbată. Este separată de mentenanță — maximum 50 km sau circa 1 oră — și de urgențe — maximum 50 km sau circa 40 de minute. B2B rămâne limitat la sanitar/conducte, instalații termice inclusiv încălzire în pardoseală și ventilație, cu urgență numai pentru instalații executate de AZGS.
+- Specificațiile analytics/formular, politicile de cookies/confidențialitate NL/EN și documentul separat `AZGS-VISIBILITY-ROADMAP.md` reflectă implementarea și acțiunile externe rămase.
+
+**Verificări**
+
+- `npm run lint`: trecut;
+- `npx tsc --noEmit --incremental false`: trecut;
+- `npm audit`: zero vulnerabilități;
+- `npm run build`: trecut — 103 pagini publice, 98 URL-uri sitemap, 184 blocuri JSON-LD, 4.205 legături interne, 2.322 referințe la assets locale, 6 PDF-uri și zero avertismente;
+- `npm run audit:export`: trecut pentru toate cele 103 pagini;
+- `git diff --check`: trecut; numai notificările Windows LF/CRLF;
+- test local browser: accept/refuz analytics, pageview inițial și SPA, eliminarea query-ului, formular cu/fără câmpuri de atribuire și rutele NL/EN; nicio trimitere Formspree și niciun request GA4 real.
+
+**Fișierele release-candidatului**
+
+- analytics și formular: `lib/analytics.ts`, `components/AnalyticsTracker.tsx`, `components/CookieConsent.tsx`, `components/AdaptiveContactSection.tsx`;
+- SEO și navigare: `app/sitemap.ts`, `lib/seo.ts`, `lib/site.ts`, `components/Header.tsx`, `components/Footer.tsx`, `app/(nl)/page.tsx`, `components/LanguageSwitcher.tsx`, eliminarea `components/LanguageDetect.tsx`, paginile blog NL/EN și `public/_redirects`;
+- sunt eliminate numai cele șase surse duplicate de pagină pentru schilderwerk/painting, parket/parquet și tegelwerk/tiling sub prefixele Particulier/Private;
+- documentație și transparență: `AZGS-ANALYTICS-SPEC.md`, `AZGS-FORM-SPEC.md`, `AZGS-VISIBILITY-ROADMAP.md`, acest checkpoint și politicile cookies/privacy NL/EN.
+
+**Poarta înainte de publicare și modificări externe**
+
+1. se prezintă și se aprobă exact acest release, apoi se verifică prin fetch dacă `origin/main` și `live/main` sunt încă sincronizate;
+2. publicarea se face prin commit pe `main` și push către ambele remote-uri GitHub, fără Wrangler și fără ZIP, `tmp/`, `out/`, `.next/` ori alte fișiere nelegate;
+3. după deploy se verifică răspunsurile HTTP, conținutul, redirecturile și sitemapul live;
+4. apoi se actualizează controlat Search Console, GA4 și Google Business Profile; Bing/Apple se configurează numai după autentificarea potrivită;
+5. înainte de schimbarea adresei în Google Business Profile trebuie confirmat dacă la Alpenstraat 12 există prezență și semnalizare permanentă și dacă sunt primiți clienți în programul publicat.
+
+Nu este necesar un plan plătit pentru această etapă. Modul `ULTRA` selectat este suficient și pentru poarta de publicare/configurare; Google Ads va fi evaluat separat, pe baza datelor organice și a nevoii reale.

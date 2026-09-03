@@ -21,6 +21,7 @@ export function buildMetadata({
   const canonical = `${SITE_URL}${path}`;
   const nlPath = locale === 'nl' ? path : altPath;
   const enPath = locale === 'en' ? path : altPath;
+  const isDefaultSocialImage = image === '/assets/img/hero/home-hero-azgs.webp';
 
   return {
     title,
@@ -45,8 +46,7 @@ export function buildMetadata({
       images: [
         {
           url: image,
-          width: 1920,
-          height: 1080,
+          ...(isDefaultSocialImage ? { width: 1920, height: 1080 } : {}),
           alt: COMPANY.name,
         },
       ],
@@ -78,9 +78,9 @@ export function localBusinessJsonLd(locale: Locale) {
     '@context': 'https://schema.org',
     '@type': ['HomeAndConstructionBusiness', 'Plumber'],
     '@id': `${SITE_URL}/#business`,
-    name: COMPANY.name,
+    name: COMPANY.tradeName,
     legalName: COMPANY.legalName,
-    alternateName: [COMPANY.tradeName, COMPANY.shortName],
+    alternateName: [COMPANY.name, COMPANY.shortName],
     identifier: [
       { '@type': 'PropertyValue', propertyID: 'KVK', value: COMPANY.kvk },
       { '@type': 'PropertyValue', propertyID: 'Vestigingsnummer', value: COMPANY.establishmentNumber },
@@ -100,29 +100,12 @@ export function localBusinessJsonLd(locale: Locale) {
     // Woerden is the common denominator. Broader B2B project areas and the
     // separate maintenance/urgent-request limits belong to service schemas.
     areaServed: [{ '@type': 'City', name: 'Woerden' }],
-    availableService: (isNl
-      ? [
-          'Sanitaire installaties voor particuliere en zakelijke projecten',
-          'Thermische installaties voor particuliere en zakelijke projecten',
-          'Ventilatie voor particuliere en zakelijke projecten',
-          'Gipsplaat- en herstelwerk voor particuliere en onderhoudsopdrachten',
-          'Gebouwonderhoud rond Woerden',
-        ]
-      : [
-          'Plumbing installations for private and business projects',
-          'Thermal systems for private and business projects',
-          'Ventilation for private and business projects',
-          'Drywall and finishing repair for private and maintenance assignments',
-          'Building maintenance around Woerden',
-        ]
-    ).map((name) => ({ '@type': 'Service', name })),
     slogan: isNl
       ? 'Technische uitvoering met een duidelijk afgesproken scope'
       : 'Technical execution with a clearly agreed scope',
     description: isNl
       ? 'Sanitaire, thermische en ventilatie-installaties voor particuliere en zakelijke projecten. Gipsplaat- en herstelwerk is beperkt tot particuliere en onderhoudsopdrachten. Werkgebieden verschillen per type aanvraag en worden vanuit Woerden beoordeeld.'
       : 'Plumbing, thermal and ventilation systems for private and business projects. Drywall and finishing repair is limited to private and maintenance assignments. Service areas differ by request type and are assessed from Woerden.',
-    inLanguage: isNl ? 'nl-NL' : 'en',
   };
 }
 
@@ -177,7 +160,7 @@ export function serviceJsonLd({ locale, name, description, path, audience = 'gen
     provider: {
       '@type': 'HomeAndConstructionBusiness',
       '@id': `${SITE_URL}/#business`,
-      name: COMPANY.name,
+      name: COMPANY.tradeName,
       legalName: COMPANY.legalName,
       telephone: COMPANY.phone,
       url: SITE_URL,

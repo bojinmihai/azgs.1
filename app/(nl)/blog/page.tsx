@@ -6,9 +6,9 @@ import { buildMetadata } from '@/lib/seo';
 export function generateMetadata(): Metadata {
   return buildMetadata({
     locale: 'nl',
-    title: 'Blog | AZ Grand Solutions',
+    title: 'Installatie- en renovatieblog | AZ Grand Solutions',
     description:
-      'Praktische gidsen en tips over afwerking, installaties en onderhoud van uw woning. Geschreven door AZ Grand Solutions.',
+      'Praktische uitleg over technische installaties, renovatie en onderhoud in huis, met tips om uw project beter voor te bereiden.',
     path: '/blog',
     altPath: '/en/blog',
   });

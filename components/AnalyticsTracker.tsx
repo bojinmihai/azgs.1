@@ -1,10 +1,16 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import type { BusinessSectorKey } from '@/lib/business-sectors';
 import {
+  ANALYTICS_CONSENT_EVENT,
   type RequestType,
   type ServiceContext,
+  primeSafeAnalyticsContext,
+  rememberCtaOrigin,
   trackAnalyticsEvent,
+  trackAnalyticsPageView,
 } from '@/lib/analytics';
 
 const REQUEST_TYPES = new Set<RequestType>(['private', 'business', 'maintenance', 'emergency']);
@@ -23,13 +29,23 @@ const SERVICES = new Set<ServiceContext>([
   'emergency',
   'none',
 ]);
+const BUSINESS_SECTORS = new Set<BusinessSectorKey>([
+  'contractors',
+  'property-managers',
+  'hospitality-hotels',
+  'offices-retail',
+  'owners-associations',
+  'installation-ventilation',
+]);
 
 function formContext(form: HTMLFormElement | null) {
   const rawType = form?.querySelector<HTMLInputElement>('input[name="request_type"]:checked')?.value || '';
   const rawService = form?.querySelector<HTMLSelectElement>('select[name="service"]')?.value || '';
+  const rawBusinessSector = form?.querySelector<HTMLInputElement>('input[name="business_sector"]')?.value || '';
   return {
     requestType: REQUEST_TYPES.has(rawType as RequestType) ? rawType as RequestType : undefined,
     service: SERVICES.has(rawService as ServiceContext) ? rawService as ServiceContext : undefined,
+    businessSector: BUSINESS_SECTORS.has(rawBusinessSector as BusinessSectorKey) ? rawBusinessSector as BusinessSectorKey : undefined,
   };
 }
 
@@ -65,6 +81,23 @@ function documentEvent(anchor: HTMLAnchorElement) {
 }
 
 export function AnalyticsTracker() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    primeSafeAnalyticsContext();
+    const sendPageView = () => trackAnalyticsPageView(pathname);
+    const timer = window.setTimeout(sendPageView, 0);
+    const onConsent = (event: Event) => {
+      const status = (event as CustomEvent).detail?.status;
+      if (status === 'accepted') sendPageView();
+    };
+    window.addEventListener(ANALYTICS_CONSENT_EVENT, onConsent);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener(ANALYTICS_CONSENT_EVENT, onConsent);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     const form = document.querySelector<HTMLFormElement>('#contact-form');
     let formStarted = false;
@@ -82,6 +115,7 @@ export function AnalyticsTracker() {
       if (trackAnalyticsEvent('contact_form_start', {
         request_type: context.requestType,
         service_context: context.service,
+        business_sector: context.businessSector,
         form_variant: 'adaptive-contact-v3',
       })) {
         formStarted = true;
@@ -93,13 +127,20 @@ export function AnalyticsTracker() {
     const onChange = (event: Event) => {
       startForm(event.target);
       const target = event.target;
-      if (!(target instanceof HTMLInputElement) || target.name !== 'request_type') return;
-      if (!REQUEST_TYPES.has(target.value as RequestType)) return;
       const context = formContext(form);
-      trackAnalyticsEvent('request_type_select', {
-        request_type: target.value as RequestType,
-        service_context: context.service,
-      });
+      if (target instanceof HTMLInputElement && target.name === 'request_type' && REQUEST_TYPES.has(target.value as RequestType)) {
+        trackAnalyticsEvent('request_type_select', {
+          request_type: target.value as RequestType,
+          service_context: context.service,
+        });
+      }
+      if (target instanceof HTMLSelectElement && target.name === 'service' && SERVICES.has(target.value as ServiceContext)) {
+        trackAnalyticsEvent('service_select', {
+          request_type: context.requestType,
+          service_context: target.value as ServiceContext,
+          business_sector: context.businessSector,
+        });
+      }
     };
 
     const sendAbandon = () => {
@@ -109,6 +150,7 @@ export function AnalyticsTracker() {
       if (trackAnalyticsEvent('contact_form_abandon', {
         request_type: context.requestType,
         service_context: context.service,
+        business_sector: context.businessSector,
         form_variant: 'adaptive-contact-v3',
         transport_type: 'beacon',
       })) {
@@ -120,16 +162,20 @@ export function AnalyticsTracker() {
     const onFormSuccess = (event: Event) => {
       formCompleted = true;
       if (form) form.dataset.analyticsCompleted = 'true';
-      const detail = (event as CustomEvent).detail as { requestType?: unknown; service?: unknown } | undefined;
+      const detail = (event as CustomEvent).detail as { requestType?: unknown; service?: unknown; businessSector?: unknown } | undefined;
       const requestType = typeof detail?.requestType === 'string' && REQUEST_TYPES.has(detail.requestType as RequestType)
         ? detail.requestType as RequestType
         : undefined;
       const service = typeof detail?.service === 'string' && SERVICES.has(detail.service as ServiceContext)
         ? detail.service as ServiceContext
         : undefined;
+      const businessSector = typeof detail?.businessSector === 'string' && BUSINESS_SECTORS.has(detail.businessSector as BusinessSectorKey)
+        ? detail.businessSector as BusinessSectorKey
+        : undefined;
       trackAnalyticsEvent('generate_lead', {
         request_type: requestType,
         service_context: service,
+        business_sector: businessSector,
         form_variant: 'adaptive-contact-v3',
       });
     };
@@ -161,6 +207,9 @@ export function AnalyticsTracker() {
             trackAnalyticsEvent('whatsapp_click', { contact_location: location, service_context: selectedService });
             isContactConversion = true;
           } else if (destination.origin === window.location.origin && destination.pathname !== window.location.pathname) {
+            if (destination.pathname === '/contact' || destination.pathname === '/en/contact') {
+              rememberCtaOrigin();
+            }
             sendAbandon();
           }
         } catch {
@@ -191,7 +240,7 @@ export function AnalyticsTracker() {
       window.removeEventListener('pagehide', onPageHide);
       window.removeEventListener('azgs:form-success', onFormSuccess);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

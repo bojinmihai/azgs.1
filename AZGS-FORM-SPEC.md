@@ -24,8 +24,8 @@ Stare: implementat local în Grupa 2; fără trimitere reală și fără publica
 - `message`: obligatoriu, maximum 3.000 caractere.
 - `subject`, `form_version`, `language`: câmpuri tehnice controlate de aplicație, fără PII.
 - versiunea curentă a structurii este `adaptive-contact-v3`.
-- `origin_page`: numai calea internă, fără query sau fragment.
-- `traffic_source`, `traffic_medium`, `campaign_present`, `referrer_type`: categorii fixe, fără valori UTM libere sau URL extern complet; specificația este în `AZGS-ANALYTICS-SPEC.md`.
+- `origin_page`, `entry_page`, `cta_origin`: numai căi interne sigure, fără query sau fragment; sunt incluse numai dacă utilizatorul a acceptat analytics.
+- `traffic_source`, `traffic_medium`, `campaign_present`, `referrer_type`: categorii fixe, fără valori UTM libere sau URL extern complet; sunt incluse numai cu consimțământ analytics activ, iar specificația este în `AZGS-ANALYTICS-SPEC.md`.
 - `business_sector`: apare numai pentru CTA-urile B2B sectoriale și numai pentru una dintre cele șase valori fixe din allowlist; valori query necunoscute sunt ignorate.
 - `_gotcha`: honeypot Formspree.
 

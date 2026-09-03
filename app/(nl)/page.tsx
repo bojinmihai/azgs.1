@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { AudienceLanding } from '@/components/AudienceLanding';
-import { LanguageDetect } from '@/components/LanguageDetect';
 import { buildMetadata } from '@/lib/seo';
 import { getPageMeta } from '@/lib/pages';
 
@@ -21,10 +20,5 @@ export function generateMetadata(): Metadata {
 }
 
 export default function Page() {
-  return (
-    <>
-      <LanguageDetect />
-      <AudienceLanding locale={LOCALE} altPath={ALT_PATH} />
-    </>
-  );
+  return <AudienceLanding locale={LOCALE} altPath={ALT_PATH} />;
 }
