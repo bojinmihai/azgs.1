@@ -4178,6 +4178,10 @@
       left: 0;
       right: 0;
       z-index: 100;
+      max-height: 100vh;
+      max-height: 100dvh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       background: var(--color-surface);
       border-top: 1px solid var(--color-border);
       box-shadow: 0 -8px 24px rgba(30, 58, 95, 0.08);
@@ -4221,9 +4225,16 @@
     .consent-banner__text a:hover {
       color: var(--color-orange-dark, #DC8F0F);
     }
+    .consent-banner__status {
+      margin: 0.5rem 0 0;
+      color: var(--color-navy);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
     .consent-banner__actions {
       display: flex;
       gap: 0.75rem;
+      flex-wrap: wrap;
       flex-shrink: 0;
     }
     .consent-banner__btn {
@@ -4274,7 +4285,7 @@
         padding: 1rem;
       }
       .consent-banner__actions { width: 100%; }
-      .consent-banner__btn { flex: 1; padding: 0.75rem 1rem; }
+      .consent-banner__btn { flex: 1 1 8rem; padding: 0.75rem 1rem; }
     }
 
 

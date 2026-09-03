@@ -4,7 +4,6 @@ import { Footer } from './Footer';
 import { WhatsAppFloat } from './WhatsAppFloat';
 import { CookieConsent } from './CookieConsent';
 import { MobileNavScript } from './MobileNavScript';
-import { ExternalMapConsent } from './ExternalMapConsent';
 import { AnalyticsTracker } from './AnalyticsTracker';
 import { getMessages } from '@/lib/i18n';
 
@@ -30,7 +29,6 @@ export function SiteShell({ locale, altPath, audience = 'general', showWhatsApp 
       <CookieConsent locale={locale} />
       <AnalyticsTracker />
       <MobileNavScript />
-      <ExternalMapConsent />
     </>
   );
 }

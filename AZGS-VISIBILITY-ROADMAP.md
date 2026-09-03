@@ -5,7 +5,7 @@ Stare: release-ul de vizibilitate și măsurare din commitul `c88ea5d` este publ
 
 ## Domeniul acestei etape
 
-Această etapă acoperă SEO tehnic și local, Google Search Console, Google Business Profile, GA4 cu consimțământ, Bing Webmaster Tools, IndexNow și prezența organică în Apple Business. Google Ads, remarketingul și orice cheltuială publicitară sunt excluse expres. Asocierile Google Ads vechi nu se modifică și nu se șterg până la o evaluare separată.
+Această etapă acoperă SEO tehnic și local, Google Search Console, Google Business Profile, GA4 cu consimțământ, Bing Webmaster Tools, IndexNow și prezența organică în Apple Business. Auditul Google Ads este inclus numai în mod read-only pentru alegerea contului. Activarea campaniilor, remarketingul, modificările de facturare și orice cheltuială publicitară sunt excluse expres.
 
 Nu este necesar un plan plătit pentru această etapă. Search Console, Google Business Profile, GA4 Standard, Bing Webmaster Tools, IndexNow și funcțiile de bază Apple Business pot fi folosite gratuit. Un serviciu plătit va fi propus numai dacă apare o limită reală sau o nevoie măsurabilă.
 
@@ -41,18 +41,20 @@ Nu este necesar un plan plătit pentru această etapă. Search Console, Google B
 - Există două asocieri Google Ads legacy preexistente: una afișează personalizarea activată la nivelul legăturii, iar cealaltă dezactivată. Ambele au rămas neatinse conform domeniului aprobat; nu s-a creat nicio asociere Ads nouă.
 - Au fost create cele 12 dimensiuni custom event-scoped aprobate: `content_language`, `audience_context`, `service_context`, `request_type`, `business_sector`, `contact_location`, `document_type`, `document_audience`, `traffic_source`, `traffic_medium`, `entry_page` și `cta_origin`.
 - Asocierea Search Console a fost creată la 3 septembrie 2026 între proprietatea Domain `azgs.nl` și fluxul web `azgs.nl`, ID `12841759030`.
-- Testul Realtime/DebugView nu este finalizat. Browserul public păstra consimțământul în starea `rejected`, site-ul nu oferă o interfață pentru redeschiderea bannerului, iar browsere separate Chrome/Edge nu au fost disponibile. Realtime a rămas la 0 și nu s-a transmis nimic.
+- Testul Realtime/DebugView nu este finalizat. Pachetul curent adaugă în footer o interfață permanentă pentru redeschiderea setărilor cookie, fără a bloca site-ul după refuz; testul real pe proprietatea GA4 rămâne separat. Realtime a rămas la 0 în proba anterioară și nu s-a transmis nimic atunci.
 - `generate_lead` nu a fost observat și nu a fost marcat drept key event. Auditul read-only pentru Data sharing, roluri și termenii de prelucrare rămâne pentru o etapă ulterioară.
 
 ### Google Business Profile
 
 - Profilul verificat este `A-Z Grand Solutions`, cu website-ul și telefonul corecte.
-- Categoria principală `Instalator`, adresa Alpenstraat 12 și programul luni–vineri 08:00–17:00, cu weekendul închis, au rămas neatinse.
+- Categoria principală `Instalator` a rămas neschimbată. Afișarea publică a adresei Alpenstraat 12 a fost dezactivată în cont, profilul este configurat ca service-area business, iar propagarea schimbării în Google Search/Maps este încă în așteptare.
 - Descrierea aprobată, de 643 de caractere, este publicată integral în profil și nu mai conține afirmația „24/7 bereikbaar”.
 - URL-ul `https://azgs.nl/?utm_source=google_business_profile&utm_medium=organic&utm_campaign=local_profile` este valoarea curentă publicată în profil.
-- Ariile generale Țările de Jos și Noord-Brabant au fost eliminate. Profilul afișează exact 14 localități normalizate: Lopik, Utrecht, Woerden, Zegveld, Montfoort, Oudewater, Bodegraven, Nieuwegein, IJsselstein, Kamerik, Reeuwijk, Harmelen, Nieuwkoop și Breukelen.
+- Ariile generale Țările de Jos și Noord-Brabant au fost eliminate. Profilul păstrează exact 14 localități normalizate: Lopik, Utrecht, Woerden, Zegveld, Montfoort, Oudewater, Bodegraven, Nieuwegein, IJsselstein, Kamerik, Reeuwijk, Harmelen, Nieuwkoop și Breukelen.
 - Serviciul neconfirmat `Instalare încălzitoare de apă` a fost eliminat. Au rămas șapte servicii reale: `Detectare scurgeri instalații`, `Instalare robineți`, `Instalare toalete`, `Montaj sisteme de duș`, `Reparare țevi`, `Reparații robinete` și `Reparații toalete`.
-- Adresa este publică. Înainte de a decide păstrarea ei trebuie confirmat dacă clienții pot fi primiți efectiv la locație, cu prezență și semnalizare permanentă în programul afișat. Dacă nu, regulile Google cer ascunderea adresei și folosirea profilului de service-area business.
+- Utilizatorul a confirmat că AZGS nu primește clienți la sediu și că disponibilitatea în intervalul 08:00–17:00 este numai telefonică. Lipsa primirii clienților este decisivă pentru ascunderea adresei; clarificarea semnalizării nu mai este necesară pentru această decizie.
+- Site-ul păstrează adresa juridică pentru transparența entității, dar paginile Contact și Despre noi și cardul de contact precizează în ambele limbi că nu este o locație pentru vizite ale clienților. Harta și CTA-ul de localizare au fost eliminate pentru a nu sugera un storefront, iar politicile cookies/privacy nu mai descriu o integrare Google Maps inexistentă.
+- Programul luni–vineri 08:00–17:00 nu a fost modificat. Trebuie confirmat dacă reprezintă orele obișnuite de funcționare orientate către clienți. Disponibilitatea numai telefonică nu îndeplinește cerința de prezență pentru afișarea adresei, dar poate susține programul unui service-area business.
 - Profilul are o recenzie Google reală. Nu se copiază textul, nu se inventează recenzii și nu se adaugă `Review`/`AggregateRating` pe site.
 
 ### Bing și IndexNow
@@ -65,9 +67,9 @@ Nu este necesar un plan plătit pentru această etapă. Search Console, Google B
 ### Apple Business
 
 - Din 14 aprilie 2026, Apple Business Connect, Apple Business Manager și Apple Business Essentials au fost consolidate în `Apple Business`, disponibil la `https://business.apple.com/`; datele Business Connect existente s-au migrat automat.
-- Pentru AZGS se poate crea organizația și un brand de tip `Single brand` înainte de răspunsul despre adresă. Verificarea organizației trebuie finalizată în 60 de zile și cere două metode de verificare.
-- Crearea sau revendicarea unei locații Apple Maps rămâne blocată până la confirmarea unei locații fizice reale unde sunt serviți clienții. Nu se transpun regulile Google Business Profile despre service areas ori ascunderea adresei, deoarece documentația Apple nu descrie un echivalent.
-- Apple Business nu a fost început în această sesiune. Funcțiile de bază sunt gratuite; serviciile Apple plătite și publicitatea în Maps rămân în afara acestei etape.
+- AZGS nu are încă un cont Apple Business. Primul pas este înscrierea la `business.apple.com` cu o adresă de e-mail de business controlată de companie; fluxul creează contul inițial de administrator al organizației. Urmează verificarea organizației și crearea unui brand de tip `Single brand`. Verificarea trebuie finalizată în 60 de zile și cere două metode.
+- Alpenstraat 12 nu se creează sau revendică drept locație publică Apple Maps deoarece AZGS nu primește clienți acolo. Nu presupunem un echivalent Apple pentru profilul Google de tip service-area business în lipsa unei reguli Apple documentate.
+- Apple Business este în așteptarea creării contului. Funcțiile de bază sunt gratuite; serviciile Apple plătite și publicitatea în Maps rămân în afara acestei etape.
 
 ## Implementare publicată în `c88ea5d`
 
@@ -93,11 +95,12 @@ Pachetul a fost executat după aprobarea explicită. Stările de mai jos separă
 
 1. **Search Console — finalizat:** sitemapul a fost retrimis și citit cu succes cu 98 de pagini; recrawl-ul celor zece URL-uri prioritare a fost acceptat. Nu s-au folosit Removals sau Validate Fix.
 2. **GA4 — configurare principală finalizată, test pending:** măsurările automate care ar dubla implementarea au fost dezactivate, redacția query-urilor a fost configurată, cele 12 dimensiuni au fost create și Search Console a fost asociat. Realtime/DebugView nu a putut fi finalizat, iar `generate_lead` a rămas neobservat și nemarcat.
-3. **Google Business Profile — finalizat pentru câmpurile aprobate:** readback-ul confirmă descrierea, URL-ul UTM, exact cele 14 localități și cele șapte servicii curente. Adresa, categoria principală și programul au rămas neatinse; decizia privind afișarea adresei așteaptă răspunsul factual despre condițiile fizice.
+3. **Google Business Profile — modificare salvată, propagare publică în așteptare:** adresa a fost ascunsă în cont, iar readback-ul editorului confirmă profilul fără locație publică. Cele 14 localități au rămas neschimbate. Programul 08:00–17:00 nu a fost modificat; rămâne de confirmat dacă reprezintă programul obișnuit orientat către clienți al firmei.
 4. **Bing Webmaster Tools — în așteptare:** nu exista autentificare, deci nu s-a făcut importul din Search Console și nu s-a modificat sitemapul în cont.
 5. **Bing Places for Business — neînceput:** listarea se verifică și se revendică numai cu un cont potrivit, separat de Bing Webmaster Tools.
-6. **Apple Business — neînceput:** organizația și un `Single brand` pot fi create cu un cont destinat companiei; o locație Apple Maps așteaptă confirmarea factuală privind locația fizică.
+6. **Apple Business — în așteptarea înscrierii:** contul nu există încă; înscrierea începe la `business.apple.com` cu o adresă de e-mail de business controlată de companie și creează administratorul inițial. Verificarea organizației și brandul urmează după aceea. Alpenstraat 12 nu va fi publicată ca storefront.
 7. **Verificări live și IndexNow — finalizat:** conținutul și răspunsurile HTTP au fost verificate, iar cele două submituri IndexNow au primit HTTP `200`. Testul GA4 real rămâne separat și nu s-a trimis un lead.
+8. **Google Ads — audit read-only finalizat:** candidatul vechi auditat este recomandat pentru reutilizare, toate campaniile sunt oprite, iar măsurarea conversiilor nu este încă validată. Nu s-a activat nicio campanie și nu s-a produs nicio cheltuială. Auditul nu a acoperit ambele asocieri legacy observate în GA4; înaintea unei lansări se confirmă legătura exactă a contului ales, se validează conversia și se aprobă separat campania și bugetul.
 
 ## Verificări pre-deploy și post-deploy
 
@@ -109,6 +112,7 @@ Pachetul a fost executat după aprobarea explicită. Stările de mai jos separă
 - `git diff --check`: trecut; mesajele Windows despre conversia LF/CRLF sunt notificări, nu erori;
 - test local: niciun script GA4 înainte de consimțământ sau după refuz, un singur `page_view` la acceptare, un singur `page_view` suplimentar la navigarea Next.js, URL-uri fără query și câmpuri de atribuire în formular numai cu consimțământ;
 - test local: `/` rămâne în neerlandeză și `/en` în engleză, fără redirect după limba browserului;
+- test local al pachetului curent: `Refuz` închide bannerul fără a bloca navigarea, GA4 rămâne oprit, iar setările se pot redeschide din footer fără a schimba automat alegerea existentă;
 - nu s-a trimis nicio solicitare reală prin Formspree și nu s-a transmis trafic local către proprietatea GA4.
 - post-deploy: `/` și `/en` răspund `200`; sitemapul are 98 `loc` și 98 `lastmod`, distribuite între 88 de pagini statice și 10 articole;
 - post-deploy: cele șase rute duplicate răspund `301` spre destinațiile canonice, iar titlurile blog NL/EN și footerul au conținutul așteptat;
@@ -130,9 +134,14 @@ Descrierea de 643 de caractere și URL-ul sunt publicate și au fost confirmate 
 - Google Search Console — sitemaps: https://support.google.com/webmasters/answer/7451001
 - Google — reguli pentru reprezentarea unei companii: https://support.google.com/business/answer/3038177?hl=nl
 - Google — arii de servicii: https://support.google.com/business/answer/9157481?hl=nl
+- Google — gestionarea și ascunderea adresei: https://support.google.com/business/answer/2853879?hl=nl
 - Google — LocalBusiness structured data: https://developers.google.com/search/docs/appearance/structured-data/local-business
 - Google Analytics — pageviews manuale: https://developers.google.com/analytics/devguides/collection/ga4/views
 - Google Analytics — conectarea Search Console: https://support.google.com/analytics/answer/10737381
+- Google Ads — niveluri de acces: https://support.google.com/google-ads/answer/9978556
+- Google Ads — obiective și acțiuni de conversie: https://support.google.com/google-ads/answer/10993988
+- Google Ads — setări permanente pentru monedă și fus orar: https://support.google.com/google-ads/answer/9842104
+- Google Ads — suspendări și conturi asociate: https://support.google.com/google-ads/answer/13704200
 - IndexNow — documentație: https://www.indexnow.org/documentation
 - Bing Webmaster Tools — importul din Search Console: https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b
 - Bing Webmaster Tools — sitemaps: https://www.bing.com/webmasters/help/Sitemaps-3b5cf6ed

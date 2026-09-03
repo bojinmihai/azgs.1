@@ -50,9 +50,14 @@
   },
   "consent": {
     "title": "Cookies & privacy",
-    "text": "We use analytical cookies (Google Analytics) to understand how our website is used. These cookies are not essential — you can decline them. Read more in our <a>cookie policy</a>.",
+    "text": "We use analytical cookies (Google Analytics) to understand how our website is used. These cookies are not essential. If you decline, the website remains fully usable. You can change your choice later via Cookie settings in the footer. Read more in our <a>cookie policy</a>.",
     "reject": "Decline",
-    "accept": "Accept"
+    "accept": "Accept",
+    "settings": "Cookie settings",
+    "close": "Close",
+    "currentStatus": "Current choice: {choice}.",
+    "statusAccepted": "analytics allowed",
+    "statusRejected": "analytics declined"
   },
   "common": {
     "whatsapp": "WhatsApp",

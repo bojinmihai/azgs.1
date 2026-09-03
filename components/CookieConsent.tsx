@@ -1,12 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import type { Locale } from '@/lib/site';
 import { getMessages } from '@/lib/i18n';
 import { COMPANY, url } from '@/lib/site';
 import {
   ANALYTICS_CONSENT_STORAGE_KEY,
+  type AnalyticsConsentStatus,
   announceAnalyticsConsent,
   clearAnalyticsAttribution,
   deleteAnalyticsCookies,
@@ -23,6 +24,9 @@ export function CookieConsent({ locale }: Props) {
   const t = getMessages(locale).consent;
   const cookieHref = url('cookies', locale);
   const [visible, setVisible] = useState(false);
+  const [consentStatus, setConsentStatus] = useState<AnalyticsConsentStatus>(null);
+  const firstChoiceRef = useRef<HTMLButtonElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
 
   const loadGA = useCallback(() => {
     if (typeof window === 'undefined') return;
@@ -80,29 +84,52 @@ export function CookieConsent({ locale }: Props) {
     clearAnalyticsAttribution();
   }, []);
 
+  const close = useCallback(() => {
+    setVisible(false);
+    const opener = openerRef.current;
+    openerRef.current = null;
+    if (opener) {
+      window.requestAnimationFrame(() => {
+        if (document.contains(opener)) opener.focus();
+      });
+    }
+  }, []);
+
   const accept = useCallback(() => {
     try { localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, 'accepted'); } catch { /* no-op */ }
+    setConsentStatus('accepted');
     loadGA();
     announceAnalyticsConsent('accepted');
-    setVisible(false);
-  }, [loadGA]);
+    close();
+  }, [close, loadGA]);
 
   const reject = useCallback(() => {
     try { localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, 'rejected'); } catch { /* no-op */ }
+    setConsentStatus('rejected');
     stopGA();
     announceAnalyticsConsent('rejected');
-    setVisible(false);
-  }, [stopGA]);
+    close();
+  }, [close, stopGA]);
 
-  const reset = useCallback(() => {
+  const open = useCallback((trigger?: HTMLElement) => {
+    const activeElement = document.activeElement;
+    openerRef.current = trigger || (activeElement instanceof HTMLElement ? activeElement : null);
+    setConsentStatus(getAnalyticsConsent());
+    setVisible(true);
+    window.requestAnimationFrame(() => firstChoiceRef.current?.focus());
+  }, []);
+
+  const reset = useCallback((trigger?: HTMLElement) => {
     try { localStorage.removeItem(ANALYTICS_CONSENT_STORAGE_KEY); } catch { /* no-op */ }
+    setConsentStatus(null);
     stopGA();
     announceAnalyticsConsent(null);
-    setVisible(true);
-  }, [stopGA]);
+    open(trigger);
+  }, [open, stopGA]);
 
   useEffect(() => {
     const stored = getAnalyticsConsent();
+    setConsentStatus(stored);
     if (!stored) {
       stopGA();
       setVisible(true);
@@ -116,6 +143,7 @@ export function CookieConsent({ locale }: Props) {
     window.azgsConsent = {
       accept,
       reject,
+      open,
       reset,
       status: getAnalyticsConsent,
     };
@@ -127,7 +155,8 @@ export function CookieConsent({ locale }: Props) {
       const action = button.dataset.consentAction;
       if (action === 'accept') accept();
       if (action === 'reject') reject();
-      if (action === 'reset') reset();
+      if (action === 'open') open(button);
+      if (action === 'reset') reset(button);
     };
 
     document.addEventListener('click', onConsentAction);
@@ -135,17 +164,28 @@ export function CookieConsent({ locale }: Props) {
       document.removeEventListener('click', onConsentAction);
       delete window.azgsConsent;
     };
-  }, [accept, loadGA, reject, reset, stopGA]);
+  }, [accept, loadGA, open, reject, reset, stopGA]);
 
-  if (!visible) return null;
+  useEffect(() => {
+    if (!visible || !consentStatus) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      close();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [close, consentStatus, visible]);
 
   // Split text on <a>...</a> placeholder for the cookie policy link
   const parts = t.text.split(/<a>(.+?)<\/a>/);
 
   return (
     <div
+      id="azgs-consent-banner"
       className="consent-banner"
       data-consent-banner
+      hidden={!visible}
       role="dialog"
       aria-live="polite"
       aria-labelledby="consent-banner-title"
@@ -161,12 +201,22 @@ export function CookieConsent({ locale }: Props) {
             {parts[1] && <Link href={cookieHref}>{parts[1]}</Link>}
             {parts[2]}
           </p>
+          {consentStatus ? (
+            <p className="consent-banner__status" role="status">
+              {t.currentStatus.replace(
+                '{choice}',
+                consentStatus === 'accepted' ? t.statusAccepted : t.statusRejected,
+              )}
+            </p>
+          ) : null}
         </div>
         <div className="consent-banner__actions">
           <button
+            ref={firstChoiceRef}
             type="button"
             className="consent-banner__btn consent-banner__btn--choice"
             onClick={reject}
+            aria-pressed={consentStatus === 'rejected'}
           >
             {t.reject}
           </button>
@@ -174,9 +224,19 @@ export function CookieConsent({ locale }: Props) {
             type="button"
             className="consent-banner__btn consent-banner__btn--choice"
             onClick={accept}
+            aria-pressed={consentStatus === 'accepted'}
           >
             {t.accept}
           </button>
+          {consentStatus ? (
+            <button
+              type="button"
+              className="consent-banner__btn consent-banner__btn--ghost"
+              onClick={close}
+            >
+              {t.close}
+            </button>
+          ) : null}
         </div>
       </div>
     </div>

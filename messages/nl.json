@@ -50,9 +50,14 @@
   },
   "consent": {
     "title": "Cookies & privacy",
-    "text": "Wij gebruiken analytische cookies (Google Analytics) om te begrijpen hoe onze website wordt gebruikt. Deze cookies zijn niet noodzakelijk, u kunt ze weigeren. Lees meer in ons <a>cookiebeleid</a>.",
+    "text": "Wij gebruiken analytische cookies (Google Analytics) om te begrijpen hoe onze website wordt gebruikt. Deze cookies zijn niet noodzakelijk. Als u weigert, blijft de website volledig bruikbaar. U kunt uw keuze later wijzigen via Cookie-instellingen in de footer. Lees meer in ons <a>cookiebeleid</a>.",
     "reject": "Weigeren",
-    "accept": "Accepteren"
+    "accept": "Accepteren",
+    "settings": "Cookie-instellingen",
+    "close": "Sluiten",
+    "currentStatus": "Huidige keuze: {choice}.",
+    "statusAccepted": "analytics toegestaan",
+    "statusRejected": "analytics geweigerd"
   },
   "common": {
     "whatsapp": "WhatsApp",

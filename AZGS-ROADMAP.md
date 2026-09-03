@@ -949,3 +949,36 @@ Nu este necesar un plan plătit pentru această etapă. Modul `ULTRA` selectat e
 6. asocierile Google Ads legacy rămân neatinse până la evaluarea separată; nu se creează campanii, iar fotografiile și pagina de proiecte rămân în afara acestei etape.
 
 Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organice folosite sunt suficiente pentru starea verificată.
+
+### Follow-up cookies, Google Business Profile, Google Ads și Apple Business — 3 septembrie 2026
+
+**Status:** răspunsurile factuale ale utilizatorului au fost aplicate în profilul Google și într-un release-candidat local. Auditul Google Ads a fost strict read-only. Nu s-a activat nicio campanie, nu s-a introdus buget și nu s-a produs nicio cheltuială publicitară.
+
+**Cookies și analytics**
+
+- `Refuz` păstrează site-ul complet utilizabil și nu încarcă GA4. Acceptarea și refuzul rămân opțiuni egale.
+- Footerul oferă permanent `Cookie-instellingen` / `Cookie settings`; redeschiderea nu schimbă automat alegerea existentă, iar utilizatorul poate închide setările păstrând-o.
+- Starea curentă este expusă accesibil, focusul este administrat pentru tastatură, iar bannerul rămâne utilizabil la zoom mare sau pe viewport scund.
+- Textele cookies și privacy NL/EN descriu comportamentul real. Testul local nu trimite trafic către GA4 și nu trimite formularul.
+
+**Google Business Profile**
+
+- Utilizatorul a confirmat că AZGS nu primește clienți la sediu. Afișarea adresei Alpenstraat 12 a fost dezactivată în cont, iar readback-ul editorului confirmă `Fără locație. Doar livrări și servicii la domiciliu`.
+- Paginile Contact și Despre noi, precum și cardul de contact NL/EN, identifică Alpenstraat exclusiv drept adresă de înregistrare și precizează că nu este o locație pentru vizite ale clienților. Harta și CTA-ul de localizare au fost eliminate pentru a nu transmite un semnal contradictoriu de storefront; politicile cookies/privacy au fost aliniate la eliminarea integrării Google Maps.
+- Cele 14 zone de servicii au rămas neschimbate. Propagarea adresei ascunse în rezultatul public Google Search/Maps este încă în așteptare.
+- Programul luni–vineri 08:00–17:00 a rămas neschimbat. Trebuie confirmat dacă acesta este programul obișnuit de funcționare orientat către clienți. Disponibilitatea telefonică poate susține programul unui service-area business, dar nu justifică afișarea adresei ca storefront.
+- Semnalizarea permanentă ar fi însemnat numele firmei afișat fizic pe un panou fix. Clarificarea nu mai este necesară pentru decizia actuală, deoarece lipsa primirii clienților impune oricum ascunderea adresei.
+
+**Google Ads — audit read-only și decizie de cont**
+
+- Candidatul vechi auditat este activ și verificat, are moneda și fusul orar potrivite pentru AZGS și păstrează un istoric util. Toate campaniile sunt oprite sau eliminate, iar auditul nu a produs cheltuieli.
+- Google Ads raportează 0 leaduri pentru perioada auditată, dar conversiile nu sunt validate; acest rezultat nu dovedește că firma nu a primit leaduri reale.
+- Decizia este reutilizarea candidatului vechi auditat, nu crearea imediată a unuia nou. Istoricul contului rămâne consultabil, însă campaniile nou-create sau copiate nu moștenesc metricile și învățarea vechilor strategii de licitare.
+- Auditul a acoperit contul autentificat accesibil, nu ambele asocieri legacy observate în GA4. Orice relansare rămâne blocată până la verificarea tuturor accesărilor, confirmarea legăturii GA4 exacte și a setărilor sale de personalizare, testarea reală a `generate_lead` și aprobarea separată a structurii, zonelor, cuvintelor-cheie, negative keywords, bugetului și limitei de cost per lead.
+
+**Apple Business și pașii rămași**
+
+- AZGS nu are încă un cont Apple Business. Înscrierea începe la `business.apple.com` cu o adresă de e-mail de business controlată de companie; fluxul creează administratorul inițial, apoi urmează verificarea organizației și brandul `Single brand`.
+- Alpenstraat 12 nu va fi publicată drept locație Apple Maps unde sunt primiți clienți. Nu presupunem că Apple oferă un echivalent al profilului Google de tip service-area business.
+- Rămân de confirmat programul obișnuit orientat către clienți și toate accesările Google Ads. După deploy se verifică live comportamentul cookie și propagarea adresei ascunse.
+- Fotografiile și pagina de proiecte rămân intenționat pentru ultima etapă, cu verificarea atentă a sursei, drepturilor și conținutului înainte de publicare.

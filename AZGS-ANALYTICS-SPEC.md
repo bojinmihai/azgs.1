@@ -9,7 +9,7 @@ Stare: corecția de vizibilitate și măsurare SPA din commitul `c88ea5d` este p
 - Implementarea folosește basic consent mode: înainte de acceptare nu se încarcă tagul Google și nu se transmite nici măcar un ping fără cookie.
 - Refuzul și lipsa unei alegeri sunt stările implicite sigure.
 - Acceptarea și refuzul sunt prezentate la același nivel și cu aceeași vizibilitate.
-- Retragerea este disponibilă printr-o acțiune permanentă în footer și prin pagina Cookiebeleid/Cookie Policy.
+- Setările sunt disponibile permanent în footer și prin pagina Cookiebeleid/Cookie Policy. Refuzul nu blochează navigarea, iar redeschiderea setărilor nu schimbă automat alegerea existentă.
 - La refuz sau retragere sunt oprite evenimentele noi, scriptul GA4 este eliminat, starea de colectare este dezactivată, iar cookie-urile proprii `_ga`/`_ga_*` sunt șterse în măsura permisă browserului.
 - Niciun eveniment nu conține valori introduse de utilizator în formular.
 - Scriptul Google poate fi încărcat exclusiv pe `azgs.nl` și `www.azgs.nl`. Pe localhost, `127.0.0.1`, `[::1]`, `file:` și orice hostname de preview comenzile rămân locale; nu se transmite trafic către proprietatea reală.
@@ -79,9 +79,17 @@ Auditul inițial din 3 septembrie 2026 a confirmat meetcode-ul `G-DK6FZHQRCB`, G
 6. Au fost create exact 12 dimensiuni custom event-scoped: `content_language`, `audience_context`, `service_context`, `request_type`, `business_sector`, `contact_location`, `document_type`, `document_audience`, `traffic_source`, `traffic_medium`, `entry_page` și `cta_origin`.
 7. Asocierea Search Console a fost creată la 3 septembrie 2026 între proprietatea Domain `azgs.nl` și fluxul web `azgs.nl`, ID `12841759030`.
 
+### Audit Google Ads read-only — 3 septembrie 2026
+
+- Contul Google Ads vechi auditat este candidatul recomandat pentru reutilizare; nu există acum un motiv verificat pentru crearea unui cont nou. Contul este activ, verificarea advertiserului este finalizată, moneda și fusul orar sunt potrivite pentru AZGS, iar auto-tagging este activ.
+- Toate campaniile sunt oprite sau eliminate. Auditul nu a activat contul ori vreo campanie, nu a introdus buget, nu a modificat facturarea și nu a produs cheltuieli.
+- Contul păstrează istoric util de trafic și cheltuieli, dar Google Ads raportează 0 leaduri pentru perioada auditată. Aceasta descrie raportarea neverificată din cont și nu dovedește că firma nu a primit leaduri reale. Acțiunile GA4 de formular și ofertă nu au date confirmate.
+- Istoricul arată termeni generici și informativi, lipsa unei liste de negative keywords și trafic predominant mobil. Acestea justifică reconstruirea controlată a campaniilor în contul existent, nu pierderea istoricului printr-un cont nou.
+- Înainte de orice publicitate trebuie confirmate toate accesările contului, legătura GA4 exactă a contului ales și dezactivarea personalizării publicitare la nivelul acelei legături, apoi testată măsurarea reală a conversiei. Auditul a acoperit candidatul autentificat accesibil, nu ambele asocieri legacy observate în GA4. `generate_lead` devine conversie de optimizare numai după observarea și verificarea sa; campaniile rămân oprite până la aprobarea separată a structurii, zonelor, cuvintelor-cheie, bugetului și limitei de cost per lead.
+
 ### Verificări rămase deschise
 
-- Proba Realtime/DebugView nu este finalizată. Browserul public păstra consimțământul în starea `rejected`, site-ul nu oferă o interfață pentru redeschiderea bannerului, iar browsere separate Chrome/Edge nu au fost disponibile. Realtime a rămas la 0 și nu s-a transmis niciun eveniment în această probă.
+- Proba Realtime/DebugView nu este finalizată. Pachetul curent adaugă interfața permanentă `Cookie-instellingen` / `Cookie settings`, iar testul local confirmă că refuzul nu blochează site-ul și că setările se redeschid fără schimbarea automată a alegerii. Testul real pe proprietatea GA4 rămâne separat; Realtime a rămas la 0 în proba anterioară și nu s-a transmis niciun eveniment atunci.
 - `generate_lead` nu a fost observat și nu a fost marcat drept key event. Se marchează numai după recepția și verificarea unui eveniment real; clickurile de contact rămân intenții, nu leaduri confirmate.
 - Auditul read-only pentru Data sharing, transferuri, rolurile contractuale Google și data-processing terms rămâne pentru o etapă ulterioară. Politica de confidențialitate trebuie menținută conform stării confirmate atunci.
 - Un test ulterior trebuie să acopere refuz, accept, schimbare de rută, selectare de serviciu și clickuri, fără PII și fără trimiterea unui lead nedorit firmei.
@@ -105,3 +113,9 @@ Auditul inițial din 3 septembrie 2026 a confirmat meetcode-ul `G-DK6FZHQRCB`, G
 - Google — configurația `gtag`, inclusiv parametrii de campanie și `language`: https://developers.google.com/analytics/devguides/collection/ga4/reference/config
 - Google — conectarea Search Console la GA4: https://support.google.com/analytics/answer/10737381
 - Google — data retention: https://support.google.com/analytics/answer/7667196
+- Google Ads — niveluri de acces: https://support.google.com/google-ads/answer/9978556
+- Google Ads — securizarea contului: https://support.google.com/google-ads/answer/12864492
+- Google Ads — setări permanente pentru monedă și fus orar: https://support.google.com/google-ads/answer/9842104
+- Google Ads — obiective și acțiuni de conversie: https://support.google.com/google-ads/answer/10993988
+- Google Ads — copierea campaniilor și lipsa transferului istoricului: https://support.google.com/google-ads/answer/9471263
+- Google Ads — suspendări și conturi asociate: https://support.google.com/google-ads/answer/13704200

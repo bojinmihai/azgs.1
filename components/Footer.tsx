@@ -173,8 +173,14 @@ export function Footer({ locale, audience = 'general' }: Props) {
           <div className="footer-bottom-legal">
             <Link href={url('privacy', locale)}>{t.footer.privacy}</Link>
             <Link href={url('cookies', locale)}>{t.footer.cookies}</Link>
-            <button type="button" className="footer-legal-button" data-consent-action="reject">
-              {locale === 'nl' ? 'Analytics weigeren/intrekken' : 'Decline/withdraw analytics'}
+            <button
+              type="button"
+              className="footer-legal-button"
+              data-consent-action="open"
+              aria-controls="azgs-consent-banner"
+              aria-haspopup="dialog"
+            >
+              {t.consent.settings}
             </button>
             <Link href={url('terms', locale)}>{t.footer.terms}</Link>
             <Link href={url('termsBusiness', locale)}>{t.footer.termsBusiness}</Link>

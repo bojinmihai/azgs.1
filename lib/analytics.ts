@@ -71,7 +71,8 @@ declare global {
     azgsConsent?: {
       accept: () => void;
       reject: () => void;
-      reset: () => void;
+      open: (trigger?: HTMLElement) => void;
+      reset: (trigger?: HTMLElement) => void;
       status: () => AnalyticsConsentStatus;
     };
   }
