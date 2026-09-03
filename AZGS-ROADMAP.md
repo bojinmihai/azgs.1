@@ -952,7 +952,7 @@ Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organic
 
 ### Follow-up cookies, Google Business Profile, Google Ads și Apple Business — 3 septembrie 2026
 
-**Status:** răspunsurile factuale ale utilizatorului au fost aplicate în profilul Google și într-un release-candidat local. Auditul Google Ads a fost strict read-only. Nu s-a activat nicio campanie, nu s-a introdus buget și nu s-a produs nicio cheltuială publicitară.
+**Status:** răspunsurile factuale ale utilizatorului au fost aplicate în profilul Google și într-un release-candidat local. Auditul Google Ads a fost urmat, cu aprobarea explicită a utilizatorului, de migrarea plătitorului către VOF. Nu s-a activat nicio campanie, nu s-a introdus buget și nu s-a produs nicio cheltuială publicitară.
 
 **Publicare și verificare:** release-ul funcțional din commitul `2ad089c` a fost împins pe `origin/main` și `live/main`, apoi confirmat pe `azgs.nl`. Refuzul cookies păstrează navigarea și GA4 oprit, setările se redeschid din footer, paginile Contact NL/EN afișează explicit că sediul nu primește clienți, iar integrarea Google Maps nu mai este prezentă.
 
@@ -968,19 +968,22 @@ Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organic
 - Utilizatorul a confirmat că AZGS nu primește clienți la sediu. Afișarea adresei Alpenstraat 12 a fost dezactivată în cont, iar readback-ul editorului confirmă `Fără locație. Doar livrări și servicii la domiciliu`.
 - Paginile Contact și Despre noi, precum și cardul de contact NL/EN, identifică Alpenstraat exclusiv drept adresă de înregistrare și precizează că nu este o locație pentru vizite ale clienților. Harta și CTA-ul de localizare au fost eliminate pentru a nu transmite un semnal contradictoriu de storefront; politicile cookies/privacy au fost aliniate la eliminarea integrării Google Maps.
 - Cele 14 zone de servicii au rămas neschimbate. Verificarea ulterioară în rezultatul public Google confirmă că strada nu mai este afișată și că profilul prezintă numai zona deservită.
-- Programul luni–vineri 08:00–17:00 a rămas neschimbat. Trebuie confirmat dacă acesta este programul obișnuit de funcționare orientat către clienți. Disponibilitatea telefonică poate susține programul unui service-area business, dar nu justifică afișarea adresei ca storefront.
+- Programul luni–vineri 08:00–17:00 a rămas neschimbat și este confirmat de utilizator drept intervalul obișnuit de disponibilitate telefonică pentru clienți. Acesta poate susține programul unui service-area business, dar nu justifică afișarea adresei ca storefront.
 - Semnalizarea permanentă ar fi însemnat numele firmei afișat fizic pe un panou fix. Clarificarea nu mai este necesară pentru decizia actuală, deoarece lipsa primirii clienților impune oricum ascunderea adresei.
 
-**Google Ads — audit read-only și decizie de cont**
+**Google Ads — decizie de cont și migrare a plătitorului**
 
-- Candidatul vechi auditat este activ și verificat, are moneda și fusul orar potrivite pentru AZGS și păstrează un istoric util. Toate campaniile sunt oprite sau eliminate, iar auditul nu a produs cheltuieli.
+- La începutul auditului, contul existent era activ și afișa verificarea advertiserului finalizată pentru vechea entitate; moneda și fusul orar sunt potrivite pentru AZGS, iar istoricul este util. Toate campaniile sunt oprite sau eliminate, iar auditul și migrarea plătitorului nu au produs cheltuieli.
 - Google Ads raportează 0 leaduri pentru perioada auditată, dar conversiile nu sunt validate; acest rezultat nu dovedește că firma nu a primit leaduri reale.
 - Decizia este reutilizarea candidatului vechi auditat, nu crearea imediată a unuia nou. Istoricul contului rămâne consultabil, însă campaniile nou-create sau copiate nu moștenesc metricile și învățarea vechilor strategii de licitare.
+- Profilul de plăți, verificarea și metoda bancară existente la începutul auditului aparțineau ZZP-ului închis. Soldul vechi a fost confirmat la zero, iar utilizatorul a aprobat finalizarea `Change who pays` în contul Ads existent, astfel încât istoricul să fie păstrat.
+- Google confirmă acum un profil nou `Organization` pentru `AZ Grand Solutions vof`, cu țara, denumirea juridică și adresa corecte. Utilizatorul a introdus direct BTW/VAT ID și datele contului bancar al VOF; documentația nu păstrează identificatori fiscali, bancari sau de profil.
+- Contul bancar nou este metoda principală, dar verificarea manuală este încă în așteptare. După apariția microtranzacției Google, suma exactă trebuie confirmată în metodele de plată. Google a confirmat schimbarea plătitorului și va trimite prin e-mail pașii pentru reverificarea advertiserului cu documentele VOF și ale reprezentantului autorizat.
 - Auditul a acoperit contul autentificat accesibil, nu ambele asocieri legacy observate în GA4. Orice relansare rămâne blocată până la verificarea tuturor accesărilor, confirmarea legăturii GA4 exacte și a setărilor sale de personalizare, testarea reală a `generate_lead` și aprobarea separată a structurii, zonelor, cuvintelor-cheie, negative keywords, bugetului și limitei de cost per lead.
 
 **Apple Business și pașii rămași**
 
 - AZGS nu are încă un cont Apple Business. Înscrierea începe la `business.apple.com` cu o adresă de e-mail de business controlată de companie; fluxul creează administratorul inițial, apoi urmează verificarea organizației și brandul `Single brand`.
 - Alpenstraat 12 nu va fi publicată drept locație Apple Maps unde sunt primiți clienți. Nu presupunem că Apple oferă un echivalent al profilului Google de tip service-area business.
-- Rămân de confirmat programul obișnuit orientat către clienți și toate accesările Google Ads. Comportamentul cookie și ascunderea publică a adresei au fost verificate live.
+- Programul telefonic obișnuit este confirmat. Pentru Google Ads rămân confirmarea contului bancar, reverificarea advertiserului, verificarea tuturor accesărilor și validarea conversiilor; transferul plătitorului către VOF este finalizat. Comportamentul cookie și ascunderea publică a adresei au fost verificate live.
 - Fotografiile și pagina de proiecte rămân intenționat pentru ultima etapă, cu verificarea atentă a sursei, drepturilor și conținutului înainte de publicare.

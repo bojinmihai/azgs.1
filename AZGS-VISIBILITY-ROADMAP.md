@@ -5,7 +5,7 @@ Stare: release-ul de vizibilitate și măsurare din commitul `c88ea5d` și follo
 
 ## Domeniul acestei etape
 
-Această etapă acoperă SEO tehnic și local, Google Search Console, Google Business Profile, GA4 cu consimțământ, Bing Webmaster Tools, IndexNow și prezența organică în Apple Business. Auditul Google Ads este inclus numai în mod read-only pentru alegerea contului. Activarea campaniilor, remarketingul, modificările de facturare și orice cheltuială publicitară sunt excluse expres.
+Această etapă acoperă SEO tehnic și local, Google Search Console, Google Business Profile, GA4 cu consimțământ, Bing Webmaster Tools, IndexNow și prezența organică în Apple Business. Domeniul inițial Google Ads a fost read-only pentru alegerea contului; ulterior, utilizatorul a aprobat explicit numai migrarea plătitorului de la ZZP-ul închis la VOF. Activarea campaniilor, remarketingul și orice cheltuială publicitară rămân excluse expres.
 
 Nu este necesar un plan plătit pentru această etapă. Search Console, Google Business Profile, GA4 Standard, Bing Webmaster Tools, IndexNow și funcțiile de bază Apple Business pot fi folosite gratuit. Un serviciu plătit va fi propus numai dacă apare o limită reală sau o nevoie măsurabilă.
 
@@ -54,7 +54,7 @@ Nu este necesar un plan plătit pentru această etapă. Search Console, Google B
 - Serviciul neconfirmat `Instalare încălzitoare de apă` a fost eliminat. Au rămas șapte servicii reale: `Detectare scurgeri instalații`, `Instalare robineți`, `Instalare toalete`, `Montaj sisteme de duș`, `Reparare țevi`, `Reparații robinete` și `Reparații toalete`.
 - Utilizatorul a confirmat că AZGS nu primește clienți la sediu și că disponibilitatea în intervalul 08:00–17:00 este numai telefonică. Lipsa primirii clienților este decisivă pentru ascunderea adresei; clarificarea semnalizării nu mai este necesară pentru această decizie.
 - Site-ul păstrează adresa juridică pentru transparența entității, dar paginile Contact și Despre noi și cardul de contact precizează în ambele limbi că nu este o locație pentru vizite ale clienților. Harta și CTA-ul de localizare au fost eliminate pentru a nu sugera un storefront, iar politicile cookies/privacy nu mai descriu o integrare Google Maps inexistentă.
-- Programul luni–vineri 08:00–17:00 nu a fost modificat. Trebuie confirmat dacă reprezintă orele obișnuite de funcționare orientate către clienți. Disponibilitatea numai telefonică nu îndeplinește cerința de prezență pentru afișarea adresei, dar poate susține programul unui service-area business.
+- Utilizatorul a confirmat că programul luni–vineri 08:00–17:00 reprezintă intervalul obișnuit în care firma este disponibilă telefonic pentru clienți. Programul nu a fost modificat. Disponibilitatea numai telefonică este compatibilă cu profilul de tip service-area business, dar nu justifică afișarea adresei ca storefront.
 - Profilul are o recenzie Google reală. Nu se copiază textul, nu se inventează recenzii și nu se adaugă `Review`/`AggregateRating` pe site.
 
 ### Bing și IndexNow
@@ -95,12 +95,12 @@ Pachetul a fost executat după aprobarea explicită. Stările de mai jos separă
 
 1. **Search Console — finalizat:** sitemapul a fost retrimis și citit cu succes cu 98 de pagini; recrawl-ul celor zece URL-uri prioritare a fost acceptat. Nu s-au folosit Removals sau Validate Fix.
 2. **GA4 — configurare principală finalizată, test pending:** măsurările automate care ar dubla implementarea au fost dezactivate, redacția query-urilor a fost configurată, cele 12 dimensiuni au fost create și Search Console a fost asociat. Realtime/DebugView nu a putut fi finalizat, iar `generate_lead` a rămas neobservat și nemarcat.
-3. **Google Business Profile — finalizat și confirmat public:** adresa a fost ascunsă, readback-ul editorului confirmă profilul fără locație publică, iar rezultatul Google nu mai afișează strada. Cele 14 localități au rămas neschimbate. Programul 08:00–17:00 nu a fost modificat; rămâne de confirmat dacă reprezintă programul obișnuit orientat către clienți al firmei.
+3. **Google Business Profile — finalizat și confirmat public:** adresa a fost ascunsă, readback-ul editorului confirmă profilul fără locație publică, iar rezultatul Google nu mai afișează strada. Cele 14 localități au rămas neschimbate. Programul 08:00–17:00 nu a fost modificat și este confirmat drept intervalul obișnuit de disponibilitate telefonică pentru clienți.
 4. **Bing Webmaster Tools — în așteptare:** nu exista autentificare, deci nu s-a făcut importul din Search Console și nu s-a modificat sitemapul în cont.
 5. **Bing Places for Business — neînceput:** listarea se verifică și se revendică numai cu un cont potrivit, separat de Bing Webmaster Tools.
 6. **Apple Business — în așteptarea înscrierii:** contul nu există încă; înscrierea începe la `business.apple.com` cu o adresă de e-mail de business controlată de companie și creează administratorul inițial. Verificarea organizației și brandul urmează după aceea. Alpenstraat 12 nu va fi publicată ca storefront.
 7. **Verificări live și IndexNow — finalizat:** conținutul și răspunsurile HTTP au fost verificate, iar cele două submituri IndexNow au primit HTTP `200`. Testul GA4 real rămâne separat și nu s-a trimis un lead.
-8. **Google Ads — audit read-only finalizat:** candidatul vechi auditat este recomandat pentru reutilizare, toate campaniile sunt oprite, iar măsurarea conversiilor nu este încă validată. Nu s-a activat nicio campanie și nu s-a produs nicio cheltuială. Auditul nu a acoperit ambele asocieri legacy observate în GA4; înaintea unei lansări se confirmă legătura exactă a contului ales, se validează conversia și se aprobă separat campania și bugetul.
+8. **Google Ads — transferul plătitorului finalizat, verificări pending:** contul Ads vechi a fost păstrat pentru istoric, soldul vechi a fost confirmat la zero, iar `Change who pays` a fost finalizat către un profil nou `Organization` pentru `AZ Grand Solutions vof`. Readback-ul confirmă țara, denumirea și adresa VOF; BTW/VAT și contul bancar au fost introduse direct de utilizator. Metoda bancară principală așteaptă microverificarea, iar verificarea advertiserului trebuie refăcută după instrucțiunile Google. Toate campaniile rămân oprite și nu s-a produs nicio cheltuială.
 
 ## Verificări pre-deploy și post-deploy
 
@@ -143,6 +143,11 @@ Descrierea de 643 de caractere și URL-ul sunt publicate și au fost confirmate 
 - Google Ads — obiective și acțiuni de conversie: https://support.google.com/google-ads/answer/10993988
 - Google Ads — setări permanente pentru monedă și fus orar: https://support.google.com/google-ads/answer/9842104
 - Google Ads — suspendări și conturi asociate: https://support.google.com/google-ads/answer/13704200
+- Google Ads — schimbarea profilului de plăți / `Change who pays`: https://support.google.com/google-ads/answer/15628336
+- Google Ads — documente pentru verificarea organizațiilor în Țările de Jos: https://support.google.com/adspolicy/answer/9872280?co=GENIE.CountryCode%3DNL&hl=en
+- Google Ads — adăugarea și verificarea unui cont bancar: https://support.google.com/google-ads/answer/2472643
+- Google Ads — taxe și BTW/VAT pentru Țările de Jos: https://support.google.com/google-ads/answer/2375370?co=GENIE.CountryCode%3DNL&hl=en
+- Google Ads — facturi UE și afișarea BTW/VAT ID: https://support.google.com/google-ads/answer/1723045
 - IndexNow — documentație: https://www.indexnow.org/documentation
 - Bing Webmaster Tools — importul din Search Console: https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b
 - Bing Webmaster Tools — sitemaps: https://www.bing.com/webmasters/help/Sitemaps-3b5cf6ed

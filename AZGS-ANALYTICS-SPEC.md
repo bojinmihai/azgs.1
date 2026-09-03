@@ -79,10 +79,14 @@ Auditul inițial din 3 septembrie 2026 a confirmat meetcode-ul `G-DK6FZHQRCB`, G
 6. Au fost create exact 12 dimensiuni custom event-scoped: `content_language`, `audience_context`, `service_context`, `request_type`, `business_sector`, `contact_location`, `document_type`, `document_audience`, `traffic_source`, `traffic_medium`, `entry_page` și `cta_origin`.
 7. Asocierea Search Console a fost creată la 3 septembrie 2026 între proprietatea Domain `azgs.nl` și fluxul web `azgs.nl`, ID `12841759030`.
 
-### Audit Google Ads read-only — 3 septembrie 2026
+### Audit și migrare Google Ads — 3 septembrie 2026
 
-- Contul Google Ads vechi auditat este candidatul recomandat pentru reutilizare; nu există acum un motiv verificat pentru crearea unui cont nou. Contul este activ, verificarea advertiserului este finalizată, moneda și fusul orar sunt potrivite pentru AZGS, iar auto-tagging este activ.
-- Toate campaniile sunt oprite sau eliminate. Auditul nu a activat contul ori vreo campanie, nu a introdus buget, nu a modificat facturarea și nu a produs cheltuieli.
+- Contul Google Ads vechi a fost păstrat pentru istoricul său; nu există un motiv verificat pentru crearea unui cont Ads nou. Contul este activ, moneda și fusul orar sunt potrivite pentru AZGS, iar auto-tagging este activ. Verificarea advertiserului și profilul de plăți existente la începutul auditului aparțineau însă ZZP-ului închis, nu noii entități VOF.
+- Soldul vechi a fost confirmat la zero înaintea migrării. După aprobarea explicită a utilizatorului, fluxul `Change who pays` pentru schimbarea proprietarului a fost finalizat către un profil de plăți nou, de tip `Organization`, pentru `AZ Grand Solutions vof`; profilul vechi al ZZP-ului nu a fost redenumit.
+- Readback-ul după transfer confirmă țara `Netherlands`, tipul `Organization`, denumirea juridică și adresa de înregistrare ale VOF. BTW/VAT ID a fost introdus direct de utilizator în interfața Google, iar contul bancar al VOF este metoda principală. Niciun identificator fiscal, bancar sau de profil de plăți nu este păstrat în documentația proiectului.
+- Confirmarea manuală a contului bancar este în așteptare. Google va iniția o microtranzacție, iar suma exactă trebuie introdusă în `Billing > Payment methods` după apariția ei; avertismentul actual că metoda nu poate fi debitată este consecința acestei stări pending.
+- Google a confirmat că plătitorul contului a fost schimbat și a anunțat că verificarea advertiserului trebuie finalizată din nou. Utilizatorii contului vor primi instrucțiunile prin e-mail; extrasul KvK al VOF și actul reprezentantului autorizat trebuie să corespundă profilului.
+- Toate campaniile sunt în continuare oprite sau eliminate. Migrarea nu a activat contul ori vreo campanie, nu a introdus buget și nu a produs cheltuieli publicitare.
 - Contul păstrează istoric util de trafic și cheltuieli, dar Google Ads raportează 0 leaduri pentru perioada auditată. Aceasta descrie raportarea neverificată din cont și nu dovedește că firma nu a primit leaduri reale. Acțiunile GA4 de formular și ofertă nu au date confirmate.
 - Istoricul arată termeni generici și informativi, lipsa unei liste de negative keywords și trafic predominant mobil. Acestea justifică reconstruirea controlată a campaniilor în contul existent, nu pierderea istoricului printr-un cont nou.
 - Înainte de orice publicitate trebuie confirmate toate accesările contului, legătura GA4 exactă a contului ales și dezactivarea personalizării publicitare la nivelul acelei legături, apoi testată măsurarea reală a conversiei. Auditul a acoperit candidatul autentificat accesibil, nu ambele asocieri legacy observate în GA4. `generate_lead` devine conversie de optimizare numai după observarea și verificarea sa; campaniile rămân oprite până la aprobarea separată a structurii, zonelor, cuvintelor-cheie, bugetului și limitei de cost per lead.
@@ -119,3 +123,8 @@ Auditul inițial din 3 septembrie 2026 a confirmat meetcode-ul `G-DK6FZHQRCB`, G
 - Google Ads — obiective și acțiuni de conversie: https://support.google.com/google-ads/answer/10993988
 - Google Ads — copierea campaniilor și lipsa transferului istoricului: https://support.google.com/google-ads/answer/9471263
 - Google Ads — suspendări și conturi asociate: https://support.google.com/google-ads/answer/13704200
+- Google Ads — schimbarea profilului de plăți / `Change who pays`: https://support.google.com/google-ads/answer/15628336
+- Google Ads — documente pentru verificarea organizațiilor în Țările de Jos: https://support.google.com/adspolicy/answer/9872280?co=GENIE.CountryCode%3DNL&hl=en
+- Google Ads — adăugarea și verificarea unui cont bancar: https://support.google.com/google-ads/answer/2472643
+- Google Ads — taxe și BTW/VAT pentru Țările de Jos: https://support.google.com/google-ads/answer/2375370?co=GENIE.CountryCode%3DNL&hl=en
+- Google Ads — facturi UE și afișarea BTW/VAT ID: https://support.google.com/google-ads/answer/1723045
