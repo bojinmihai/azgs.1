@@ -1,7 +1,7 @@
 # AZ Grand Solutions — vizibilitate organică și măsurare
 
 Ultima actualizare: 3 septembrie 2026
-Stare: release-ul de vizibilitate și măsurare din commitul `c88ea5d` este publicat și verificat pe `azgs.nl`; IndexNow a acceptat lista post-deploy, iar rezultatele operațiunilor din Search Console, GA4 și Google Business Profile sunt consemnate mai jos numai după confirmarea directă în interfețele lor
+Stare: release-ul de vizibilitate și măsurare din commitul `c88ea5d` și follow-up-ul pentru consimțământ/adresa de serviciu din `2ad089c` sunt publicate și verificate pe `azgs.nl`; rezultatele operațiunilor externe sunt consemnate mai jos numai după confirmare directă
 
 ## Domeniul acestei etape
 
@@ -118,6 +118,7 @@ Pachetul a fost executat după aprobarea explicită. Stările de mai jos separă
 - post-deploy: cele șase rute duplicate răspund `301` spre destinațiile canonice, iar titlurile blog NL/EN și footerul au conținutul așteptat;
 - post-deploy: canonical, hreflang, CSP și headerele de securitate sunt prezente; înainte de consimțământ nu există request sau script GA4;
 - post-deploy: IndexNow a acceptat prin HTTP `200` submitul celor 98 de URL-uri canonice și submitul separat al celor șase surse 301.
+- post-deploy `2ad089c`: `Cookie-instellingen` redeschide setările, `Refuz` păstrează navigarea funcțională și GA4 oprit; Contact NL/EN declară sediul fără vizite și nu mai încarcă ori oferă Google Maps.
 
 ## Text Google Business Profile publicat
 

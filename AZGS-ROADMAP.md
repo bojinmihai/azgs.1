@@ -954,6 +954,8 @@ Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organic
 
 **Status:** răspunsurile factuale ale utilizatorului au fost aplicate în profilul Google și într-un release-candidat local. Auditul Google Ads a fost strict read-only. Nu s-a activat nicio campanie, nu s-a introdus buget și nu s-a produs nicio cheltuială publicitară.
 
+**Publicare și verificare:** release-ul funcțional din commitul `2ad089c` a fost împins pe `origin/main` și `live/main`, apoi confirmat pe `azgs.nl`. Refuzul cookies păstrează navigarea și GA4 oprit, setările se redeschid din footer, paginile Contact NL/EN afișează explicit că sediul nu primește clienți, iar integrarea Google Maps nu mai este prezentă.
+
 **Cookies și analytics**
 
 - `Refuz` păstrează site-ul complet utilizabil și nu încarcă GA4. Acceptarea și refuzul rămân opțiuni egale.

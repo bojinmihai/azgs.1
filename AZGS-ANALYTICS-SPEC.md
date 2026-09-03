@@ -1,7 +1,7 @@
 # AZ Grand Solutions — analytics și conversii
 
 Ultima actualizare: 3 septembrie 2026
-Stare: corecția de vizibilitate și măsurare SPA din commitul `c88ea5d` este publicată și verificată HTTP pe `azgs.nl`; configurarea post-deploy confirmată și verificările rămase sunt consemnate mai jos
+Stare: corecția de vizibilitate și măsurare SPA din commitul `c88ea5d` și controlul de consimțământ din `2ad089c` sunt publicate și verificate pe `azgs.nl`; configurarea confirmată și verificările rămase sunt consemnate mai jos
 
 ## Principii
 
