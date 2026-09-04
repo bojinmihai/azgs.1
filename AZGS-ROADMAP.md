@@ -987,3 +987,14 @@ Nu este necesar acum niciun plan plătit. GA4 Standard și instrumentele organic
 - Alpenstraat 12 nu va fi publicată drept locație Apple Maps unde sunt primiți clienți. Nu presupunem că Apple oferă un echivalent al profilului Google de tip service-area business.
 - Programul telefonic obișnuit este confirmat. Pentru Google Ads rămân confirmarea contului bancar, reverificarea advertiserului, verificarea tuturor accesărilor și validarea conversiilor; transferul plătitorului către VOF este finalizat. Comportamentul cookie și ascunderea publică a adresei au fost verificate live.
 - Fotografiile și pagina de proiecte rămân intenționat pentru ultima etapă, cu verificarea atentă a sursei, drepturilor și conținutului înainte de publicare.
+
+### Publicare formular v4 cu confirmarea citirii condițiilor — 4 septembrie 2026
+
+**Status:** release-ul funcțional `c47f83f` a fost publicat prin GitHub pe `origin/main` și `live/main`, iar ambele referințe au fost citite înapoi la același SHA. Publicarea a inclus și commitul documentar anterior `cd40f73` privind migrarea profilului de plăți Google Ads către VOF; nu a activat campanii și nu a produs cheltuieli.
+
+- Formularul public `/contact` și `/en/contact` livrează `adaptive-contact-v4`. Cererile B2C, B2B și de mentenanță solicită confirmarea citirii versiunilor indicate ale condițiilor; urgențele nu sunt blocate de această cerință.
+- Buildul final, lintul și auditurile au trecut: 103 pagini, 98 URL-uri în sitemap, 184 blocuri JSON-LD, 4.307 linkuri interne, 2.322 resurse locale și șase PDF-uri publice.
+- Verificarea post-deploy a confirmat 26 de rute HTML cu răspuns `200`, sitemapul cu 98 de URL-uri unice, toate cele șase PDF-uri cu `200 application/pdf`, redirecturile canonice într-un singur pas și headerele de securitate/CSP specifice rutelor.
+- Nu a fost trimisă nicio cerere reală către Formspree. Rămâne de confirmat printr-un singur test aprobat că notificarea reală afișează `terms_read_confirmation` și `terms_documents`, mai ales dacă există un template personalizat sau o listă de câmpuri permisă în dashboard.
+- Confirmarea din formular atestă numai citirea documentelor și nu încheie contractul. Condițiile rămân proiecte în așteptarea revizuirii juridice olandeze externe înainte de folosirea lor contractuală definitivă.
+- Nu a fost necesar rollback. Dacă apare o problemă, revenirea se face printr-un commit Git revert normal al release-ului `c47f83f`, fără rescrierea istoricului.
