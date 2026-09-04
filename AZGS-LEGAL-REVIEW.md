@@ -67,7 +67,7 @@ Dacă un client a invocat deja anumite condiții de achiziție, acestea trebuie 
 
 > U stemt er uitdrukkelijk mee in dat deze algemene voorwaarden langs elektronische weg aan u worden verstrekt.
 
-6. O bifă generică pe pagina web nu este tratată ca dovadă a furnizării sau a acceptării unei anumite versiuni. De aceea vechiul mecanism local de acceptare a fost eliminat.
+6. O bifă generică pe pagina web nu este tratată ca dovadă suficientă a furnizării sau a acceptării unei anumite versiuni. Formularul de ofertă poate păstra în email numai o confirmare separată că solicitantul a citit versiunea exact identificată; aceasta nu reprezintă acceptarea condițiilor, nu încheie contractul și nu înlocuiește procesul de la punctele 1–5.
 
 ## Texte B2C auxiliare pentru contracte la distanță
 

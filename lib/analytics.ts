@@ -8,6 +8,7 @@ export const ANALYTICS_ATTRIBUTION_SESSION_KEY = 'azgs-attribution-v1';
 export const ANALYTICS_ENTRY_PAGE_SESSION_KEY = 'azgs-entry-page-v1';
 export const ANALYTICS_CTA_ORIGIN_SESSION_KEY = 'azgs-cta-origin-v1';
 export const ANALYTICS_CONSENT_EVENT = 'azgs:analytics-consent';
+export const CONTACT_FORM_VARIANT = 'adaptive-contact-v4' as const;
 
 export type AnalyticsConsentStatus = 'accepted' | 'rejected' | null;
 export type RequestType = 'private' | 'business' | 'maintenance' | 'emergency';
@@ -60,7 +61,7 @@ type AnalyticsEventParameters = Partial<{
   document_audience: 'b2c' | 'b2b';
   document_language: Locale;
   document_version: string;
-  form_variant: 'adaptive-contact-v3';
+  form_variant: typeof CONTACT_FORM_VARIANT;
   transport_type: 'beacon';
 }>;
 

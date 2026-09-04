@@ -2,9 +2,10 @@
 
 import type { FormEvent } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { COMPANY, type Locale } from '@/lib/site';
+import { COMPANY, SITE_URL, type Locale } from '@/lib/site';
 import {
   ANALYTICS_CONSENT_EVENT,
+  CONTACT_FORM_VARIANT,
   getAnalyticsConsent,
   getSafeAttribution,
   getSafeCtaOrigin,
@@ -170,8 +171,13 @@ const COPY = {
     businessTerms: 'Bij een mogelijke zakelijke opdracht worden de zakelijke voorwaarden vóór of bij de overeenkomst verstrekt; verzenden van dit formulier is geen aanvaarding van voorwaarden.',
     maintenanceTerms: 'Welke voorwaarden van toepassing kunnen zijn, hangt af van de hoedanigheid waarin u handelt. Dit wordt vóór een eventuele overeenkomst vastgesteld.',
     emergencyTerms: 'Het toepasselijke B2C- of B2B-regime wordt pas bij een eventuele opdracht vastgesteld. Dit formulier sluit geen overeenkomst.',
-    consumerTermsLabel: 'Consumentenvoorwaarden bekijken',
-    businessTermsLabel: 'Zakelijke voorwaarden bekijken',
+    consumerTermsVersionLabel: 'Consumentenvoorwaarden (versie 1.0, 3 september 2026)',
+    businessTermsVersionLabel: 'Zakelijke voorwaarden (versie 1.1, 3 september 2026)',
+    termsReadPrivate: 'Ik bevestig dat ik de consumentenvoorwaarden heb kunnen bekijken en heb gelezen.',
+    termsReadBusiness: 'Ik bevestig dat ik de zakelijke voorwaarden heb kunnen bekijken en heb gelezen.',
+    termsReadMaintenance: 'Ik bevestig dat ik de consumentenvoorwaarden en zakelijke voorwaarden heb kunnen bekijken en heb gelezen. Vóór een eventuele overeenkomst wordt vastgesteld welke voorwaarden gelden.',
+    termsNoAgreement: 'Het versturen van deze aanvraag is geen aanvaarding van een offerte en sluit geen overeenkomst.',
+    termsEmailConfirmation: 'Ja — het verplichte vak is door de aanvrager aangevinkt',
     emergencyTitle: 'Bel bij spoed',
     emergencyText: 'Het online formulier is geen direct bewaakt noodkanaal en geeft geen garantie op een onmiddellijke reactie. Bel AZ Grand Solutions. Zakelijke spoed wordt alleen beoordeeld voor een project of installatie die AZGS eerder zelf heeft uitgevoerd. Bij direct gevaar voor personen of omgeving belt u 112 of de bevoegde storingsdienst.',
     emergencyCall: `Bel ${COMPANY.phoneDisplay}`,
@@ -180,6 +186,7 @@ const COPY = {
     errorRequired: 'Dit veld is verplicht.',
     errorEmail: 'Vul een geldig e-mailadres in.',
     errorContact: 'Vul minimaal een e-mailadres of telefoonnummer in.',
+    errorTerms: 'Bevestig dat u de toepasselijke algemene voorwaarden heeft gelezen.',
     errorGeneric: 'De aanvraag kon niet worden verstuurd. Probeer het later opnieuw of neem telefonisch of per e-mail contact op.',
     errorRate: 'Er zijn tijdelijk te veel aanvragen. Wacht even en probeer opnieuw, of neem direct contact op.',
     errorNetwork: 'Er kon geen verbinding worden gemaakt. Controleer uw internetverbinding en probeer opnieuw.',
@@ -271,8 +278,13 @@ const COPY = {
     businessTerms: 'For a potential business engagement, the business terms will be supplied before or when the agreement is concluded; sending this form is not acceptance of terms.',
     maintenanceTerms: 'Which terms may apply depends on the capacity in which you act. This will be determined before any agreement is concluded.',
     emergencyTerms: 'The applicable B2C or B2B regime is determined only if an engagement follows. This form does not conclude an agreement.',
-    consumerTermsLabel: 'View consumer terms',
-    businessTermsLabel: 'View business terms',
+    consumerTermsVersionLabel: 'Consumer terms (version 1.0, 3 September 2026)',
+    businessTermsVersionLabel: 'Business terms (version 1.1, 3 September 2026)',
+    termsReadPrivate: 'I confirm that I have been able to view and have read the consumer terms.',
+    termsReadBusiness: 'I confirm that I have been able to view and have read the business terms.',
+    termsReadMaintenance: 'I confirm that I have been able to view and have read the consumer and business terms. Which terms apply will be determined before any agreement.',
+    termsNoAgreement: 'Sending this request does not accept a quotation or conclude an agreement.',
+    termsEmailConfirmation: 'Yes — the required checkbox was selected by the requester',
     emergencyTitle: 'Call in an emergency',
     emergencyText: 'The online form is not an immediately monitored emergency channel and does not guarantee an immediate response. Call AZ Grand Solutions. Business emergencies are assessed only for a project or installation previously carried out by AZGS. If people or the surroundings are in immediate danger, call 112 or the responsible emergency utility.',
     emergencyCall: `Call ${COMPANY.phoneDisplay}`,
@@ -281,6 +293,7 @@ const COPY = {
     errorRequired: 'This field is required.',
     errorEmail: 'Enter a valid email address.',
     errorContact: 'Enter at least an email address or phone number.',
+    errorTerms: 'Confirm that you have read the applicable terms and conditions.',
     errorGeneric: 'The request could not be sent. Please try again later or contact us by phone or email.',
     errorRate: 'There are temporarily too many requests. Wait and try again, or contact us directly.',
     errorNetwork: 'A connection could not be made. Check your internet connection and try again.',
@@ -550,6 +563,7 @@ const ERROR_LABELS = {
     project_phase: 'Projectfase', desired_period: 'Gewenste periode', documents_available: 'Beschikbare documenten',
     collaboration_type: 'Gewenste samenwerking', maintenance_role: 'Hoedanigheid', location_count: 'Aantal locaties',
     urgency: 'Urgentie', access: 'Toegang', maintenance_model: 'Soort onderhoud', emergency_client_type: 'Hoedanigheid spoedaanvraag', urgent_issue: 'Urgente situatie', message: 'Omschrijving',
+    terms_read_confirmation: 'Algemene voorwaarden gelezen',
   },
   en: {
     request_type: 'Request type', name: 'Contact name', email: 'Email address', contact_method: 'Email address or phone number',
@@ -557,6 +571,7 @@ const ERROR_LABELS = {
     project_phase: 'Project phase', desired_period: 'Preferred period', documents_available: 'Available documents',
     collaboration_type: 'Preferred collaboration', maintenance_role: 'Capacity', location_count: 'Number of locations',
     urgency: 'Urgency', access: 'Access', maintenance_model: 'Maintenance type', emergency_client_type: 'Emergency client type', urgent_issue: 'Urgent issue', message: 'Description',
+    terms_read_confirmation: 'Terms and conditions read',
   },
 } as const;
 
@@ -765,7 +780,9 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
 
     for (const control of controls) {
       if (!control.name || control.disabled || control.type === 'hidden') continue;
-      if (control.validity.valueMissing) next[control.name] = t.errorRequired;
+      if (control.validity.valueMissing) {
+        next[control.name] = control.name === 'terms_read_confirmation' ? t.errorTerms : t.errorRequired;
+      }
       else if (control.validity.typeMismatch) next[control.name] = t.errorEmail;
     }
 
@@ -862,6 +879,19 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
     if (!requestType) return null;
     const consumerHref = locale === 'nl' ? '/algemene-voorwaarden' : '/en/terms-and-conditions';
     const businessHref = locale === 'nl' ? '/algemene-voorwaarden-zakelijk' : '/en/business-terms-and-conditions';
+    const showConsumerTerms = requestType !== 'business';
+    const showBusinessTerms = requestType !== 'private';
+    const requiresTermsConfirmation = requestType !== 'emergency';
+    const termsReference = requestType === 'private'
+      ? `B2C v1.0 (2026-09-03) — ${SITE_URL}${consumerHref}`
+      : requestType === 'business'
+        ? `B2B v1.1 (2026-09-03) — ${SITE_URL}${businessHref}`
+        : `B2C v1.0 (2026-09-03) — ${SITE_URL}${consumerHref}; B2B v1.1 (2026-09-03) — ${SITE_URL}${businessHref}`;
+    const termsReadConfirmation = requestType === 'private'
+      ? t.termsReadPrivate
+      : requestType === 'business'
+        ? t.termsReadBusiness
+        : t.termsReadMaintenance;
     const text = requestType === 'private'
       ? t.privateTerms
       : requestType === 'business'
@@ -874,13 +904,34 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
         <p>{t.privacyIntro} <a href={locale === 'nl' ? '/privacybeleid' : '/en/privacy-policy'}>{t.privacyLink}</a></p>
         <p>{text}</p>
         <p className="form-legal-links">
-          {requestType !== 'business' ? <a href={consumerHref}>{t.consumerTermsLabel}</a> : null}
-          {requestType !== 'private' ? <a href={businessHref}>{t.businessTermsLabel}</a> : null}
+          {showConsumerTerms ? <a href={consumerHref} target="_blank" rel="noopener noreferrer">{t.consumerTermsVersionLabel}</a> : null}
+          {showBusinessTerms ? <a href={businessHref} target="_blank" rel="noopener noreferrer">{t.businessTermsVersionLabel}</a> : null}
         </p>
+        {requiresTermsConfirmation ? (
+          <div className="form-terms-confirmation" key={`terms-${requestType}`}>
+            <div className={`form-checkbox-row${errors.terms_read_confirmation ? ' form-checkbox-row--error' : ''}`}>
+              <input
+                className="form-checkbox"
+                id="terms_read_confirmation"
+                name="terms_read_confirmation"
+                type="checkbox"
+                value={t.termsEmailConfirmation}
+                required
+                aria-invalid={Boolean(errors.terms_read_confirmation)}
+                aria-describedby={errors.terms_read_confirmation ? 'terms_read_confirmation-error' : undefined}
+              />
+              <label htmlFor="terms_read_confirmation">
+                {termsReadConfirmation} {t.termsNoAgreement} <span className="required" aria-hidden="true">*</span>
+              </label>
+            </div>
+            <FieldError name="terms_read_confirmation" error={errors.terms_read_confirmation} />
+            <input type="hidden" name="terms_documents" value={termsReference} />
+          </div>
+        ) : null}
         <p className="form-data-warning">{t.dataWarning}</p>
       </div>
     );
-  }, [locale, requestType, t]);
+  }, [errors.terms_read_confirmation, locale, requestType, t]);
 
   return (
     <section className="contact-main" aria-labelledby="contact-form-heading">
@@ -901,7 +952,7 @@ export function AdaptiveContactSection({ locale }: { locale: Locale }) {
             onInput={(event) => clearFieldError((event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).name)}
           >
             <input type="hidden" name="subject" value={subjectFor(requestType, locale)} />
-            <input type="hidden" name="form_version" value="adaptive-contact-v3" />
+            <input type="hidden" name="form_version" value={CONTACT_FORM_VARIANT} />
             <input type="hidden" name="language" value={locale} />
             {includeAnalyticsContext ? (
               <>

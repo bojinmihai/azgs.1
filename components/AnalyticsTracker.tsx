@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import type { BusinessSectorKey } from '@/lib/business-sectors';
 import {
   ANALYTICS_CONSENT_EVENT,
+  CONTACT_FORM_VARIANT,
   type RequestType,
   type ServiceContext,
   primeSafeAnalyticsContext,
@@ -116,7 +117,7 @@ export function AnalyticsTracker() {
         request_type: context.requestType,
         service_context: context.service,
         business_sector: context.businessSector,
-        form_variant: 'adaptive-contact-v3',
+        form_variant: CONTACT_FORM_VARIANT,
       })) {
         formStarted = true;
         form.dataset.analyticsStarted = 'true';
@@ -151,7 +152,7 @@ export function AnalyticsTracker() {
         request_type: context.requestType,
         service_context: context.service,
         business_sector: context.businessSector,
-        form_variant: 'adaptive-contact-v3',
+        form_variant: CONTACT_FORM_VARIANT,
         transport_type: 'beacon',
       })) {
         abandonSent = true;
@@ -176,7 +177,7 @@ export function AnalyticsTracker() {
         request_type: requestType,
         service_context: service,
         business_sector: businessSector,
-        form_variant: 'adaptive-contact-v3',
+        form_variant: CONTACT_FORM_VARIANT,
       });
     };
 

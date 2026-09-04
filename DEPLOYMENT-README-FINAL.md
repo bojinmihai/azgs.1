@@ -117,6 +117,8 @@ Repository code cannot verify provider-dashboard settings. Confirm these in the 
 - monthly submission quota and retention;
 - whether the free plan still covers actual use;
 - no file upload is enabled in the current form.
+- notification emails display `terms_read_confirmation` and `terms_documents`; if the Formspree account uses a custom template or field allowlist, add both fields there;
+- perform at most one explicitly approved production submission to confirm that the checkbox status and referenced B2C/B2B version are visible in the received email.
 
 ### Google Analytics 4
 

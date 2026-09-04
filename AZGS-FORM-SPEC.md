@@ -1,6 +1,6 @@
 # AZ Grand Solutions — specificație formular adaptiv
 
-Ultima actualizare: 3 septembrie 2026
+Ultima actualizare: 4 septembrie 2026
 Stare: implementat local în Grupa 2; fără trimitere reală și fără publicare
 
 ## Scop și reguli
@@ -23,7 +23,9 @@ Stare: implementat local în Grupa 2; fără trimitere reală și fără publica
 - `phone`: opțional; împreună cu email formează contactul minim pentru emergency.
 - `message`: obligatoriu, maximum 3.000 caractere.
 - `subject`, `form_version`, `language`: câmpuri tehnice controlate de aplicație, fără PII.
-- versiunea curentă a structurii este `adaptive-contact-v3`.
+- versiunea curentă a structurii este `adaptive-contact-v4`.
+- `terms_read_confirmation`: checkbox obligatoriu pentru `private`, `business` și `maintenance`; valoarea descriptivă confirmă în notificarea Formspree că solicitantul a bifat citirea condițiilor. Nu este randat pentru formularul secundar `emergency`.
+- `terms_documents`: referință tehnică fără PII către documentul și versiunea afișate: B2C v1.0, B2B v1.1 sau ambele pentru mentenanță.
 - `origin_page`, `entry_page`, `cta_origin`: numai căi interne sigure, fără query sau fragment; sunt incluse numai dacă utilizatorul a acceptat analytics.
 - `traffic_source`, `traffic_medium`, `campaign_present`, `referrer_type`: categorii fixe, fără valori UTM libere sau URL extern complet; sunt incluse numai cu consimțământ analytics activ, iar specificația este în `AZGS-ANALYTICS-SPEC.md`.
 - `business_sector`: apare numai pentru CTA-urile B2B sectoriale și numai pentru una dintre cele șase valori fixe din allowlist; valori query necunoscute sunt ignorate.
@@ -111,6 +113,7 @@ Nu a fost adăugat `<input type="file">`. Repository-ul nu poate confirma planul
 - Browserul validează prin reguli controlate de aplicație și afișează erori NL/EN lângă câmp și într-un rezumat focalizabil.
 - Trimiterea folosește `fetch` cu `Accept: application/json` și `FormData`.
 - Butonul este dezactivat în timpul cererii, prevenind trimiterea dublă.
+- O trimitere `private`, `business` sau `maintenance` nu trece de validarea locală fără `terms_read_confirmation`; payloadul valid include confirmarea și `terms_documents`, astfel încât notificarea Formspree să arate bifa și versiunea consultată.
 - Sunt tratate distinct validarea locală, răspunsul 429, eroarea HTTP generală și eroarea de rețea.
 - Un succes emite evenimentul local `azgs:form-success`, conectat în Grupa 3 la evenimentul GA4 recomandat `generate_lead`; detail-ul conține numai `requestType` și `service`, fără date personale.
 - Pe `localhost`, `127.0.0.1`, `[::1]` și `file:` orice submit valid este oprit local și este afișat mesajul că nimic nu a fost trimis.
@@ -133,13 +136,14 @@ Nu a fost adăugat `<input type="file">`. Repository-ul nu poate confirma planul
 - NL și EN: selectorul B2B conține numai sanitare/leidingwerk, termice, încălzire în pardoseală și ventilație;
 - payload cu numai câmpurile rutei active;
 - erori obligatorii, email invalid, regula email-sau-telefon pentru emergency și allowlist separată pentru o urgență `business-existing`;
+- checkboxul condițiilor: absent la `emergency`, obligatoriu și cu eroare localizată la celelalte trei rute; payloadul local conține confirmarea și referința corectă B2C/B2B;
 - tastatură, focus, live regions și linkul telefonic pentru Spoed;
 - 320 px, 375 px, tabletă și desktop;
 - nicio cerere către `formspree.io` în testele locale.
 
 ## Confidențialitate
 
-Politicile NL/EN descriu acum categoriile de câmpuri adaptative, scopurile, minimizarea, lipsa uploadului în prima etapă și datele tehnice primite de Formspree. Textul obligatoriu de „consimțământ” a fost eliminat: informarea de confidențialitate nu este reutilizată ca temei fictiv și rămâne vizibilă lângă submit.
+Politicile NL/EN descriu acum categoriile de câmpuri adaptative, scopurile, minimizarea, lipsa uploadului în prima etapă, confirmarea citirii condițiilor și datele tehnice primite de Formspree. Nu există checkbox generic de „consimțământ” pentru politica de confidențialitate: informarea nu este reutilizată ca temei fictiv și rămâne vizibilă lângă submit. Checkboxul separat privește exclusiv citirea versiunilor indicate ale condițiilor și nu reprezintă acceptarea unei oferte sau încheierea contractului.
 
 Principiul de minimizare este documentat de Autoriteit Persoonsgegevens:
 https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/algemene-informatie-avg/verantwoordingsplicht

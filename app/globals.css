@@ -1226,8 +1226,19 @@
       gap: var(--sp-3);
       align-items: flex-start;
       padding: var(--sp-4);
-      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
       border-radius: var(--radius);
+    }
+    .form-terms-confirmation {
+      margin-top: var(--sp-3);
+    }
+    .form-terms-confirmation .form-field-error {
+      margin-top: var(--sp-2);
+    }
+    .form-checkbox-row--error {
+      border-color: #A5281B;
+      box-shadow: 0 0 0 1px #A5281B;
     }
     .form-checkbox {
       width: 20px;
@@ -1251,6 +1262,10 @@
     .form-checkbox-row a:hover {
       color: var(--color-orange-text);
       border-bottom-color: var(--color-orange-text);
+    }
+    .form-checkbox-row .required {
+      color: #9A4F00;
+      font-weight: 700;
     }
 
     .form-honeypot {

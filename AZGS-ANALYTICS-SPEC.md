@@ -1,6 +1,6 @@
 # AZ Grand Solutions — analytics și conversii
 
-Ultima actualizare: 3 septembrie 2026
+Ultima actualizare: 4 septembrie 2026
 Stare: corecția de vizibilitate și măsurare SPA din commitul `c88ea5d` și controlul de consimțământ din `2ad089c` sunt publicate și verificate pe `azgs.nl`; configurarea confirmată și verificările rămase sunt consemnate mai jos
 
 ## Principii
@@ -13,7 +13,7 @@ Stare: corecția de vizibilitate și măsurare SPA din commitul `c88ea5d` și co
 - La refuz sau retragere sunt oprite evenimentele noi, scriptul GA4 este eliminat, starea de colectare este dezactivată, iar cookie-urile proprii `_ga`/`_ga_*` sunt șterse în măsura permisă browserului.
 - Niciun eveniment nu conține valori introduse de utilizator în formular.
 - Scriptul Google poate fi încărcat exclusiv pe `azgs.nl` și `www.azgs.nl`. Pe localhost, `127.0.0.1`, `[::1]`, `file:` și orice hostname de preview comenzile rămân locale; nu se transmite trafic către proprietatea reală.
-- Parametrul tehnic `form_variant` folosește aceeași versiune ca formularul curent: `adaptive-contact-v3`.
+- Parametrul tehnic `form_variant` folosește aceeași versiune ca formularul curent: `adaptive-contact-v4`.
 - `page_view` este controlat manual pentru navigarea Next.js și configurația folosește `send_page_view=false`. Enhanced Measurement master este activ, dar pageviews generate din browser history sunt dezactivate pentru a evita dublarea; numai măsurările automate `Page loads` și `Scrolls` au rămas active.
 
 ## Evenimente

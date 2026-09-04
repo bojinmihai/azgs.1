@@ -132,7 +132,7 @@ Baseline public verificat în Git: `1c63315` — `Add B2B terms and conditions`
 - Art. 7:758 alin. 4 BW nu este exclus prin condițiile generale. Pentru B2B este menționată numai posibilitatea unei eventuale abateri valabile, exprese și specifice proiectului într-un acord individual, supusă verificării juridice.
 - Pagina NL este declarată versiunea juridică principală; pagina EN este etichetată drept traducere informativă.
 - Au fost adăugate butoane de descărcare și patru PDF-uri A4 cu fonturi încorporate, marcaje, cuprins, metadate de limbă și numerotare.
-- A fost eliminat scriptul generic de acceptare a condițiilor din paginile web. Aplicabilitatea se stabilește corect în fluxul ofertă/contract, cu furnizarea documentului înainte sau la încheiere și păstrarea dovezii.
+- A fost eliminat scriptul generic de acceptare a condițiilor din paginile web. Formularul v4 cere numai confirmarea citirii versiunii indicate și o include în email; nu este acceptare contractuală. Aplicabilitatea se stabilește în continuare în fluxul ofertă/contract, cu furnizarea documentului înainte sau la încheiere și păstrarea dovezii.
 - `AZGS-LEGAL-REVIEW.md` conține textele exacte NL/EN pentru oferte B2C/B2B, pașii de terhandstelling, variantele pentru începere anticipată și reparații urgente, sursele oficiale și checklist-ul pentru jurist.
 
 **Fișiere de conținut și integrare modificate/create**
@@ -224,7 +224,7 @@ Baseline public verificat în Git: `1c63315` — `Add B2B terms and conditions`
 **Decizii asumate**
 
 - Fără upload în această etapă; documentele se cer ulterior printr-un canal convenit.
-- Fără checkbox generic de „consimțământ” pentru politica de confidențialitate și fără acceptarea condițiilor prin simpla trimitere a formularului.
+- Fără checkbox generic de „consimțământ” pentru politica de confidențialitate și fără acceptarea condițiilor prin simpla trimitere a formularului. Checkboxul separat din v4 confirmă numai citirea condițiilor identificate și este inclus în email.
 - Locația inițială este limitată la localitate sau cod poștal; nu se solicită adresa completă, coduri de alarmă, chei sau date sensibile.
 - Pentru Spoed, telefonul este CTA principal; formularul este numai o cerere secundară de contact/retur apel.
 
@@ -535,7 +535,7 @@ Baseline public verificat în Git: `1c63315` — `Add B2B terms and conditions`
 
 **Implementare corectivă**
 
-- Formularul adaptiv este acum versiunea `adaptive-contact-v3`. Selectorul B2B oferă exclusiv cele patru variante confirmate; parametrii URL incompatibili sunt eliminați și schimbarea tipului șterge serviciul și erorile vechi.
+- Formularul adaptiv este acum versiunea `adaptive-contact-v4`. Selectorul B2B oferă exclusiv cele patru variante confirmate; parametrii URL incompatibili sunt eliminați și schimbarea tipului șterge serviciul și erorile vechi. Pentru cererile B2C, B2B și mentenanță, v4 adaugă confirmarea obligatorie a citirii versiunii indicate a condițiilor și o referință explicită în email; fluxul de urgență rămâne neblocat de această cerință.
 - Fluxul `Spoed/Urgent request` cere contextul solicitantului. Pentru `Business / B2B — existing AZGS project` sunt disponibile numai sanitar/conducte/apă, încălzire și ventilație; telefonul rămâne acțiunea principală, fără acceptare sau răspuns garantat.
 - Rutele dinamice pentru servicii și sectoare B2B au fost reunite fără conflict. Sunt generate patru servicii și șase sectoare în fiecare limbă; rutele B2B excluse, inclusiv gips-carton, răspund 404 și nu apar în sitemap.
 - Textele comerciale, metadata, datele structurate, navigarea, formularul, blogul relevant și `llms.txt` separă acum explicit ariile B2B, mentenanță și urgențe.
@@ -738,7 +738,7 @@ Baseline public verificat în Git: `1c63315` — `Add B2B terms and conditions`
 **Conținutul release-candidatului**
 
 - pachetul juridic B2C și B2B NL/EN, cu versiuni, date, formulări pentru ofertă, avertismente privind revizuirea juridică și patru PDF-uri descărcabile;
-- formularul adaptiv `adaptive-contact-v3` pentru Particulier, Zakelijk/B2B, Gebouwonderhoud și Spoed, fără upload și cu test local care nu contactează Formspree;
+- formularul adaptiv `adaptive-contact-v4` pentru Particulier, Zakelijk/B2B, Gebouwonderhoud și Spoed, fără upload și cu test local care nu contactează Formspree; cererile de ofertă includ confirmarea citirii condițiilor și versiunea consultată;
 - analytics GA4 condiționat de consimțământ, evenimente allowlist și atribuție redusă la categorii fără PII;
 - pagina Business și cele șase pagini sectoriale bilingve, cu B2B limitat exclusiv la instalații sanitare/conducte, termice inclusiv încălzire în pardoseală și ventilație;
 - delimitarea separată a proiectelor B2B, mentenanței și urgențelor, inclusiv ariile confirmate și lipsa unui SLA public;
