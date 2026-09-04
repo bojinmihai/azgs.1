@@ -32,8 +32,10 @@ export function CookieConsent({ locale }: Props) {
     if (typeof window === 'undefined') return;
     setAnalyticsCollectionDisabled(false);
     window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function gtag(...args: unknown[]) {
-      (window.dataLayer ||= []).push(args);
+    window.gtag = window.gtag || function gtag() {
+      // gtag.js consumes command arguments objects, not ordinary arrays.
+      // eslint-disable-next-line prefer-rest-params -- Google's command queue requires Arguments.
+      (window.dataLayer ||= []).push(arguments);
     };
     window.gtag('consent', 'default', {
       analytics_storage: 'denied',
